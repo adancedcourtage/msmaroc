@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60" width="300" height="60" role="img" aria-label="Marketing Success">
+  <defs>
+    <linearGradient id="msMark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7a00"/>
+      <stop offset="0.55" stop-color="#ff9a1f"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="msText" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#c4cbe4"/>
+    </linearGradient>
+  </defs>
+  <!-- Logomark: upward growth chevron in a rounded square -->
+  <rect x="2" y="8" width="44" height="44" rx="13" fill="url(#msMark)"/>
+  <path d="M13 39 L21 30 L27 35 L36 22" fill="none" stroke="#05070f" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="36" cy="22" r="3.1" fill="#05070f"/>
+  <!-- Wordmark -->
+  <text x="58" y="30" font-family="'Sora','Segoe UI',sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4" fill="url(#msText)">Marketing</text>
+  <text x="58" y="49" font-family="'Sora','Segoe UI',sans-serif" font-size="20" font-weight="700" letter-spacing="0.5" fill="#ff9a1f">Success</text>
+</svg>
