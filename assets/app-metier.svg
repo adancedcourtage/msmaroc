@@ -1,26 +1,85 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="Applications métier">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="Applications métier — application mobile et tableau de bord">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#121b42"/>
-      <stop offset="1" stop-color="#080d1f"/>
+    <linearGradient id="am-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1330"/><stop offset="1" stop-color="#05070f"/>
     </linearGradient>
-    <radialGradient id="g1" cx="28%" cy="22%" r="55%">
-      <stop offset="0" stop-color="rgba(47,107,255,0.45)"/>
-      <stop offset="1" stop-color="rgba(47,107,255,0)"/>
+    <radialGradient id="am-glow1" cx="24%" cy="18%" r="60%">
+      <stop offset="0" stop-color="rgba(47,107,255,0.40)"/><stop offset="1" stop-color="rgba(47,107,255,0)"/>
     </radialGradient>
-    <radialGradient id="g2" cx="82%" cy="82%" r="55%">
-      <stop offset="0" stop-color="rgba(255,138,30,0.35)"/>
-      <stop offset="1" stop-color="rgba(255,138,30,0)"/>
+    <radialGradient id="am-glow2" cx="88%" cy="90%" r="55%">
+      <stop offset="0" stop-color="rgba(255,138,30,0.30)"/><stop offset="1" stop-color="rgba(255,138,30,0)"/>
     </radialGradient>
-    <linearGradient id="ic" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ff7a00"/>
-      <stop offset="1" stop-color="#22d3ee"/>
+    <linearGradient id="am-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7a00"/><stop offset="1" stop-color="#22d3ee"/>
     </linearGradient>
+    <linearGradient id="am-phone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#141c40"/><stop offset="1" stop-color="#0a1028"/>
+    </linearGradient>
+    <linearGradient id="am-card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff9a1f"/><stop offset="1" stop-color="#ff7a00"/>
+    </linearGradient>
+    <pattern id="am-dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.3" fill="rgba(148,163,209,0.10)"/>
+    </pattern>
   </defs>
-  <rect width="640" height="360" fill="url(#bg)"/>
-  <rect width="640" height="360" fill="url(#g1)"/>
-  <rect width="640" height="360" fill="url(#g2)"/>
-  <rect x="264" y="118" width="112" height="112" rx="30" fill="url(#ic)"/>
-  <text x="320" y="192" font-size="56" text-anchor="middle" dominant-baseline="middle">📱</text>
-  <text x="320" y="278" font-family="'Sora','Segoe UI',sans-serif" font-size="22" font-weight="700" letter-spacing="0.5" text-anchor="middle" fill="#ffffff">Applications métier</text>
+  <style>
+    .ring{animation:am-ring 3s ease-in-out infinite;}
+    @keyframes am-ring{0%{stroke-dashoffset:82;}60%,100%{stroke-dashoffset:0;}}
+    .cell{animation:am-cell 2.4s ease-in-out infinite;}
+    @keyframes am-cell{0%,100%{opacity:1;}50%{opacity:.4;}}
+    @media (prefers-reduced-motion:reduce){.ring,.cell{animation:none;}}
+  </style>
+
+  <rect width="640" height="360" fill="url(#am-bg)"/>
+  <rect width="640" height="360" fill="url(#am-dots)"/>
+  <rect width="640" height="360" fill="url(#am-glow1)"/>
+  <rect width="640" height="360" fill="url(#am-glow2)"/>
+
+  <g stroke="url(#am-accent)" stroke-width="1.4" fill="none" opacity="0.55">
+    <path d="M150 250 C 220 250 250 150 330 150"/>
+    <path d="M470 96 C 470 150 430 150 372 165"/>
+  </g>
+  <circle cx="150" cy="250" r="4" fill="#22d3ee"/>
+  <circle cx="470" cy="96" r="4" fill="#ff9a1f"/>
+
+  <g transform="translate(300 62) rotate(-6)">
+    <rect x="0" y="0" width="150" height="252" rx="26" fill="url(#am-phone)" stroke="rgba(148,163,209,0.22)" stroke-width="1.4"/>
+    <rect x="10" y="12" width="130" height="228" rx="18" fill="#070c1e"/>
+    <rect x="55" y="20" width="40" height="7" rx="3.5" fill="rgba(148,163,209,0.35)"/>
+    <rect x="22" y="40" width="70" height="9" rx="4.5" fill="#eef2ff" opacity="0.9"/>
+    <rect x="22" y="54" width="46" height="7" rx="3.5" fill="#22d3ee" opacity="0.7"/>
+    <rect x="22" y="74" width="106" height="86" rx="10" fill="rgba(148,163,209,0.06)" stroke="rgba(148,163,209,0.16)"/>
+    <g fill="rgba(148,163,209,0.28)">
+      <rect x="32" y="86" width="14" height="12" rx="3"/><rect x="52" y="86" width="14" height="12" rx="3"/><rect x="72" y="86" width="14" height="12" rx="3"/><rect x="92" y="86" width="14" height="12" rx="3"/>
+      <rect x="32" y="104" width="14" height="12" rx="3"/><rect x="72" y="104" width="14" height="12" rx="3"/><rect x="92" y="104" width="14" height="12" rx="3"/>
+      <rect x="32" y="122" width="14" height="12" rx="3"/><rect x="52" y="122" width="14" height="12" rx="3"/><rect x="92" y="122" width="14" height="12" rx="3"/>
+      <rect x="32" y="140" width="14" height="12" rx="3"/><rect x="52" y="140" width="14" height="12" rx="3"/><rect x="72" y="140" width="14" height="12" rx="3"/>
+    </g>
+    <rect class="cell" x="52" y="104" width="14" height="12" rx="3" fill="url(#am-accent)"/>
+    <rect x="72" y="122" width="14" height="12" rx="3" fill="#ff9a1f"/>
+    <g>
+      <rect x="22" y="172" width="106" height="20" rx="6" fill="rgba(148,163,209,0.07)"/>
+      <circle cx="34" cy="182" r="5" fill="#22d3ee"/>
+      <rect x="46" y="178" width="60" height="7" rx="3.5" fill="rgba(238,242,255,0.7)"/>
+      <rect x="22" y="198" width="106" height="20" rx="6" fill="rgba(148,163,209,0.07)"/>
+      <circle cx="34" cy="208" r="5" fill="#ff9a1f"/>
+      <rect x="46" y="204" width="48" height="7" rx="3.5" fill="rgba(238,242,255,0.7)"/>
+    </g>
+  </g>
+
+  <g transform="translate(96 196) rotate(-9)">
+    <rect x="0" y="0" width="176" height="104" rx="16" fill="url(#am-card)"/>
+    <rect x="0" y="0" width="176" height="104" rx="16" fill="rgba(5,7,15,0.06)"/>
+    <rect x="18" y="20" width="30" height="22" rx="4" fill="rgba(5,7,15,0.35)"/>
+    <rect x="18" y="58" width="120" height="8" rx="4" fill="rgba(5,7,15,0.45)"/>
+    <rect x="18" y="74" width="80" height="7" rx="3.5" fill="rgba(5,7,15,0.30)"/>
+    <circle cx="150" cy="30" r="14" fill="rgba(5,7,15,0.25)"/>
+  </g>
+
+  <g transform="translate(430 70)">
+    <rect x="0" y="0" width="132" height="60" rx="14" fill="rgba(12,19,48,0.85)" stroke="rgba(148,163,209,0.20)"/>
+    <circle class="ring" cx="26" cy="30" r="13" fill="none" stroke="url(#am-accent)" stroke-width="3.4" stroke-dasharray="60 22" transform="rotate(-90 26 30)"/>
+    <rect x="50" y="18" width="66" height="9" rx="4.5" fill="rgba(238,242,255,0.85)"/>
+    <rect x="50" y="34" width="44" height="7" rx="3.5" fill="#22d3ee" opacity="0.7"/>
+  </g>
 </svg>

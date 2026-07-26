@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Politique de confidentialité — Marketing Success</title>
+<meta name="description" content="Politique de confidentialité de Marketing Success — collecte, usage et protection de vos données personnelles (loi 09-08).">
+<meta name="theme-color" content="#05070f">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo" aria-label="Marketing Success — accueil"><img src="assets/logo.svg" alt="Marketing Success"></a>
+    <div class="nav-cta">
+      <a href="index.html#contact" class="btn btn-primary btn-sm">Demander un devis</a>
+    </div>
+  </nav>
+</header>
+
+<section class="legal-page">
+  <div class="wrap">
+    <a href="index.html" class="back">← Retour à l'accueil</a>
+    <h1>Politique de confidentialité</h1>
+    <p class="updated">Dernière mise à jour : <span id="today"></span></p>
+
+    <p>Marketing Success accorde une grande importance à la protection de votre vie privée. Cette politique décrit quelles données nous collectons, pourquoi, et les droits dont vous disposez, conformément à la loi n° 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel.</p>
+
+    <h2>1. Responsable du traitement</h2>
+    <p>Le responsable du traitement est <strong>Marketing Success</strong> — <em>[adresse à compléter]</em>. Contact : <a href="mailto:contact@marketingsuccess.fr">contact@marketingsuccess.fr</a>.</p>
+
+    <h2>2. Données collectées</h2>
+    <p>Nous collectons uniquement les données que vous nous transmettez volontairement via le formulaire de contact ou par WhatsApp :</p>
+    <ul>
+      <li>Nom complet</li>
+      <li>Nom de l'entreprise (facultatif)</li>
+      <li>Adresse e-mail</li>
+      <li>Numéro de téléphone (facultatif)</li>
+      <li>Service souhaité et description de votre projet</li>
+    </ul>
+
+    <h2>3. Finalités et base légale</h2>
+    <p>Ces données sont utilisées exclusivement pour répondre à votre demande, établir un devis et assurer le suivi de la relation commerciale. La base légale du traitement est votre <strong>consentement</strong> et l'exécution de mesures précontractuelles prises à votre demande.</p>
+
+    <h2>4. Durée de conservation</h2>
+    <p>Vos données sont conservées pendant la durée nécessaire au traitement de votre demande, puis archivées ou supprimées dans un délai maximum de <em>[ex. 3 ans]</em> à compter du dernier contact, sauf obligation légale contraire.</p>
+
+    <h2>5. Destinataires</h2>
+    <p>Vos données sont destinées aux seuls services internes de Marketing Success. Elles ne sont ni vendues, ni cédées à des tiers à des fins commerciales. Certains outils techniques (messagerie, hébergement, WhatsApp) peuvent traiter ces données en qualité de sous-traitants.</p>
+
+    <h2>6. Cookies</h2>
+    <p>Ce site n'utilise pas de cookies de suivi publicitaire. Seuls des éléments strictement nécessaires au fonctionnement peuvent être employés. En cas d'ajout d'outils de mesure d'audience, un bandeau de consentement sera mis en place.</p>
+
+    <h2>7. Vos droits</h2>
+    <p>Conformément à la loi n° 09-08, vous disposez d'un droit d'accès, de rectification et d'opposition sur vos données. Pour les exercer, écrivez-nous à <a href="mailto:contact@marketingsuccess.fr">contact@marketingsuccess.fr</a>. Vous pouvez également introduire une réclamation auprès de la CNDP (<a href="https://www.cndp.ma" target="_blank" rel="noopener">www.cndp.ma</a>), l'autorité marocaine de protection des données personnelles.</p>
+
+    <h2>8. Sécurité</h2>
+    <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées afin de protéger vos données contre tout accès, altération ou divulgation non autorisés.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>© <span id="year">2026</span> Marketing Success. Tous droits réservés.</span>
+      <span><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Politique de confidentialité</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('today').textContent = new Date().toLocaleDateString('fr-FR', {year:'numeric',month:'long',day:'numeric'});
+  const p = document.querySelector('.scroll-progress');
+  if (p) { const u=()=>{const d=document.documentElement.scrollHeight-window.innerHeight;p.style.width=(d>0?window.scrollY/d*100:0)+'%';};window.addEventListener('scroll',u,{passive:true});u();}
+</script>
+</body>
+</html>

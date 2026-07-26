@@ -1,26 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="Vidéosurveillance">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="Vidéosurveillance &amp; Sécurité — caméras IP et mur de supervision">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#121b42"/>
-      <stop offset="1" stop-color="#080d1f"/>
+    <linearGradient id="vs-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1330"/><stop offset="1" stop-color="#05070f"/>
     </linearGradient>
-    <radialGradient id="g1" cx="28%" cy="22%" r="55%">
-      <stop offset="0" stop-color="rgba(47,107,255,0.45)"/>
-      <stop offset="1" stop-color="rgba(47,107,255,0)"/>
+    <radialGradient id="vs-glow1" cx="80%" cy="18%" r="60%">
+      <stop offset="0" stop-color="rgba(47,107,255,0.36)"/><stop offset="1" stop-color="rgba(47,107,255,0)"/>
     </radialGradient>
-    <radialGradient id="g2" cx="82%" cy="82%" r="55%">
-      <stop offset="0" stop-color="rgba(255,138,30,0.35)"/>
-      <stop offset="1" stop-color="rgba(255,138,30,0)"/>
+    <radialGradient id="vs-glow2" cx="16%" cy="88%" r="55%">
+      <stop offset="0" stop-color="rgba(255,138,30,0.26)"/><stop offset="1" stop-color="rgba(255,138,30,0)"/>
     </radialGradient>
-    <linearGradient id="ic" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ff7a00"/>
-      <stop offset="1" stop-color="#22d3ee"/>
+    <linearGradient id="vs-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7a00"/><stop offset="1" stop-color="#22d3ee"/>
     </linearGradient>
+    <linearGradient id="vs-cone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(34,211,238,0.42)"/><stop offset="1" stop-color="rgba(34,211,238,0)"/>
+    </linearGradient>
+    <pattern id="vs-dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.3" fill="rgba(148,163,209,0.10)"/>
+    </pattern>
   </defs>
-  <rect width="640" height="360" fill="url(#bg)"/>
-  <rect width="640" height="360" fill="url(#g1)"/>
-  <rect width="640" height="360" fill="url(#g2)"/>
-  <rect x="264" y="118" width="112" height="112" rx="30" fill="url(#ic)"/>
-  <text x="320" y="192" font-size="56" text-anchor="middle" dominant-baseline="middle">📹</text>
-  <text x="320" y="278" font-family="'Sora','Segoe UI',sans-serif" font-size="22" font-weight="700" letter-spacing="0.5" text-anchor="middle" fill="#ffffff">Vidéosurveillance</text>
+  <style>
+    .rec{animation:vs-blink 1.4s steps(1) infinite;}
+    @keyframes vs-blink{0%,60%{opacity:1;}61%,100%{opacity:.15;}}
+    .cone{animation:vs-cone 3.4s ease-in-out infinite;transform-origin:492px 60px;}
+    @keyframes vs-cone{0%,100%{opacity:.55;}50%{opacity:1;}}
+    .scan{animation:vs-scan 3.4s ease-in-out infinite;}
+    @keyframes vs-scan{0%,100%{transform:translateX(0);}50%{transform:translateX(6px);}}
+    @media (prefers-reduced-motion:reduce){.rec,.cone,.scan{animation:none;}}
+  </style>
+
+  <rect width="640" height="360" fill="url(#vs-bg)"/>
+  <rect width="640" height="360" fill="url(#vs-dots)"/>
+  <rect width="640" height="360" fill="url(#vs-glow1)"/>
+  <rect width="640" height="360" fill="url(#vs-glow2)"/>
+
+  <!-- monitoring wall -->
+  <g transform="translate(60 60)">
+    <rect x="-14" y="-14" width="330" height="230" rx="18" fill="rgba(10,16,40,0.7)" stroke="rgba(148,163,209,0.18)"/>
+    <!-- feed 1 -->
+    <g transform="translate(0 0)">
+      <rect width="146" height="92" rx="10" fill="#070c1e" stroke="rgba(148,163,209,0.16)"/>
+      <path d="M20 78 q40 -46 92 0" fill="none" stroke="rgba(148,163,209,0.35)" stroke-width="2"/>
+      <circle cx="73" cy="40" r="13" fill="rgba(148,163,209,0.30)"/>
+      <rect x="70" y="52" width="6" height="24" rx="3" fill="rgba(148,163,209,0.30)"/>
+      <rect x="118" y="10" width="20" height="10" rx="3" fill="rgba(255,122,0,0.85)"/>
+      <circle class="rec" cx="16" cy="16" r="4" fill="#ff3b3b"/>
+    </g>
+    <!-- feed 2 -->
+    <g transform="translate(156 0)">
+      <rect width="146" height="92" rx="10" fill="#070c1e" stroke="rgba(148,163,209,0.16)"/>
+      <rect x="18" y="22" width="46" height="52" rx="6" fill="rgba(148,163,209,0.16)"/>
+      <rect x="80" y="34" width="46" height="40" rx="6" fill="rgba(148,163,209,0.12)"/>
+      <rect x="30" y="30" width="60" height="40" rx="6" fill="none" stroke="url(#vs-accent)" stroke-width="2.4"/>
+      <circle cx="16" cy="16" r="4" fill="#22d3ee"/>
+    </g>
+    <!-- feed 3 -->
+    <g transform="translate(0 108)">
+      <rect width="146" height="92" rx="10" fill="#070c1e" stroke="rgba(148,163,209,0.16)"/>
+      <path d="M10 82 L60 40 L90 60 L136 24" fill="none" stroke="#22d3ee" stroke-width="2.4" opacity="0.8"/>
+      <circle cx="60" cy="40" r="4" fill="#ff9a1f"/><circle cx="136" cy="24" r="4" fill="#ff9a1f"/>
+      <circle cx="16" cy="16" r="4" fill="#22d3ee"/>
+    </g>
+    <!-- feed 4 -->
+    <g transform="translate(156 108)">
+      <rect width="146" height="92" rx="10" fill="#070c1e" stroke="rgba(148,163,209,0.16)"/>
+      <circle cx="73" cy="46" r="24" fill="none" stroke="rgba(148,163,209,0.3)" stroke-width="2"/>
+      <circle cx="73" cy="46" r="10" fill="none" stroke="url(#vs-accent)" stroke-width="2.4"/>
+      <path d="M73 46 L96 30" stroke="#ff9a1f" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="16" cy="16" r="4" fill="#22d3ee"/>
+    </g>
+  </g>
+
+  <!-- IP dome camera with vision cone -->
+  <g transform="translate(452 60)">
+    <path class="cone" d="M74 40 L150 250 L-6 250 Z" fill="url(#vs-cone)"/>
+    <g transform="translate(38 0)">
+      <rect x="0" y="0" width="72" height="26" rx="8" fill="rgba(148,163,209,0.22)"/>
+      <path d="M6 26 a30 30 0 0 0 60 0 Z" fill="#0a1028" stroke="rgba(148,163,209,0.3)" stroke-width="1.6"/>
+      <circle cx="36" cy="34" r="13" fill="#070c1e" stroke="url(#vs-accent)" stroke-width="2.6"/>
+      <circle cx="36" cy="34" r="5" fill="#22d3ee"/>
+      <circle class="rec" cx="52" cy="16" r="3" fill="#ff3b3b"/>
+    </g>
+  </g>
+
+  <!-- alarm / remote access chip -->
+  <g transform="translate(454 240)">
+    <rect x="0" y="0" width="132" height="60" rx="14" fill="rgba(12,19,48,0.85)" stroke="rgba(148,163,209,0.20)"/>
+    <circle cx="28" cy="30" r="15" fill="none" stroke="url(#vs-accent)" stroke-width="2.6"/>
+    <path d="M28 22 v9 l6 5" fill="none" stroke="#ff9a1f" stroke-width="2.6" stroke-linecap="round"/>
+    <rect x="56" y="18" width="60" height="8" rx="4" fill="rgba(238,242,255,0.8)"/>
+    <rect x="56" y="33" width="40" height="7" rx="3.5" fill="#22d3ee" opacity="0.7"/>
+  </g>
 </svg>

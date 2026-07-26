@@ -231,6 +231,60 @@ footer{border-top:1px solid var(--line);padding:70px 0 30px;background:var(--nav
 .float-cta{position:fixed;bottom:26px;right:26px;z-index:90;display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
 .float-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--orange-600),var(--orange-500));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(255,138,30,0.6);cursor:pointer;font-size:24px;transition:transform .25s;}
 .float-btn:hover{transform:scale(1.08);}
+.float-btn.wa{background:linear-gradient(135deg,#25d366,#128c4a);box-shadow:0 10px 30px -6px rgba(37,211,102,0.55);}
+.float-btn::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(255,138,30,0.5);animation:pulse-ring 2.4s ease-out infinite;}
+.float-btn.wa::after{box-shadow:0 0 0 0 rgba(37,211,102,0.5);}
+@keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(255,138,30,0.45);}70%{box-shadow:0 0 0 16px rgba(255,138,30,0);}100%{box-shadow:0 0 0 0 rgba(255,138,30,0);}}
+
+/* ---------- SCROLL PROGRESS ---------- */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;background:linear-gradient(90deg,var(--orange-500),var(--cyan-400));box-shadow:0 0 12px rgba(255,138,30,0.5);transition:width .1s linear;}
+
+/* ---------- COUNTERS (hero stats) ---------- */
+.hero-stats b{font-variant-numeric:tabular-nums;}
+
+/* ---------- BUTTON SWEEP (premium hover) ---------- */
+.btn-primary{position:relative;overflow:hidden;}
+.btn-primary::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-18deg);transition:none;}
+.btn-primary:hover::after{animation:sweep .7s ease;}
+@keyframes sweep{to{left:140%;}}
+
+/* ---------- SERVICE ILLUSTRATION GLOW ---------- */
+.service-card .img-wrap{position:relative;}
+.service-card .img-wrap::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 40%,rgba(34,211,238,0.16),transparent 70%);opacity:0;transition:opacity .45s ease;pointer-events:none;}
+.service-card:hover .img-wrap::after{opacity:1;}
+
+/* ---------- CUSTOM SVG ICONS ---------- */
+.ic .svg-ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block;transition:transform .35s cubic-bezier(.34,1.56,.64,1);}
+.mini-card .ic{color:var(--cyan-400);}
+.why-item .ic{color:#fff;}
+.mini-card:hover .ic .svg-ic,.why-item:hover .ic .svg-ic{transform:scale(1.14);}
+/* trending-up : tracé animé au survol */
+.svg-ic.trend .trend-line{stroke-dasharray:34;stroke-dashoffset:0;}
+.why-item:hover .svg-ic.trend .trend-line{animation:draw-line .65s ease forwards;}
+@keyframes draw-line{from{stroke-dashoffset:34;}to{stroke-dashoffset:0;}}
+/* target : anneau qui pulse en continu */
+.svg-ic.target .ring-pulse{transform-origin:center;animation:ring-pulse 2.8s ease-out infinite;}
+@keyframes ring-pulse{0%{transform:scale(.7);opacity:.9;}70%{transform:scale(1.15);opacity:0;}100%{opacity:0;}}
+/* stopwatch : aiguille qui tourne au survol */
+.why-item:hover .svg-ic.watch .hand{transform-box:fill-box;transform-origin:0% 100%;animation:tick 1.6s cubic-bezier(.5,0,.5,1) infinite;}
+@keyframes tick{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+
+/* ---------- FORM ACTIONS ---------- */
+.form-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.btn-wa{background:linear-gradient(100deg,#25d366,#149a52);color:#04120a;}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(37,211,102,0.6);}
+.btn-wa svg{width:17px;height:17px;}
+
+/* ---------- LEGAL PAGES ---------- */
+.legal-page{padding:150px 0 90px;}
+.legal-page .wrap{max-width:820px;}
+.legal-page h1{font-size:clamp(30px,4vw,44px);margin-bottom:14px;}
+.legal-page .updated{color:var(--grey-500);font-size:13.5px;margin-bottom:44px;}
+.legal-page h2{font-size:20px;margin:38px 0 14px;color:var(--white);}
+.legal-page p,.legal-page li{color:var(--grey-400);font-size:15px;margin-bottom:12px;}
+.legal-page ul{padding-left:20px;list-style:disc;}
+.legal-page a{color:var(--cyan-400);}
+.legal-page .back{display:inline-flex;align-items:center;gap:8px;color:var(--cyan-400);font-family:'Sora',sans-serif;font-size:13.5px;font-weight:600;margin-bottom:30px;}
 
 /* ---------- SCROLL REVEAL ---------- */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}

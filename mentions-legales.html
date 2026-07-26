@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentions légales — Marketing Success</title>
+<meta name="description" content="Mentions légales du site Marketing Success — éditeur, hébergeur et propriété intellectuelle.">
+<meta name="theme-color" content="#05070f">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo" aria-label="Marketing Success — accueil"><img src="assets/logo.svg" alt="Marketing Success"></a>
+    <div class="nav-cta">
+      <a href="index.html#contact" class="btn btn-primary btn-sm">Demander un devis</a>
+    </div>
+  </nav>
+</header>
+
+<section class="legal-page">
+  <div class="wrap">
+    <a href="index.html" class="back">← Retour à l'accueil</a>
+    <h1>Mentions légales</h1>
+    <p class="updated">Dernière mise à jour : <span id="today"></span></p>
+
+    <h2>1. Éditeur du site</h2>
+    <p>Le présent site est édité par <strong>Marketing Success</strong>.</p>
+    <ul>
+      <li>Forme juridique : <em>[à compléter — ex. SARL / SARL AU / auto-entrepreneur]</em></li>
+      <li>Capital social : <em>[à compléter]</em></li>
+      <li>Siège social : <em>[adresse complète à compléter]</em></li>
+      <li>Identifiant Commun de l'Entreprise (ICE) : <em>[à compléter]</em></li>
+      <li>Registre du Commerce (RC) : <em>[n° RC — ville d'immatriculation à compléter]</em></li>
+      <li>Identifiant Fiscal (IF) / Taxe professionnelle (Patente) : <em>[à compléter]</em></li>
+      <li>Directeur de la publication : <em>[nom du responsable]</em></li>
+      <li>Contact : <a href="mailto:contact@marketingsuccess.fr">contact@marketingsuccess.fr</a> — <a href="tel:+212600000000">+212 6 00 00 00 00</a></li>
+    </ul>
+
+    <h2>2. Hébergeur</h2>
+    <p>Le site est hébergé par <em>[nom de l'hébergeur — ex. OVH, o2switch, GitHub Pages, Vercel]</em>, <em>[adresse de l'hébergeur]</em>.</p>
+
+    <h2>3. Propriété intellectuelle</h2>
+    <p>L'ensemble des contenus présents sur ce site (textes, illustrations, logos, éléments graphiques, code) sont la propriété exclusive de Marketing Success, sauf mention contraire. Toute reproduction, représentation, modification ou exploitation, totale ou partielle, sans autorisation écrite préalable est interdite et constituerait une contrefaçon au sens de la loi n° 2-00 relative aux droits d'auteur et droits voisins.</p>
+
+    <h2>4. Responsabilité</h2>
+    <p>Marketing Success s'efforce d'assurer l'exactitude des informations diffusées sur ce site mais ne saurait être tenue responsable des erreurs, omissions ou d'une indisponibilité temporaire du service. Les liens externes éventuels n'engagent pas la responsabilité de l'éditeur quant à leur contenu.</p>
+
+    <h2>5. Données personnelles</h2>
+    <p>Les modalités de traitement des données collectées via le formulaire de contact sont détaillées dans notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
+
+    <h2>6. Droit applicable</h2>
+    <p>Les présentes mentions légales sont soumises au droit marocain. En cas de litige, et à défaut de résolution amiable, les tribunaux marocains compétents du siège social seront seuls compétents.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>© <span id="year">2026</span> Marketing Success. Tous droits réservés.</span>
+      <span><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Politique de confidentialité</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('today').textContent = new Date().toLocaleDateString('fr-FR', {year:'numeric',month:'long',day:'numeric'});
+  const p = document.querySelector('.scroll-progress');
+  if (p) { const u=()=>{const d=document.documentElement.scrollHeight-window.innerHeight;p.style.width=(d>0?window.scrollY/d*100:0)+'%';};window.addEventListener('scroll',u,{passive:true});u();}
+</script>
+</body>
+</html>

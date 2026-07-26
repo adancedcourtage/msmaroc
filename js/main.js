@@ -68,10 +68,84 @@ const navObserver = new IntersectionObserver((entries) => {
 sections.forEach(s => navObserver.observe(s));
 
 // ===== Validation & envoi du formulaire =====
+// Destination des leads. UNIQUE réglage à changer le jour où l'adresse réelle est connue.
+const CONTACT_EMAIL = 'contact@marketingsuccess.fr';
+// Backend d'envoi SANS COMPTE via FormSubmit.co : on poste directement vers CONTACT_EMAIL.
+// Activation automatique à la 1re soumission (un e-mail de confirmation est envoyé à cette
+// adresse, à valider une seule fois). Aucune inscription, aucune clé, aucun autre réglage.
+// Pour repasser en mode client mail (mailto), mettre FORM_ENDPOINT = ''.
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + encodeURIComponent(CONTACT_EMAIL);
 const form = document.getElementById('contact-form');
+
+function validateForm(form, note) {
+  let valid = true;
+  form.querySelectorAll('[required]').forEach(field => {
+    const ok = field.checkValidity();
+    field.classList.toggle('invalid', !ok);
+    if (!ok) valid = false;
+  });
+  if (!valid) {
+    note.textContent = 'Merci de remplir les champs obligatoires.';
+    note.classList.remove('success');
+  }
+  return valid;
+}
+
 if (form) {
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const note = form.querySelector('.form-note');
+    if (!validateForm(form, note)) return;
+    const data = new FormData(form);
+
+    // 1) Envoi serveur (Formspree) si configuré — robuste, aucun lead perdu
+    if (FORM_ENDPOINT) {
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const original = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Envoi en cours…'; }
+      // Options FormSubmit : objet du mail, mise en forme tableau, pas de captcha bloquant
+      data.append('_subject', 'Nouvelle demande de devis — Marketing Success');
+      data.append('_template', 'table');
+      data.append('_captcha', 'false');
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          note.textContent = 'Merci ! Votre demande a bien été envoyée, nous revenons vers vous sous 24h.';
+          note.classList.add('success');
+          form.reset();
+        } else {
+          throw new Error('HTTP ' + res.status);
+        }
+      } catch (err) {
+        note.textContent = 'Envoi impossible pour le moment. Réessayez ou écrivez-nous à ' + CONTACT_EMAIL + '.';
+        note.classList.remove('success');
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original; }
+      }
+      return;
+    }
+
+    // 2) Repli sans backend : ouverture du client mail pré-rempli
+    const subject = encodeURIComponent('Demande de devis — ' + (data.get('service') || 'Projet'));
+    const body = encodeURIComponent(
+      `Nom : ${data.get('name')}\nEntreprise : ${data.get('company') || '-'}\nEmail : ${data.get('email')}\nTéléphone : ${data.get('phone') || '-'}\nService : ${data.get('service')}\n\nProjet :\n${data.get('message') || '-'}`
+    );
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    note.textContent = 'Merci, votre client mail va s\'ouvrir pour finaliser l\'envoi.';
+    note.classList.add('success');
+    form.reset();
+  });
+}
+
+// ===== Envoi WhatsApp (2e canal de conversion) =====
+const WA_NUMBER = '212600000000'; // ← remplacer par le vrai numéro (format international, sans +)
+const waBtn = document.getElementById('send-wa');
+if (form && waBtn) {
+  waBtn.addEventListener('click', () => {
     const note = form.querySelector('.form-note');
     let valid = true;
     form.querySelectorAll('[required]').forEach(field => {
@@ -84,24 +158,64 @@ if (form) {
       note.classList.remove('success');
       return;
     }
-    // Envoi via client mail (remplaçable par un backend / Formspree)
     const data = new FormData(form);
-    const subject = encodeURIComponent('Demande de devis — ' + (data.get('service') || 'Projet'));
-    const body = encodeURIComponent(
-      `Nom : ${data.get('name')}\nEntreprise : ${data.get('company') || '-'}\nEmail : ${data.get('email')}\nTéléphone : ${data.get('phone') || '-'}\nService : ${data.get('service')}\n\nProjet :\n${data.get('message') || '-'}`
-    );
-    window.location.href = `mailto:contact@marketingsuccess.fr?subject=${subject}&body=${body}`;
-    note.textContent = 'Merci, votre client mail va s\'ouvrir pour finaliser l\'envoi.';
+    const msg =
+      `Bonjour, je souhaite un devis.\n\n` +
+      `Nom : ${data.get('name')}\n` +
+      `Entreprise : ${data.get('company') || '-'}\n` +
+      `Email : ${data.get('email')}\n` +
+      `Téléphone : ${data.get('phone') || '-'}\n` +
+      `Service : ${data.get('service')}\n\n` +
+      `Projet : ${data.get('message') || '-'}`;
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+    note.textContent = 'Merci ! WhatsApp s\'ouvre avec votre demande pré-remplie.';
     note.classList.add('success');
-    form.reset();
   });
+}
+
+// ===== Barre de progression de lecture =====
+const progress = document.querySelector('.scroll-progress');
+if (progress) {
+  const updateProgress = () => {
+    const st = window.scrollY;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (docH > 0 ? (st / docH) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+}
+
+// ===== Compteurs animés (stats hero) =====
+const counters = document.querySelectorAll('[data-count]');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const animateCount = (el) => {
+  const target = parseInt(el.getAttribute('data-count'), 10);
+  const suffix = el.getAttribute('data-suffix') || '';
+  if (reduceMotion) { el.textContent = target + suffix; return; }
+  const duration = 1400;
+  const start = performance.now();
+  const step = (now) => {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+    el.textContent = Math.round(target * eased) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+if (counters.length) {
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
+    });
+  }, { threshold: 0.6 });
+  counters.forEach(c => countObserver.observe(c));
 }
 
 // ===== Réseau animé du hero =====
 const canvas = document.getElementById('network-canvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
-  let w, h, points = [];
+  let w, h, points = [], rafId = null, inView = true;
   function resize() {
     w = canvas.width = canvas.offsetWidth;
     h = canvas.height = canvas.offsetHeight;
@@ -143,9 +257,20 @@ if (canvas) {
       ctx.fillStyle = 'rgba(255,154,31,0.75)';
       ctx.fill();
     });
-    requestAnimationFrame(draw);
+    rafId = requestAnimationFrame(draw);
   }
+  function play() { if (!reduceMotion && inView && rafId === null) { rafId = requestAnimationFrame(draw); } }
+  function pause() { if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } }
   window.addEventListener('resize', () => { resize(); initPoints(); });
   resize(); initPoints();
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(); }
+  // Ne dessine que lorsque le hero est visible (économie CPU/batterie)
+  const heroSection = document.querySelector('.hero');
+  if (heroSection && 'IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      inView = entries[0].isIntersecting;
+      inView ? play() : pause();
+    }, { threshold: 0 }).observe(heroSection);
+  }
+  document.addEventListener('visibilitychange', () => { document.hidden ? pause() : play(); });
+  play();
 }
