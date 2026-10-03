@@ -3,14 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page introuvable | Marketing Succès</title>
-<meta name="description" content="Cette page n'existe pas.">
+<title>Demander mon devis gratuit | Marketing Succès</title>
+<meta name="description" content="Décrivez votre projet en 3 minutes : site avec paiement à la livraison, fiche Google, automatisation WhatsApp. Proposition détaillée sous 24 h, gratuite et sans engagement.">
 <meta name="theme-color" content="#07080a">
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://msmaroc.com/404.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://msmaroc.com/devis.html">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marketing Succès">
+<meta property="og:locale" content="fr_MA">
+<meta property="og:url" content="https://msmaroc.com/devis.html">
+<meta property="og:title" content="Demander mon devis gratuit | Marketing Succès">
+<meta property="og:description" content="Décrivez votre projet en 3 minutes : site avec paiement à la livraison, fiche Google, automatisation WhatsApp. Proposition détaillée sous 24 h, gratuite et sans engagement.">
+<meta property="og:image" content="https://msmaroc.com/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -58,13 +66,38 @@
     </div>
   </div>
 </header>
-<main id="contenu" class="nf">
-  <div class="code grad">404</div>
-  <h1>Cette page a pris un autre chemin.</h1>
-  <p>La page que vous cherchez n'existe pas ou a été déplacée. Revenons à l'essentiel : votre visibilité et vos commandes.</p>
-  <div class="hero-cta" style="justify-content:center;margin-top:0">
-    <a class="btn primary lg" href="index.html">Retour à l'accueil</a>
-    <a class="btn ghost lg" href="devis.html">Demander mon devis</a>
+<main id="contenu" class="msf">
+  <div class="wrap msf-wrap">
+    <section class="msf-intro" id="top">
+      <span class="eyebrow">Demande de devis</span>
+      <h1>Votre projet digital, chiffré sous 24 h.</h1>
+      <p class="lead">Site e-commerce avec paiement à la livraison, visibilité Google, agents IA sur WhatsApp : décrivez votre besoin en 3 minutes. Nous vous envoyons une proposition détaillée et vous appelons pour l'expliquer.</p>
+      <div class="msf-meta"><span class="tag">Paiement à la livraison</span><span><b>3 minutes</b> pour répondre</span><span><b>Proposition sous 24 h</b></span><span>Gratuit et sans engagement</span></div>
+    </section>
+
+    <section class="help" aria-label="Comment remplir">
+      <span class="qm" aria-hidden="true">?</span>
+      <b>Comment remplir ce questionnaire</b>
+      <ul><li>Cochez simplement ce qui vous correspond, même sans certitude.</li><li>Seules les questions marquées <strong>*</strong> sont obligatoires.</li><li>Vos réponses sont enregistrées sur cet appareil : vous pouvez revenir plus tard.</li></ul>
+    </section>
+
+    <div class="shell">
+      <aside aria-label="Étapes"><ol class="rail" id="steps-nav"></ol></aside>
+      <div style="min-width:0">
+        <div class="progress"><div class="bar-row"><span id="bar-lbl"></span><span id="saved"></span></div><div class="track"><span id="bar"></span></div></div>
+        <div class="sheet">
+          <form id="form" novalidate onsubmit="return false">
+            <div id="step"></div>
+            <div class="navbtns">
+              <button type="button" class="btn ghost" id="prev">← Retour</button>
+              <span class="spacer"></span>
+              <button type="button" class="btn primary" id="next">Continuer →</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="reset-wrap"><span>Aucun engagement : la proposition est gratuite.</span><button type="button" id="reset">Recommencer</button></div>
   </div>
 </main>
 <footer class="site-footer">
@@ -108,5 +141,12 @@
 <script src="js/config.js"></script>
 <script src="js/track.js" defer></script>
 <script src="js/site.js" defer></script>
+<script>
+(function(){var m={web:"Création de site web",google:"Visibilité Google (fiche Google Business)",ia:"Automatisation & agents IA"};
+var o=new URLSearchParams(location.search).get("offre"),k="ms-simulation-projet-v1";
+try{if(o&&m[o]){var s=JSON.parse(localStorage.getItem(k)||"{}")||{};if(!(s.domaines&&s.domaines.length)){s.domaines=[m[o]];localStorage.setItem(k,JSON.stringify(s));}}}catch(e){}})();
+</script>
+<script src="js/forms/devis-config.js"></script>
+<script src="js/form-engine.js"></script>
 </body>
 </html>

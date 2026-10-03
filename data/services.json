@@ -1,0 +1,245 @@
+[
+  {
+    "id": "web",
+    "num": "01",
+    "categorie": [
+      "web"
+    ],
+    "titre": "Sites & applications web",
+    "accroche": "Sites vitrines, e-commerce et sur mesure, pensés pour convertir vos visiteurs en clients.",
+    "image": "assets/sectors/web.jpg",
+    "prestations": [
+      "Sites vitrines rapides et optimisés pour le référencement",
+      "Boutiques e-commerce avec paiement et gestion des commandes",
+      "Applications web sur mesure adaptées à votre métier",
+      "Refonte de sites existants et migration de contenu",
+      "Intégration responsive, mobile et tablette",
+      "Maintenance, sauvegardes et mises à jour de sécurité"
+    ],
+    "casUsage": "Un restaurant souhaitait remplacer sa page Facebook par un vrai site avec réservation en ligne : nous avons livré un site vitrine relié à un module de réservation et à sa fiche Google.",
+    "delai": "3 à 6 semaines",
+    "tags": [
+      "Site vitrine",
+      "E-commerce",
+      "Refonte",
+      "Maintenance"
+    ],
+    "valeurSelect": "Développement web"
+  },
+  {
+    "id": "ia",
+    "num": "02",
+    "categorie": [
+      "ia"
+    ],
+    "titre": "Automatisation & Intelligence Artificielle",
+    "accroche": "Gagnez du temps et réduisez vos coûts grâce à des automatisations sur mesure et des assistants IA.",
+    "image": "assets/sectors/ia.jpg",
+    "prestations": [
+      "Assistants IA pour répondre à vos clients 24h/24",
+      "Automatisation des emails, relances et messages WhatsApp",
+      "Connexion et synchronisation de vos outils (CRM, agenda, facturation)",
+      "Workflows automatisés pour vos tâches répétitives",
+      "Qualification et routage automatique des demandes entrantes",
+      "Tableaux de bord de suivi en temps réel"
+    ],
+    "casUsage": "Un cabinet recevait trop d'appels pour la prise de rendez-vous : un assistant IA gère désormais les demandes courantes et les relances, libérant l'équipe pour l'accueil.",
+    "delai": "2 à 5 semaines",
+    "tags": [
+      "CRM",
+      "Chatbots",
+      "Emails & WhatsApp",
+      "Workflows"
+    ],
+    "valeurSelect": "Automatisation & IA"
+  },
+  {
+    "id": "app",
+    "num": "03",
+    "categorie": [
+      "web",
+      "ia"
+    ],
+    "titre": "Applications métier",
+    "accroche": "Menu digital, fidélisation, réservation, gestion interne : des outils pensés pour votre activité.",
+    "image": "assets/sectors/app.jpg",
+    "prestations": [
+      "Menus digitaux et commande à table par QR code",
+      "Programmes de fidélité et cartes dématérialisées",
+      "Modules de réservation et de prise de rendez-vous",
+      "Outils de gestion interne et de planning d'équipe",
+      "Applications mobiles adaptées à votre secteur",
+      "Interconnexion avec vos systèmes existants"
+    ],
+    "casUsage": "Un établissement voulait fluidifier son service : nous avons déployé un menu digital et un programme de fidélité reliés à sa caisse.",
+    "delai": "3 à 7 semaines",
+    "tags": [
+      "Fidélité",
+      "Réservation",
+      "Planning",
+      "App mobile"
+    ],
+    "valeurSelect": "Applications métier"
+  },
+  {
+    "id": "com",
+    "num": "04",
+    "categorie": [
+      "com"
+    ],
+    "titre": "Communication & Impression",
+    "accroche": "Identité visuelle, cartes de visite, enseignes, véhicules, impression grand format : votre image, notre expertise.",
+    "image": "assets/sectors/com.jpg",
+    "prestations": [
+      "Création de logo et charte graphique complète",
+      "Cartes de visite, flyers, brochures et catalogues",
+      "Enseignes, panneaux et signalétique",
+      "Habillage de véhicules et vitrophanie",
+      "Impression grand format et supports événementiels",
+      "Déclinaison de vos supports sur tous les canaux"
+    ],
+    "casUsage": "Une enseigne en ouverture avait besoin d'une image cohérente : logo, enseigne, cartes et habillage de véhicule ont été réalisés par une seule équipe.",
+    "delai": "1 à 3 semaines",
+    "tags": [
+      "Logo",
+      "Enseignes",
+      "Flyers",
+      "Vitrophanie"
+    ],
+    "valeurSelect": "Communication & impression"
+  },
+  {
+    "id": "info",
+    "num": "05",
+    "categorie": [
+      "infra"
+    ],
+    "titre": "Informatique & Maintenance",
+    "accroche": "Dépannage, réseaux, serveurs, sauvegardes et cybersécurité pour un système toujours performant.",
+    "image": "assets/sectors/info.jpg",
+    "prestations": [
+      "Dépannage et assistance informatique réactive",
+      "Installation et gestion de réseaux et serveurs",
+      "Sauvegardes automatisées et plans de reprise",
+      "Cybersécurité et protection des postes de travail",
+      "Contrats de maintenance et supervision",
+      "Conseil sur votre parc et vos équipements"
+    ],
+    "casUsage": "Une PME subissait des pannes récurrentes : audit du réseau, mise en place de sauvegardes et contrat de maintenance ont stabilisé l'ensemble.",
+    "delai": "1 à 4 semaines",
+    "tags": [
+      "Dépannage",
+      "Cybersécurité",
+      "Serveurs",
+      "Assistance"
+    ],
+    "valeurSelect": "Informatique & maintenance"
+  },
+  {
+    "id": "video",
+    "num": "06",
+    "categorie": [
+      "infra"
+    ],
+    "titre": "Vidéosurveillance & Sécurité",
+    "accroche": "Caméras IP, alarmes et contrôle d'accès pour protéger vos biens et sécuriser votre tranquillité.",
+    "image": "assets/sectors/video.jpg",
+    "prestations": [
+      "Installation de caméras IP haute définition",
+      "Systèmes d'alarme et de détection d'intrusion",
+      "Contrôle d'accès et gestion des ouvertures",
+      "Consultation à distance depuis mobile",
+      "Enregistrement et stockage sécurisé des images",
+      "Maintenance et vérification périodique"
+    ],
+    "casUsage": "Un commerce souhaitait surveiller ses locaux à distance : caméras IP et alarme reliées à une application mobile ont été installées et configurées.",
+    "delai": "1 à 3 semaines",
+    "tags": [
+      "Caméras IP",
+      "Alarmes",
+      "Accès à distance"
+    ],
+    "valeurSelect": "Vidéosurveillance"
+  },
+  {
+    "id": "electricite",
+    "num": "07",
+    "categorie": [
+      "infra"
+    ],
+    "titre": "Électricité",
+    "accroche": "Installation, mise aux normes, éclairage, courant faible et maintenance électrique.",
+    "image": "assets/sectors/electricite.jpg",
+    "prestations": [
+      "Installation électrique neuve et rénovation",
+      "Mise aux normes et sécurisation des installations",
+      "Éclairage intérieur, extérieur et enseignes lumineuses",
+      "Courant faible : réseaux, interphonie, automatismes",
+      "Tableaux électriques et protection différentielle",
+      "Maintenance et interventions de dépannage"
+    ],
+    "casUsage": "Un local commercial en rénovation nécessitait une remise aux normes : reprise du tableau, de l'éclairage et du courant faible en un seul chantier.",
+    "delai": "1 à 4 semaines",
+    "tags": [
+      "Installation",
+      "Mise aux normes",
+      "Éclairage",
+      "Courant faible"
+    ],
+    "valeurSelect": "Électricité"
+  },
+  {
+    "id": "consulting",
+    "num": "08",
+    "categorie": [
+      "conseil"
+    ],
+    "titre": "Consulting",
+    "accroche": "Audit, accompagnement à la transformation digitale et stratégie de développement commercial.",
+    "image": "assets/sectors/consulting.jpg",
+    "prestations": [
+      "Audit de votre présence et de vos outils digitaux",
+      "Feuille de route de transformation digitale",
+      "Stratégie de développement commercial et d'acquisition",
+      "Optimisation de vos processus internes",
+      "Accompagnement au changement et suivi",
+      "Recommandations d'outils adaptés à votre budget"
+    ],
+    "casUsage": "Une entreprise voulait se digitaliser sans savoir par où commencer : un audit a défini les priorités et une feuille de route étalée sur plusieurs mois.",
+    "delai": "1 à 2 semaines",
+    "tags": [
+      "Audit",
+      "Stratégie",
+      "Transformation",
+      "Processus"
+    ],
+    "valeurSelect": "Consulting"
+  },
+  {
+    "id": "formation",
+    "num": "09",
+    "categorie": [
+      "conseil"
+    ],
+    "titre": "Formation",
+    "accroche": "Management, gestion d'équipe, IA et outils numériques : formez vos équipes aux enjeux de demain.",
+    "image": "assets/sectors/formation.jpg",
+    "prestations": [
+      "Formation aux outils numériques du quotidien",
+      "Prise en main de l'IA et des assistants intelligents",
+      "Management et gestion d'équipe",
+      "Bonnes pratiques de cybersécurité pour vos collaborateurs",
+      "Sessions sur site ou à distance",
+      "Supports pédagogiques et suivi post-formation"
+    ],
+    "casUsage": "Une équipe devait adopter de nouveaux outils : des sessions pratiques et des supports dédiés ont accéléré la prise en main.",
+    "delai": "Sur mesure",
+    "tags": [
+      "Management",
+      "IA",
+      "Outils numériques",
+      "Cybersécurité"
+    ],
+    "valeurSelect": "Formation"
+  }
+]

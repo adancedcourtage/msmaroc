@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page introuvable | Marketing Succès</title>
-<meta name="description" content="Cette page n'existe pas.">
+<title>Espace client | Marketing Succès</title>
+<meta name="description" content="Espace réservé aux clients de Marketing Succès.">
 <meta name="theme-color" content="#07080a">
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://msmaroc.com/404.html">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://msmaroc.com/espace-client.html">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -58,13 +58,22 @@
     </div>
   </div>
 </header>
-<main id="contenu" class="nf">
-  <div class="code grad">404</div>
-  <h1>Cette page a pris un autre chemin.</h1>
-  <p>La page que vous cherchez n'existe pas ou a été déplacée. Revenons à l'essentiel : votre visibilité et vos commandes.</p>
-  <div class="hero-cta" style="justify-content:center;margin-top:0">
-    <a class="btn primary lg" href="index.html">Retour à l'accueil</a>
-    <a class="btn ghost lg" href="devis.html">Demander mon devis</a>
+<main id="contenu" class="msf">
+  <div class="wrap msf-wrap">
+    <div class="msf-top"><button type="button" class="btn ghost small" id="logout" hidden>Se déconnecter</button></div>
+    <section class="login" id="login">
+      <span class="eyebrow">Espace client</span>
+      <h1>Accédez à votre projet.</h1>
+      <p>Entrez le code d'accès personnel que nous vous avons envoyé avec votre devis accepté.</p>
+      <form id="login-form" novalidate>
+        <label for="code">Code d'accès</label>
+        <input id="code" name="code" type="password" autocomplete="current-password" autocapitalize="characters" spellcheck="false" required>
+        <p class="err-msg" id="login-err" role="alert"></p>
+        <button class="btn primary lg" type="submit">Accéder à mon espace</button>
+      </form>
+      <p class="small-note">Vous n'avez pas encore de code ? Il vous est envoyé avec votre devis accepté. Un souci ? <a href="https://wa.me/212607284660?text=Bonjour%2C%20j%27ai%20un%20souci%20pour%20acc%C3%A9der%20%C3%A0%20mon%20espace%20client." target="_blank" rel="noopener">Écrivez-nous sur WhatsApp</a>.</p>
+    </section>
+    <div id="dash" hidden></div>
   </div>
 </main>
 <footer class="site-footer">
@@ -108,5 +117,6 @@
 <script src="js/config.js"></script>
 <script src="js/track.js" defer></script>
 <script src="js/site.js" defer></script>
+<script src="js/espace-client.js" defer></script>
 </body>
 </html>

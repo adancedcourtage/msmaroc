@@ -1,0 +1,257 @@
+/* Cahier des charges — servi uniquement après connexion (api/espace.js). */
+const DW = "Création de site web", DG = "Présence Google (fiche Google Business)", DA = "Automatisation & agents IA";
+const hasD = (s, d) => (s.domaines || []).includes(d);
+const isShop = s => ["Boutique e-commerce", "Landing page produit (vente directe)", "Catalogue sans commande en ligne"].includes(s.web_type);
+const isOrder = s => ["Boutique e-commerce", "Landing page produit (vente directe)"].includes(s.web_type);
+
+window.CONFIG = {
+  startEvent: "brief_start", sentEvent: "brief_sent",
+  storeKey: "ms-cahier-des-charges-v1",
+  whatsapp: (window.MS_CONFIG || {}).whatsapp,   // numéro défini dans js/config.js
+  whatsappDisplay: (window.MS_CONFIG || {}).whatsappDisplay,
+  docTitle: "Cahier des charges",
+  sendTitle: "Envoyez-nous votre cahier des charges",
+  sendText: "Le bouton ouvre WhatsApp avec toutes vos réponses déjà rédigées. Il vous suffit d'appuyer sur Envoyer. Nous revenons vers vous pour valider chaque point avant de démarrer.",
+  ref: s => [hasD(s,DW)?"W":"", hasD(s,DG)?"G":"", hasD(s,DA)?"A":""].join(""),
+  steps: [
+    { group: "Vous", title: "Vos coordonnées", nav: "Coordonnées",
+      intro: "Ces informations servent au suivi du projet et à la facturation.",
+      fields: [
+        { id: "client_nom", type: "text", label: "Nom et prénom du responsable", req: true },
+        { id: "entreprise", type: "text", label: "Nom de l'entreprise ou de la marque", req: true },
+        { id: "activite", type: "text", label: "Activité principale", req: true, ph: "Ex. vente de cosmétiques naturels" },
+        { id: "ville", type: "text", label: "Ville", req: true, ph: "Ex. Casablanca" },
+        { id: "tel", type: "tel", label: "Téléphone / WhatsApp", req: true, ph: "06 12 34 56 78" },
+        { id: "email", type: "email", label: "E-mail", ph: "nom@domaine.ma" },
+        { id: "statut", type: "radio", label: "Statut juridique", options: ["Auto-entrepreneur", "SARL / SARL AU", "Personne physique", "Autre"] },
+        { id: "ice", type: "text", label: "ICE", hint: "Facultatif, utile pour la facture." }
+      ] },
+
+    { group: "Vous", title: "Les services de votre projet", nav: "Services",
+      intro: "Cochez tout ce que nous allons réaliser pour vous. Les étapes suivantes s'adaptent à votre choix.",
+      fields: [
+        { id: "domaines", type: "checks", cards: true, req: true, label: "Services concernés", short: "Services",
+          options: [
+            { v: DW, d: "Boutique e-commerce, landing page, site vitrine, catalogue…" },
+            { v: DG, d: "Création ou reprise de la fiche, avis, posts, référencement local" },
+            { v: DA, d: "Confirmation des commandes, WhatsApp, agents IA, relances, reporting" }
+          ] }
+      ] },
+
+    /* ---------- SITE WEB ---------- */
+    { group: "Site web", title: "Votre projet de site", nav: "Projet de site", when: s => hasD(s, DW),
+      fields: [
+        { id: "web_type", type: "radio", label: "Type de site", req: true,
+          options: ["Boutique e-commerce", "Landing page produit (vente directe)", "Site vitrine", "Catalogue sans commande en ligne", "Site de réservation / prise de rendez-vous", "Autre"] },
+        { id: "web_objectifs", type: "checks", label: "Objectifs prioritaires",
+          options: ["Vendre en ligne", "Recevoir des commandes WhatsApp", "Être trouvé sur Google", "Rassurer et présenter l'entreprise", "Recevoir des demandes de devis", "Prendre des rendez-vous"] },
+        { id: "web_plateforme", type: "radio", label: "Plateforme", default: "Je vous laisse conseiller",
+          options: ["Shopify", "WooCommerce (WordPress)", "YouCan", "Site sur mesure", "Je vous laisse conseiller"] },
+        { id: "web_existant", type: "radio", label: "Avez-vous déjà un site ?", options: ["Non", "Oui, à refaire entièrement", "Oui, à améliorer"] },
+        { id: "web_existant_url", type: "url", label: "Adresse du site actuel", ph: "https://", when: s => s.web_existant && s.web_existant !== "Non" },
+        { id: "domaine_etat", type: "radio", label: "Nom de domaine", options: ["J'en ai déjà un", "À réserver", "Je ne sais pas"] },
+        { id: "domaine", type: "text", label: "Nom de domaine actuel ou souhaité", ph: "mamarque.ma", when: s => s.domaine_etat && s.domaine_etat !== "Je ne sais pas" },
+        { id: "langues", type: "checks", label: "Langues du site", default: ["Français"], options: ["Français", "Arabe", "Darija", "Anglais", "Espagnol"] },
+        { id: "references", type: "textarea", label: "Sites que vous aimez", hint: "Collez les liens et dites ce qui vous plaît : couleurs, mise en page, ambiance.", ph: "https://… : j'aime les grandes photos et le style épuré" }
+      ] },
+
+    { group: "Site web", title: "Votre marque et son identité", nav: "Marque & identité", when: s => hasD(s, DW),
+      fields: [
+        { id: "logo", type: "radio", label: "Logo", req: true, options: ["J'ai un logo (fichier HD)", "Logo à créer", "Logo à moderniser"] },
+        { id: "couleurs", type: "text", label: "Couleurs de la marque", ph: "Ex. vert sapin, doré, blanc cassé" },
+        { id: "slogan", type: "text", label: "Slogan ou phrase d'accroche" },
+        { id: "ton", type: "radio", label: "Ton de communication", options: ["Premium / élégant", "Chaleureux / proche", "Jeune / dynamique", "Professionnel / sérieux", "Populaire / direct"] },
+        { id: "cible_genre", type: "radio", label: "Clientèle", options: ["Femmes", "Hommes", "Mixte"] },
+        { id: "cible_age", type: "checks", label: "Âge de la clientèle", options: ["18-24 ans", "25-34 ans", "35-44 ans", "45-54 ans", "55 ans et +"] },
+        { id: "cible_zone", type: "text", label: "Zones ou villes visées", wide: true, ph: "Tout le Maroc, ou Casablanca, Rabat, Marrakech…" },
+        { id: "usp", type: "textarea", label: "Ce qui vous différencie de la concurrence", ph: "Ex. fabrication artisanale à Fès, livraison en 24 h, garantie 1 an…" },
+        { id: "concurrents", type: "textarea", label: "Concurrents ou marques de référence", rows: 2 },
+        { id: "reseaux", type: "textarea", label: "Liens de vos réseaux sociaux", rows: 2, ph: "Instagram, Facebook, TikTok…" },
+        { id: "photos", type: "radio", label: "Photos des produits ou de l'activité", req: true, options: ["Photos professionnelles disponibles", "Photos smartphone uniquement", "Photos du fournisseur", "Shooting à prévoir"] },
+        { id: "textes", type: "radio", label: "Textes du site", options: ["Je fournis les textes", "À rédiger par Marketing Succès", "Un peu des deux"] }
+      ] },
+
+    { group: "Site web", title: "Vos produits et vos prix", nav: "Produits & prix", when: s => hasD(s, DW) && isShop(s),
+      intro: "Indiquez vos produits principaux avec les prix de vente en dirhams. Pour un grand catalogue, un fichier Excel suffira.",
+      fields: [
+        { id: "nb_produits", type: "radio", label: "Nombre de produits", req: true, options: ["1 produit", "2 à 10", "11 à 50", "51 à 200", "Plus de 200"] },
+        { id: "categories", type: "textarea", label: "Catégories / collections", rows: 2, ph: "Ex. Soins visage, Soins cheveux, Coffrets cadeaux" },
+        { id: "produits", type: "repeater", label: "Liste des produits", short: "Produits",
+          hint: "Prix barré = ancien prix affiché à côté du prix promo. Laissez vide s'il n'y en a pas.",
+          cols: [
+            { k: "nom", l: "Nom du produit", ph: "Sérum éclat 30 ml" },
+            { k: "prix", l: "Prix (MAD)", short: "Prix", t: "number", ph: "199", unit: "MAD" },
+            { k: "barre", l: "Prix barré (MAD)", short: "Prix barré", t: "number", ph: "249", unit: "MAD" },
+            { k: "var", l: "Variantes", ph: "Ex. 30 ml / 50 ml" },
+            { k: "stock", l: "Stock", t: "number", ph: "50" }
+          ] },
+        { id: "variantes_types", type: "checks", label: "Types de variantes", options: ["Taille", "Pointure", "Couleur", "Contenance / poids", "Parfum", "Pack / quantité", "Aucune"] },
+        { id: "offres", type: "checks", label: "Offres commerciales à mettre en place",
+          options: ["Prix barré / promotion", "Remise sur quantité (2e à -50 %…)", "Packs / coffrets", "Cadeau dès X MAD d'achat", "Codes promo", "Livraison offerte", "Produit complémentaire après commande (upsell)"] },
+        { id: "catalogue", type: "radio", label: "Catalogue complet", options: ["Je l'envoie en Excel / Google Sheets", "Je l'ai saisi ci-dessus", "À constituer ensemble"] }
+      ] },
+
+    { group: "Site web", title: "Commande, paiement et livraison", nav: "Commande & livraison", when: s => hasD(s, DW) && isOrder(s),
+      intro: "Au Maroc, le paiement à la livraison reste le moyen le plus utilisé. Nous le mettons en place par défaut.",
+      fields: [
+        { id: "paiement", type: "checks", cards: true, label: "Moyens de paiement", req: true, default: ["Paiement à la livraison (COD)"],
+          options: [
+            { v: "Paiement à la livraison (COD)", d: "Recommandé. Le client paie le livreur à réception." },
+            { v: "Carte bancaire via CMI", d: "Optionnel. Nécessite un contrat marchand CMI." },
+            { v: "Carte via passerelle internationale", d: "Optionnel. Utile pour la clientèle étrangère." },
+            { v: "Virement bancaire", d: "Optionnel. Validation manuelle des commandes." }
+          ] },
+        { id: "checkout", type: "radio", cards: true, label: "Formulaire de commande", req: true, default: "Formulaire express COD sur la page produit",
+          options: [
+            { v: "Formulaire express COD sur la page produit", d: "Nom, téléphone, ville, adresse : commande en 30 secondes, sans panier." },
+            { v: "Panier + page de paiement classique", d: "Adapté aux achats de plusieurs produits." },
+            { v: "Les deux", d: "Commande express et panier disponibles." }
+          ] },
+        { id: "champs_cmd", type: "checks", label: "Informations demandées au client", default: ["Nom complet", "Téléphone", "Ville", "Adresse"],
+          options: ["Nom complet", "Téléphone", "Ville", "Adresse", "Quartier", "E-mail", "Note de commande"] },
+        { id: "confirmation", type: "radio", label: "Confirmation des commandes", options: ["Appel par mon équipe", "Message WhatsApp automatique", "WhatsApp automatique + appel si pas de réponse", "Pas de confirmation"] },
+        { id: "livraison_zone", type: "radio", label: "Zone de livraison", req: true, options: ["Tout le Maroc", "Certaines villes uniquement", "Ma ville uniquement"] },
+        { id: "livreurs", type: "checks", label: "Sociétés de livraison", options: ["Amana", "CTM Messagerie", "Ozon Express", "Cathedis", "Sendit", "Forcelog", "Mes propres livreurs", "Pas encore choisi"] },
+        { id: "frais_type", type: "radio", label: "Frais de livraison", options: ["Gratuite", "Prix fixe", "Selon la ville", "Gratuite à partir d'un montant"] },
+        { id: "frais_detail", type: "text", label: "Montants de livraison (MAD)", wide: true, ph: "Ex. 30 MAD à Casablanca, 40 MAD ailleurs, gratuite dès 400 MAD", when: s => s.frais_type && s.frais_type !== "Gratuite" },
+        { id: "delai", type: "text", label: "Délai de livraison annoncé", ph: "Ex. 24 à 48 h" },
+        { id: "retours", type: "radio", label: "Politique d'échange et de retour", options: ["Échange sous 7 jours", "Retour et remboursement", "Pas de retour", "À définir ensemble"] }
+      ] },
+
+    { group: "Site web", title: "Pages et fonctionnalités", nav: "Pages & fonctions", when: s => hasD(s, DW),
+      fields: [
+        { id: "pages", type: "checks", label: "Pages du site", default: ["Accueil", "Contact"],
+          options: ["Accueil", "Boutique / catalogue", "À propos", "Contact", "FAQ", "Suivi de commande", "Livraison & retours", "Blog", "CGV", "Mentions légales & confidentialité", "Galerie / réalisations", "Services & tarifs"] },
+        { id: "fonctions", type: "checks", label: "Fonctionnalités",
+          options: ["Bouton WhatsApp flottant", "Avis clients avec photos", "Badges de confiance (COD, livraison, garantie)", "Compte à rebours promo", "Pop-up offre de bienvenue", "Produits recommandés", "Recherche et filtres", "Compte client", "Liste de souhaits", "Prise de rendez-vous", "Formulaire de devis", "Carte Google Maps", "Site multilingue"] },
+        { id: "tracking", type: "checks", label: "Suivi publicitaire à installer",
+          hint: "Indispensable pour mesurer et optimiser vos publicités.",
+          options: ["Meta Pixel + API Conversions", "TikTok Pixel", "Google Analytics 4", "Google Ads", "Snapchat Pixel", "Je ne sais pas"] },
+        { id: "seo", type: "radio", label: "Référencement Google (SEO)", options: ["Optimisation de base", "SEO avancé + rédaction d'articles", "Pas prioritaire"] },
+        { id: "apres", type: "radio", label: "Après la mise en ligne", options: ["Je gère moi-même (avec formation)", "Maintenance mensuelle par Marketing Succès", "À discuter"] },
+        { id: "remarques_web", type: "textarea", label: "Autres demandes pour le site" }
+      ] },
+
+    /* ---------- GOOGLE ---------- */
+    { group: "Google", title: "Votre fiche Google", nav: "Fiche Google", when: s => hasD(s, DG),
+      intro: "La fiche Google est ce qui s'affiche quand on cherche votre entreprise ou votre activité sur Google et Google Maps.",
+      fields: [
+        { id: "gbp_etat", type: "radio", label: "Situation actuelle", req: true, options: ["J'ai une fiche et j'y ai accès", "J'ai une fiche mais je n'ai plus l'accès", "Je n'ai pas de fiche", "Je ne sais pas"] },
+        { id: "gbp_lien", type: "url", label: "Lien de la fiche", wide: true, ph: "https://maps.app.goo.gl/…", when: s => (s.gbp_etat || "").startsWith("J'ai une fiche") },
+        { id: "gbp_nom", type: "text", label: "Nom de l'établissement à afficher", req: true },
+        { id: "gbp_categorie", type: "text", label: "Activité principale sur Google", ph: "Ex. Institut de beauté" },
+        { id: "gbp_type", type: "radio", label: "Accueil des clients", req: true, options: ["Lieu physique (boutique, cabinet, restaurant…)", "Je me déplace chez les clients", "Les deux"] },
+        { id: "gbp_adresse", type: "text", label: "Adresse complète", wide: true, when: s => s.gbp_type !== "Je me déplace chez les clients" },
+        { id: "gbp_zone", type: "text", label: "Villes ou quartiers desservis", ph: "Ex. Casablanca, Mohammedia" },
+        { id: "gbp_nb", type: "radio", label: "Nombre d'établissements", options: ["1", "2 à 3", "4 à 10", "Plus de 10"] },
+        { id: "horaires", type: "textarea", label: "Horaires d'ouverture", rows: 2, ph: "Lun-Ven 9h-19h, Sam 10h-14h, fermé le dimanche" },
+        { id: "gbp_services", type: "textarea", label: "Services ou produits à mettre en avant" },
+        { id: "gbp_photos", type: "radio", label: "Photos disponibles", options: ["Oui, de bonne qualité", "Quelques-unes", "Shooting à prévoir"] }
+      ] },
+
+    { group: "Google", title: "Avis, publications et visibilité", nav: "Avis & posts", when: s => hasD(s, DG),
+      fields: [
+        { id: "gbp_avis", type: "text", label: "Avis actuels", ph: "Ex. 23 avis, note 4,3" },
+        { id: "gbp_reporting", type: "radio", label: "Rapport de performance", options: ["Mensuel", "Trimestriel", "Pas nécessaire"] },
+        { id: "gbp_objectifs", type: "checks", label: "Vos objectifs", req: true,
+          options: ["Obtenir plus d'avis", "Répondre à tous les avis", "Publier des posts réguliers", "Apparaître dans le top 3 local", "Corriger des informations erronées", "Gérer les questions des internautes", "Ajouter produits et services", "Améliorer la note"] },
+        { id: "gbp_posts", type: "radio", label: "Fréquence de publication", options: ["1 post par semaine", "2 posts par semaine", "3 posts par semaine", "Tous les jours"] },
+        { id: "gbp_collecte", type: "checks", label: "Collecte d'avis", options: ["QR code en boutique", "Présentoir ou carte NFC", "Message WhatsApp après achat", "Lien par SMS ou e-mail", "Lien dans la signature e-mail"] },
+        { id: "gbp_reponses", type: "radio", label: "Réponses aux avis", options: ["Rédigées par Marketing Succès", "Automatiques par IA, supervisées", "Je réponds moi-même"] },
+        { id: "gbp_langues", type: "checks", label: "Langues des posts et réponses", default: ["Français"], options: ["Français", "Arabe", "Darija", "Anglais"] },
+        { id: "gbp_motscles", type: "textarea", label: "Recherches sur lesquelles vous voulez apparaître", ph: "Ex. coiffeur Maarif, coiffure mariée Casablanca" },
+        { id: "gbp_concurrents", type: "textarea", label: "Concurrents locaux", rows: 2 }
+      ] },
+
+    /* ---------- AUTOMATISATION ---------- */
+    { group: "Automatisation", title: "Vos outils et vos volumes", nav: "Outils & volumes", when: s => hasD(s, DA),
+      intro: "Ces informations nous permettent de dimensionner les automatisations.",
+      fields: [
+        { id: "outils", type: "checks", label: "Outils que vous utilisez",
+          options: ["WhatsApp Business (application)", "WhatsApp Business API", "Instagram", "Facebook / Messenger", "TikTok", "Shopify", "YouCan", "WooCommerce", "Google Sheets", "Gmail / Google Workspace", "CRM (HubSpot, Zoho…)", "Logiciel de caisse / ERP"] },
+        { id: "vol_cmd", type: "radio", label: "Commandes par jour", options: ["Aucune pour l'instant", "1 à 10", "11 à 50", "51 à 200", "Plus de 200"] },
+        { id: "vol_msg", type: "radio", label: "Messages clients par jour, tous canaux", options: ["Moins de 20", "20 à 100", "100 à 500", "Plus de 500"] },
+        { id: "equipe", type: "radio", label: "Personnes qui traitent messages et commandes", options: ["Moi seul(e)", "2 à 3 personnes", "4 personnes ou plus"] },
+        { id: "taches", type: "textarea", label: "Les tâches qui vous prennent le plus de temps", req: true, ph: "Ex. appeler chaque client pour confirmer, répondre aux mêmes questions sur Instagram, saisir les colis chez le livreur…" }
+      ] },
+
+    { group: "Automatisation", title: "Commandes et livraisons", nav: "Commandes", when: s => hasD(s, DA),
+      intro: "Cochez tout ce qui vous intéresse, même sans certitude. Nous vous conseillerons sur les priorités.",
+      fields: [
+        { id: "auto_cmd", type: "checks", cards: true, label: "Automatisations des commandes", short: "Commandes",
+          options: [
+            { v: "Confirmation COD par WhatsApp", d: "Le client confirme ou annule en un clic. Moins de colis refusés." },
+            { v: "Relance des commandes abandonnées", d: "Message automatique quand le formulaire n'est pas terminé." },
+            { v: "Envoi des colis au livreur", d: "Création automatique chez Amana, Ozon, Cathedis…" },
+            { v: "Suivi de colis envoyé au client", d: "Notifications à chaque étape de la livraison." },
+            { v: "Relance des colis refusés ou injoignables", d: "Récupérer les ventes perdues à la livraison." },
+            { v: "Commandes dans Google Sheets", d: "Tableau à jour en temps réel pour toute l'équipe." },
+            { v: "Demande d'avis après livraison", d: "WhatsApp avec lien vers Google ou le site." },
+            { v: "Alertes de stock faible", d: "Prévenu avant la rupture." },
+            { v: "Factures et bons de livraison", d: "Générés automatiquement à chaque commande." },
+            { v: "Rapport quotidien des ventes", d: "Chiffres du jour reçus chaque soir sur WhatsApp." }
+          ] }
+      ] },
+
+    { group: "Automatisation", title: "Agents IA et réponses automatiques", nav: "Agents IA", when: s => hasD(s, DA),
+      fields: [
+        { id: "auto_ia", type: "checks", cards: true, label: "Assistants et réponses automatiques", short: "Agents IA",
+          options: [
+            { v: "Agent IA WhatsApp", d: "Répond aux questions et prend les commandes 24 h/24, en darija et en français." },
+            { v: "Agent IA Instagram et Messenger", d: "Répond aux messages privés et oriente vers l'achat." },
+            { v: "Réponses aux commentaires des publicités", d: "Réponse publique + message privé automatique." },
+            { v: "Chatbot sur le site", d: "Aide le visiteur à choisir et à commander." },
+            { v: "Réponses IA aux avis Google", d: "Chaque avis reçoit une réponse personnalisée." },
+            { v: "Qualification des prospects", d: "Pose les bonnes questions et transmet les contacts chauds." },
+            { v: "Prise de rendez-vous et rappels", d: "Agenda rempli et rappels la veille." },
+            { v: "Agent vocal téléphonique", d: "Répond aux appels et confirme les commandes par téléphone." },
+            { v: "Réponses aux e-mails", d: "Tri et brouillons de réponse automatiques." }
+          ] },
+        { id: "ia_langues", type: "checks", label: "Langues de l'agent", default: ["Darija", "Français"], options: ["Darija", "Français", "Arabe", "Anglais"],
+          when: s => (s.auto_ia || []).length > 0 },
+        { id: "ia_ton", type: "radio", label: "Ton de l'agent", options: ["Vouvoiement professionnel", "Tutoiement chaleureux", "S'adapte au client"], when: s => (s.auto_ia || []).length > 0 },
+        { id: "ia_base", type: "radio", label: "Informations pour former l'agent", options: ["FAQ et fiches produits prêtes", "Informations éparpillées", "À construire ensemble"], when: s => (s.auto_ia || []).length > 0 },
+        { id: "ia_humain", type: "checks", label: "Quand l'agent passe la main à un humain", options: ["Réclamation ou client mécontent", "Question hors de ses connaissances", "Grosse commande", "Demande du client", "À définir"], when: s => (s.auto_ia || []).length > 0 },
+        { id: "ia_horaires", type: "radio", label: "Plages d'activité de l'agent", options: ["24 h/24", "En dehors des heures de bureau", "Heures de bureau uniquement"], when: s => (s.auto_ia || []).length > 0 }
+      ] },
+
+    { group: "Automatisation", title: "Marketing et gestion interne", nav: "Marketing & gestion", when: s => hasD(s, DA),
+      fields: [
+        { id: "auto_mkt", type: "checks", cards: true, label: "Marketing", short: "Marketing",
+          options: [
+            { v: "Campagnes WhatsApp aux clients", d: "Nouveautés, promotions, relance des anciens clients." },
+            { v: "Séquences e-mail", d: "Bienvenue, relance, fidélisation." },
+            { v: "Publication automatique sur les réseaux", d: "Planification Instagram, Facebook, TikTok." },
+            { v: "Contenus générés par IA", d: "Descriptions produits, posts, scripts de vidéos." },
+            { v: "Audiences publicitaires synchronisées", d: "Clients et acheteurs envoyés vers Meta et TikTok." },
+            { v: "Rapports publicitaires automatiques", d: "Dépenses, ventes et coût par commande chaque semaine." },
+            { v: "Fidélité et parrainage", d: "Points, codes de parrainage, récompenses." }
+          ] },
+        { id: "auto_int", type: "checks", cards: true, label: "Gestion interne", short: "Gestion interne",
+          options: [
+            { v: "Fichier clients centralisé (CRM)", d: "Historique de chaque client au même endroit." },
+            { v: "Tableau de bord des ventes", d: "Chiffre d'affaires, taux de confirmation et de livraison." },
+            { v: "Notifications à l'équipe", d: "Nouvelle commande, réclamation, rupture de stock." },
+            { v: "Devis et factures automatiques", d: "Numérotation et envoi automatiques." }
+          ] },
+        { id: "auto_autre", type: "textarea", label: "Autre idée d'automatisation" }
+      ] },
+
+    /* ---------- FIN ---------- */
+    { group: "Finalisation", title: "Planning et validation", nav: "Planning",
+      fields: [
+        { id: "lancement", type: "date", label: "Date de lancement souhaitée" },
+        { id: "priorite", type: "radio", label: "Votre priorité", options: ["Rapidité de mise en ligne", "Qualité et finitions", "Budget maîtrisé"] },
+        { id: "acces", type: "checks", label: "Accès que vous pourrez nous donner",
+          options: ["Nom de domaine / hébergeur", "Compte Meta Business", "Compte Google", "Compte Shopify / plateforme", "Compte société de livraison", "WhatsApp Business"] },
+        { id: "valideur", type: "text", label: "Personne qui valide les étapes", ph: "Nom et numéro" },
+        { id: "contact_pref", type: "radio", label: "Moyen de contact préféré", options: ["Appel", "WhatsApp", "E-mail"] },
+        { id: "remarques", type: "textarea", label: "Remarques ou informations complémentaires", rows: 4 },
+        { id: "accord", type: "checks", label: "Validation", req: true, short: "Validation",
+          options: ["Je confirme que ces informations sont exactes et serviront de base au cahier des charges."] }
+      ] },
+
+    { group: "Finalisation", title: "Récapitulatif", nav: "Récapitulatif", type: "recap",
+      intro: "Relisez vos réponses. Vous pouvez modifier chaque partie avant l'envoi." }
+  ]
+};

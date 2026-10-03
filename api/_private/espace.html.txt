@@ -1,0 +1,45 @@
+<div class="msf-dash">
+  <section class="msf-intro" id="top">
+    <span class="eyebrow">Espace client</span>
+    <h1>Bonjour {{NAME}}, bienvenue.</h1>
+    <p class="lead">Votre projet démarre ici. Le cahier des charges ci-dessous fixe précisément ce que nous allons réaliser pour vous : prenez votre temps, vos réponses sont enregistrées au fur et à mesure.</p>
+    <ol class="proj-steps" aria-label="Les 3 étapes de votre projet">
+      <li class="proj-step now"><span class="n">1</span><div><b>Cahier des charges</b><span class="st">À remplir maintenant</span></div></li>
+      <li class="proj-step"><span class="n">2</span><div><b>Maquette</b><span class="st">Après validation du cahier des charges</span></div></li>
+      <li class="proj-step"><span class="n">3</span><div><b>Mise en ligne</b><span class="st">Après validation de la maquette</span></div></li>
+    </ol>
+  </section>
+
+  <section class="help" aria-label="Comment remplir">
+    <span class="qm" aria-hidden="true">?</span>
+    <b>Comment remplir ce questionnaire</b>
+    <ul><li>Il n'y a pas de mauvaise réponse. Répondez avec vos mots.</li><li>Si vous ne savez pas, laissez vide ou écrivez <strong>« Je ne sais pas »</strong> : nous verrons ensemble.</li><li>Seules les questions marquées <strong>*</strong> sont obligatoires.</li><li><strong>N'écrivez jamais de mot de passe ici.</strong> Les accès se transmettent séparément.</li></ul>
+  </section>
+
+  <div class="shell">
+    <aside aria-label="Étapes"><ol class="rail" id="steps-nav"></ol></aside>
+    <div style="min-width:0">
+      <div class="progress"><div class="bar-row"><span id="bar-lbl"></span><span id="saved"></span></div><div class="track"><span id="bar"></span></div></div>
+      <main class="sheet">
+        <form id="form" novalidate onsubmit="return false">
+          <div id="step"></div>
+          <div class="navbtns">
+            <button type="button" class="btn ghost" id="prev">← Retour</button>
+            <span class="spacer"></span>
+            <button type="button" class="btn primary" id="next">Continuer →</button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+
+  <div class="reset-wrap">
+    <span>Sauvegarde automatique sur cet appareil</span>
+    <button type="button" id="reset">Recommencer</button>
+  </div>
+
+  <div class="proof-note msf-help-card">
+    <p>Une question sur le questionnaire ou sur votre projet ? Votre chef de projet vous répond sur WhatsApp.</p>
+    <a class="btn wa" href="https://wa.me/212607284660?text=Bonjour%2C%20je%20suis%20dans%20mon%20espace%20client%20Marketing%20Succ%C3%A8s." target="_blank" rel="noopener">Contacter mon chef de projet</a>
+  </div>
+</div>

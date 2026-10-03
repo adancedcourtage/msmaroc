@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Success — Votre partenaire de croissance digitale</title>
+<meta name="description" content="Marketing Success accompagne les entreprises dans leur digitalisation : sites web, automatisation & IA, applications métier, communication, informatique, vidéosurveillance, électricité, consulting et formation.">
+<meta name="theme-color" content="#060608">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logo.svg">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Marketing Success — Votre partenaire de croissance digitale">
+<meta property="og:description" content="Un seul partenaire pour développer, digitaliser et faire croître votre entreprise. 9 pôles d'expertise, une seule agence.">
+<meta property="og:image" content="https://www.marketingsuccess.fr/assets/hero.webp">
+<meta property="og:url" content="https://www.marketingsuccess.fr/">
+<meta property="og:locale" content="fr_MA">
+<meta property="og:site_name" content="Marketing Success">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Marketing Success — Votre partenaire de croissance digitale">
+<meta name="twitter:description" content="Un seul partenaire pour développer, digitaliser et faire croître votre entreprise. 9 pôles d'expertise, une seule agence.">
+<meta name="twitter:image" content="https://www.marketingsuccess.fr/assets/hero.webp">
+<link rel="canonical" href="https://www.marketingsuccess.fr/">
+<meta name="robots" content="index, follow">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Marketing Success",
+  "description": "Agence digitale 360° : sites web, automatisation & IA, applications métier, communication, informatique, vidéosurveillance, électricité, consulting et formation.",
+  "url": "https://www.marketingsuccess.fr/",
+  "email": "contact@marketingsuccess.fr",
+  "telephone": "+212600000000",
+  "image": "https://www.marketingsuccess.fr/assets/hero.webp",
+  "areaServed": "MA",
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "sameAs": [],
+  "makesOffer": [
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Développement web"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Automatisation & Intelligence Artificielle"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Applications métier"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Communication & Impression"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Informatique & Maintenance"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Vidéosurveillance & Sécurité"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Électricité"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Consulting"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Formation"}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Combien de temps prend la création d'un site internet ?","acceptedAnswer":{"@type":"Answer","text":"Selon la complexité du projet, comptez en moyenne entre 3 et 6 semaines, de l'audit initial à la mise en ligne."}},
+    {"@type":"Question","name":"Puis-je faire appel à vous pour un seul service ?","acceptedAnswer":{"@type":"Answer","text":"Oui, chaque pôle d'expertise peut être mobilisé indépendamment, ou combiné selon vos besoins."}},
+    {"@type":"Question","name":"Intervenez-vous dans tous les secteurs d'activité ?","acceptedAnswer":{"@type":"Answer","text":"Nous accompagnons tous types de professionnels : restauration, santé, immobilier, artisanat, BTP, associations et bien plus encore."}},
+    {"@type":"Question","name":"Proposez-vous un support après la livraison ?","acceptedAnswer":{"@type":"Answer","text":"Oui, nous proposons des formules de maintenance et d'assistance technique adaptées à chaque projet."}},
+    {"@type":"Question","name":"Comment obtenir un devis ?","acceptedAnswer":{"@type":"Answer","text":"Remplissez le formulaire de contact ou joignez-nous par téléphone ou WhatsApp : nous revenons vers vous sous 24h."}}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/interactions.css">
+<link rel="stylesheet" href="css/immersive.css">
+<link rel="stylesheet" href="css/futuristic.css">
+<link rel="stylesheet" href="css/mdx-layer.css">
+</head>
+<body>
+
+<canvas id="webgl-bg" aria-hidden="true"></canvas>
+<div class="mdx-grid" aria-hidden="true"></div>
+<div class="mdx-glow mdx-glow--a" aria-hidden="true"></div>
+<div class="mdx-glow mdx-glow--b" aria-hidden="true"></div>
+<div class="mdx-glow mdx-glow--c" aria-hidden="true"></div>
+
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header>
+  <nav>
+    <a href="#" class="logo" aria-label="Marketing Success — accueil"><img src="assets/logo.svg" alt="Marketing Success"></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="#services">Services</a>
+      <a href="#pourquoi">Pourquoi nous</a>
+      <a href="#process">Méthode</a>
+      <a href="#avis">Avis</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="tel:+212600000000" class="btn btn-ghost btn-sm" data-magnetic>Appeler</a>
+      <a href="#contact" class="btn btn-primary btn-sm" data-magnetic>Demander un devis</a>
+    </div>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-nav"><span class="burger" aria-hidden="true"></span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero hero--fui">
+  <canvas id="network-canvas" aria-hidden="true"></canvas>
+  <div class="hero-fx" aria-hidden="true"><span class="hero-fx__scan"></span></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow hero-in" style="--i:0">Agence digitale 360°</div>
+        <h1>
+          <span class="line-mask"><span class="word-mask"><span class="line-inner hero-in" style="--i:1">Un</span></span> <span class="word-mask"><span class="line-inner hero-in" style="--i:2">seul</span></span> <span class="word-mask"><span class="line-inner hero-in" style="--i:3">partenaire</span></span> <span class="word-mask"><span class="line-inner hero-in" style="--i:4">pour</span></span></span>
+          <span class="line-mask"><span class="line-inner grad-text hero-in" style="--i:5" data-shimmer="brand" data-shimmer-base="#22d3ee">développer, digitaliser</span></span>
+          <span class="line-mask"><span class="word-mask"><span class="line-inner hero-in" style="--i:6">et</span></span> <span class="word-mask"><span class="line-inner hero-in" style="--i:7">faire</span></span> <span class="word-mask"><span class="line-inner hero-in" style="--i:8">croître</span></span> <span class="word-mask"><span class="line-inner hero-in" style="--i:9">votre</span></span> <span class="word-mask"><span class="line-inner hero-in" style="--i:10">entreprise.</span></span></span>
+        </h1>
+        <p class="lead hero-in" style="--i:4">Sites web, automatisation &amp; IA, applications métier, communication, informatique, vidéosurveillance, électricité, consulting et formation : Marketing Success centralise toute votre transformation digitale.</p>
+        <div class="hero-cta hero-in" style="--i:5">
+          <a href="#contact" class="btn btn-primary" data-magnetic data-ripple><span class="mag-label">Demander un devis gratuit</span></a>
+          <a href="#services" class="btn btn-ghost" data-magnetic data-ripple>Découvrir nos services</a>
+        </div>
+        <div class="hero-stats hero-in" style="--i:6">
+          <div><b data-count="9">9</b><span>pôles d'expertise</span></div>
+          <div><b data-count="200" data-suffix="+">200+</b><span>entreprises accompagnées</span></div>
+          <div><b data-count="24" data-suffix="/7">24/7</b><span>support &amp; assistance</span></div>
+        </div>
+        <div class="hero-trust hero-in" style="--i:7">
+          <div class="avatars"><span>SL</span><span>NB</span><span>YB</span><span>KM</span></div>
+          <div class="rating">
+            <span class="stars">★★★★★</span><b>4,9/5</b>
+          </div>
+          <div class="sep"></div>
+          <small>Recommandé par nos clients au Maroc</small>
+        </div>
+      </div>
+      <div class="hero-visual hero-in" style="--i:2" data-parallax="18">
+        <div data-tilt data-tilt-max="7" data-tilt-scale="1.02">
+          <video class="hero-video" autoplay loop muted playsinline poster="assets/sectors/ia.jpg" aria-label="Infrastructure et technologie Marketing Success">
+            <source src="assets/video/hero-servers.mp4" type="video/mp4">
+            <img src="assets/sectors/ia.jpg" alt="Infrastructure et technologie Marketing Success">
+          </video>
+          <div class="hero-badge"><b>200+</b> projets livrés</div>
+        </div>
+      </div>
+    </div>
+    <div id="hero-three" class="hero-three" aria-hidden="true"></div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span>Ils nous font confiance dans tous les secteurs</span>
+    <div class="tags">
+      <em>Restaurants</em><em>Hôtels</em><em>Cliniques</em><em>Cabinets d'avocats</em><em>PME &amp; grands groupes</em><em>Artisans</em><em>Immobilier</em>
+    </div>
+  </div>
+</div>
+
+<!-- POSITIONING -->
+<section class="positioning">
+  <div class="wrap reveal">
+    <div class="eyebrow" style="justify-content:center;">Notre promesse</div>
+    <h2 data-gsap-title>Un partenaire unique pour développer, digitaliser, automatiser et moderniser votre entreprise.</h2>
+    <p class="sub">Du premier échange à la mise en ligne, en passant par vos supports imprimés et votre sécurité informatique, une seule équipe pilote l'ensemble de votre projet.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Nos expertises</div>
+      <h2 data-gsap-title>Neuf pôles, une seule agence</h2>
+      <p>Chaque projet est différent. Nos équipes combinent les compétences nécessaires pour répondre précisément à vos besoins, sans multiplier les prestataires.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal" data-service-id="web" data-tilt data-ripple>
+        <div class="img-wrap" data-liquid><img src="assets/sectors/web.jpg" alt="Création de sites internet" loading="lazy"></div>
+        <div class="body">
+          <div class="num">01 — Développement web</div>
+          <h3>Sites &amp; applications web</h3>
+          <p>Sites vitrines, e-commerce et sur mesure, pensés pour convertir vos visiteurs en clients.</p>
+          <div class="tags"><span>Site vitrine</span><span>E-commerce</span><span>Refonte</span><span>Maintenance</span></div>
+          <a class="link" href="#contact">En savoir plus <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" data-service-id="ia" data-tilt data-ripple>
+        <div class="img-wrap" data-liquid><img src="assets/sectors/ia.jpg" alt="Automatisation et intelligence artificielle" loading="lazy"></div>
+        <div class="body">
+          <div class="num">02 — Automatisation &amp; IA</div>
+          <h3>Automatisation &amp; Intelligence Artificielle</h3>
+          <p>Gagnez du temps et réduisez vos coûts grâce à des automatisations sur mesure et des assistants IA.</p>
+          <div class="tags"><span>CRM</span><span>Chatbots</span><span>Emails &amp; WhatsApp</span><span>Workflows</span></div>
+          <a class="link" href="#contact">En savoir plus <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" data-service-id="app" data-tilt data-ripple>
+        <div class="img-wrap" data-liquid><img src="assets/sectors/app.jpg" alt="Applications métier" loading="lazy"></div>
+        <div class="body">
+          <div class="num">03 — Applications métier</div>
+          <h3>Applications métier</h3>
+          <p>Menu digital, fidélisation, réservation, gestion interne : des outils pensés pour votre activité.</p>
+          <div class="tags"><span>Fidélité</span><span>Réservation</span><span>Planning</span><span>App mobile</span></div>
+          <a class="link" href="#contact">En savoir plus <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" data-service-id="com" data-tilt data-ripple>
+        <div class="img-wrap" data-liquid><img src="assets/sectors/com.jpg" alt="Communication et impression" loading="lazy"></div>
+        <div class="body">
+          <div class="num">04 — Communication</div>
+          <h3>Communication &amp; Impression</h3>
+          <p>Identité visuelle, cartes de visite, enseignes, véhicules, impression grand format : votre image, notre expertise.</p>
+          <div class="tags"><span>Logo</span><span>Enseignes</span><span>Flyers</span><span>Vitrophanie</span></div>
+          <a class="link" href="#contact">En savoir plus <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" data-service-id="info" data-tilt data-ripple>
+        <div class="img-wrap" data-liquid><img src="assets/sectors/info.jpg" alt="Informatique et maintenance" loading="lazy"></div>
+        <div class="body">
+          <div class="num">05 — Informatique</div>
+          <h3>Informatique &amp; Maintenance</h3>
+          <p>Dépannage, réseaux, serveurs, sauvegardes et cybersécurité pour un système toujours performant.</p>
+          <div class="tags"><span>Dépannage</span><span>Cybersécurité</span><span>Serveurs</span><span>Assistance</span></div>
+          <a class="link" href="#contact">En savoir plus <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="service-card reveal" data-service-id="video" data-tilt data-ripple>
+        <div class="img-wrap" data-liquid><img src="assets/sectors/video.jpg" alt="Vidéosurveillance" loading="lazy"></div>
+        <div class="body">
+          <div class="num">06 — Vidéosurveillance</div>
+          <h3>Vidéosurveillance &amp; Sécurité</h3>
+          <p>Caméras IP, alarmes et contrôle d'accès pour protéger vos biens et sécuriser votre tranquillité.</p>
+          <div class="tags"><span>Caméras IP</span><span>Alarmes</span><span>Accès à distance</span></div>
+          <a class="link" href="#contact">En savoir plus <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mini-grid">
+      <div class="mini-card reveal" data-service-id="electricite" data-tilt data-ripple>
+        <div class="ic"><svg viewBox="0 0 24 24" class="svg-ic" aria-hidden="true"><path d="M13 2 L5 13.5 h5 l-1 8.5 L19 10 h-5 z"/></svg></div>
+        <h4>Électricité</h4>
+        <p>Installation, mise aux normes, éclairage, courant faible et maintenance électrique.</p>
+      </div>
+      <div class="mini-card reveal" data-service-id="consulting" data-tilt data-ripple>
+        <div class="ic"><svg viewBox="0 0 24 24" class="svg-ic" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.8 8.2 L10.5 10.5 L8.2 15.8 L13.5 13.5 Z"/></svg></div>
+        <h4>Consulting</h4>
+        <p>Audit, accompagnement à la transformation digitale et stratégie de développement commercial.</p>
+      </div>
+      <div class="mini-card reveal" data-service-id="formation" data-tilt data-ripple>
+        <div class="ic"><svg viewBox="0 0 24 24" class="svg-ic" aria-hidden="true"><path d="M2 9 L12 4.5 L22 9 L12 13.5 Z"/><path d="M6 11 v5 c0 0 2.2 2 6 2 s6 -2 6 -2 v-5"/><path d="M22 9 v5.5"/></svg></div>
+        <h4>Formation</h4>
+        <p>Management, gestion d'équipe, IA et outils numériques : formez vos équipes aux enjeux de demain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="pourquoi">
+  <svg class="bg-paths" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <path class="bg-paths__line" d="M-100,120 C 250,40 500,220 800,90 S 1250,180 1350,60"/>
+    <path class="bg-paths__line" d="M-100,300 C 300,380 600,180 900,320 S 1300,260 1400,340"/>
+    <path class="bg-paths__line" d="M-100,420 C 350,460 650,340 950,430 S 1300,380 1400,440"/>
+  </svg>
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="reveal">
+        <div class="eyebrow">Pourquoi Marketing Success</div>
+        <h2 data-gsap-title style="font-size:clamp(26px,3vw,36px);margin-bottom:26px;">Une seule équipe, une exécution sans friction</h2>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="ic"><svg viewBox="0 0 24 24" class="svg-ic target" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/><circle class="ring-pulse" cx="12" cy="12" r="5"/></svg></div>
+            <div><h4>Expertise transversale</h4><p>Web, IA, communication, informatique et sécurité pilotés par une seule équipe projet.</p></div>
+          </div>
+          <div class="why-item">
+            <div class="ic"><svg viewBox="0 0 24 24" class="svg-ic watch" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path class="hand" d="M12 13.5 V8.5"/><path d="M9.5 2.5 h5"/><path d="M12 2.5 V5.5"/></svg></div>
+            <div><h4>Réactivité</h4><p>Des délais maîtrisés et une assistance disponible quand vous en avez besoin.</p></div>
+          </div>
+          <div class="why-item">
+            <div class="ic"><svg viewBox="0 0 24 24" class="svg-ic" aria-hidden="true"><path d="M12 3 L19 6 V11 C19 15.2 16 18.6 12 20.5 C8 18.6 5 15.2 5 11 V6 Z"/><path d="M9 12 l2 2 l4 -4.5"/></svg></div>
+            <div><h4>Fiabilité &amp; sécurité</h4><p>Des solutions robustes, sauvegardées et conformes aux bonnes pratiques du secteur.</p></div>
+          </div>
+          <div class="why-item">
+            <div class="ic"><svg viewBox="0 0 24 24" class="svg-ic trend" aria-hidden="true"><path class="trend-line" d="M3 17 L9 11 L13 15 L21 7"/><path d="M15.5 7 H21 V12.5"/></svg></div>
+            <div><h4>Orientation résultats</h4><p>Chaque livrable est pensé pour générer des prospects et développer votre activité.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual reveal" data-parallax="16">
+        <div data-tilt data-tilt-max="6" data-tilt-scale="1.03">
+          <img src="assets/equipe-agence.jpg" alt="L'équipe Marketing Success en réunion stratégie de croissance" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin:0 auto 64px;text-align:center;max-width:600px;">
+      <div class="eyebrow" style="justify-content:center;">Notre méthode</div>
+      <h2 data-gsap-title>De l'échange initial à la mise en production</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="step-num">1</div>
+        <h4>Échange &amp; audit</h4>
+        <p>Nous cadrons vos objectifs, votre secteur et vos contraintes techniques.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">2</div>
+        <h4>Proposition &amp; devis</h4>
+        <p>Un plan d'action clair, chiffré, avec un calendrier de réalisation précis.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">3</div>
+        <h4>Création &amp; déploiement</h4>
+        <p>Design, développement, contenus et installation pilotés par nos équipes.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">4</div>
+        <h4>Suivi &amp; optimisation</h4>
+        <p>Maintenance, support et amélioration continue pour rester performant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="avis" class="testi-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Témoignages</div>
+      <h2 data-gsap-title>Ce que disent nos clients</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Nouveau site et réservation en ligne automatisée : nous sommes passés de quelques appels à plus de 40 % de tables réservées sur le web en deux mois. »</p>
+        <div class="testi-person"><div class="av">SL</div><div><b>Sophie L.</b><span>Restaurant · Marrakech</span></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Boutique en ligne, identité visuelle et enseignes gérées par une seule équipe. Nos ventes web ont doublé dès le premier trimestre. »</p>
+        <div class="testi-person"><div class="av">NB</div><div><b>Nadia B.</b><span>Prêt-à-porter · Casablanca</span></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>« L'assistant IA gère nos rendez-vous et nos relances, et la vidéosurveillance sécurise le cabinet. Notre équipe se concentre enfin sur les patients. »</p>
+        <div class="testi-person"><div class="av">YB</div><div><b>Yassine B.</b><span>Clinique dentaire · Rabat</span></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Site, devis en ligne et signalétique de chantier gérés d'un bloc. Nous recevons désormais des demandes qualifiées sans courir après les prospects. »</p>
+        <div class="testi-person"><div class="av">KM</div><div><b>Karim M.</b><span>BTP · Tanger</span></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Refonte du site, prise de rendez-vous et sécurisation informatique du cabinet : un seul interlocuteur, des délais tenus et un vrai gain de sérénité. »</p>
+        <div class="testi-person"><div class="av">HA</div><div><b>Houda A.</b><span>Cabinet d'avocats · Casablanca</span></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Moteur de réservation, identité visuelle et écrans d'accueil livrés avant la haute saison. Nos réservations en direct ont nettement progressé. »</p>
+        <div class="testi-person"><div class="av">RE</div><div><b>Rachid E.</b><span>Hôtel · Agadir</span></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Site associatif, automatisation des inscriptions et formation de nos bénévoles aux outils numériques. Nous passons enfin moins de temps sur l'administratif. »</p>
+        <div class="testi-person"><div class="av">FZ</div><div><b>Fatima Z.</b><span>Association · Fès</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin:0 auto 48px;text-align:center;">
+      <div class="eyebrow" style="justify-content:center;">Questions fréquentes</div>
+      <h2 data-gsap-title>Tout ce que vous devez savoir</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item open">
+        <button class="faq-q" id="faq-q-1" aria-expanded="true" aria-controls="faq-a-1" data-ripple><h4>Combien de temps prend la création d'un site internet ?</h4><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line class="bar bar-h" x1="6" y1="12" x2="18" y2="12"/><line class="bar bar-v" x1="12" y1="6" x2="12" y2="18"/></svg></span></button>
+        <div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-q-1"><p>Selon la complexité du projet, comptez en moyenne entre 3 et 6 semaines, de l'audit initial à la mise en ligne.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" data-ripple><h4>Puis-je faire appel à vous pour un seul service ?</h4><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line class="bar bar-h" x1="6" y1="12" x2="18" y2="12"/><line class="bar bar-v" x1="12" y1="6" x2="12" y2="18"/></svg></span></button>
+        <div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><p>Oui, chaque pôle d'expertise peut être mobilisé indépendamment, ou combiné selon vos besoins.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" data-ripple><h4>Intervenez-vous dans tous les secteurs d'activité ?</h4><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line class="bar bar-h" x1="6" y1="12" x2="18" y2="12"/><line class="bar bar-v" x1="12" y1="6" x2="12" y2="18"/></svg></span></button>
+        <div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-q-3"><p>Nous accompagnons tous types de professionnels : restauration, santé, immobilier, artisanat, BTP, associations et bien plus encore.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" data-ripple><h4>Proposez-vous un support après la livraison ?</h4><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line class="bar bar-h" x1="6" y1="12" x2="18" y2="12"/><line class="bar bar-v" x1="12" y1="6" x2="12" y2="18"/></svg></span></button>
+        <div class="faq-a" id="faq-a-4" role="region" aria-labelledby="faq-q-4"><p>Oui, nous proposons des formules de maintenance et d'assistance technique adaptées à chaque projet.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" data-ripple><h4>Comment obtenir un devis ?</h4><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line class="bar bar-h" x1="6" y1="12" x2="18" y2="12"/><line class="bar bar-v" x1="12" y1="6" x2="12" y2="18"/></svg></span></button>
+        <div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><p>Remplissez le formulaire ci-dessous ou contactez-nous par téléphone / WhatsApp : nous revenons vers vous sous 24h.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div class="spline-visual" data-spline="assets/spline/neon-trails.splinecode" aria-hidden="true"></div>
+      <h3 data-gsap-title>Prêt à digitaliser et développer votre entreprise avec un seul partenaire ?</h3>
+      <div class="cta-band-actions">
+        <a href="#contact" class="btn btn-primary" data-magnetic data-ripple><span class="mag-label">Demander un devis</span></a>
+        <a href="#contact" class="btn btn-ghost" data-magnetic data-ripple><span class="mag-label">Prendre rendez-vous</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Contact</div>
+      <h2 data-gsap-title>Parlons de votre projet</h2>
+      <p>Décrivez vos besoins, nous revenons vers vous sous 24h avec une proposition adaptée.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-info-card">
+          <h4>Téléphone</h4>
+          <p><a href="tel:+212600000000">+212 6 00 00 00 00</a></p>
+        </div>
+        <div class="contact-info-card">
+          <h4>Email</h4>
+          <p><a href="mailto:contact@marketingsuccess.fr">contact@marketingsuccess.fr</a></p>
+        </div>
+        <div class="contact-info-card">
+          <h4>WhatsApp</h4>
+          <p><a href="https://wa.me/212600000000" target="_blank" rel="noopener">Discuter directement sur WhatsApp</a></p>
+        </div>
+        <div class="contact-info-card">
+          <h4>Horaires</h4>
+          <p>Lundi – Vendredi : 9h – 18h</p>
+        </div>
+      </div>
+      <form id="contact-form" class="reveal" novalidate>
+        <div class="reassure">
+          <span><svg viewBox="0 0 24 24"><path d="M20 6 L9 17 l-5 -5"/></svg>Devis 100 % gratuit</span>
+          <span><svg viewBox="0 0 24 24"><path d="M20 6 L9 17 l-5 -5"/></svg>Réponse sous 24h</span>
+          <span><svg viewBox="0 0 24 24"><path d="M20 6 L9 17 l-5 -5"/></svg>Sans engagement</span>
+        </div>
+        <div class="form-row">
+          <div><label for="f-name">Nom complet</label><input id="f-name" name="name" type="text" required placeholder="Votre nom"></div>
+          <div><label for="f-company">Entreprise</label><input id="f-company" name="company" type="text" placeholder="Nom de votre entreprise"></div>
+        </div>
+        <div class="form-row">
+          <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" required placeholder="vous@entreprise.com"></div>
+          <div><label for="f-phone">Téléphone</label><input id="f-phone" name="phone" type="tel" placeholder="+212 6 00 00 00 00"></div>
+        </div>
+        <div>
+          <label for="f-service">Service souhaité</label>
+          <select id="f-service" name="service">
+            <option>Développement web</option>
+            <option>Automatisation &amp; IA</option>
+            <option>Applications métier</option>
+            <option>Communication &amp; impression</option>
+            <option>Informatique &amp; maintenance</option>
+            <option>Vidéosurveillance</option>
+            <option>Électricité</option>
+            <option>Consulting</option>
+            <option>Formation</option>
+            <option>Plusieurs services</option>
+          </select>
+        </div>
+        <div>
+          <label for="f-message">Votre projet</label>
+          <textarea id="f-message" name="message" placeholder="Décrivez votre besoin en quelques lignes..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" data-magnetic data-ripple><span class="mag-label">Envoyer ma demande</span></button>
+          <button type="button" id="send-wa" class="btn btn-wa" data-magnetic>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.2c-.25.7-1.44 1.33-1.98 1.38-.53.05-1.03.24-3.46-.72-2.91-1.15-4.77-4.1-4.91-4.29-.15-.19-1.19-1.58-1.19-3.02 0-1.44.75-2.14 1.02-2.43.27-.29.59-.36.79-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.58.84 2.02.91 2.17.07.15.12.32.02.51-.1.19-.15.31-.3.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.69-.18 1.39Z"/></svg>
+            Envoyer sur WhatsApp
+          </button>
+        </div>
+        <p class="form-note" role="status" aria-live="polite">Réponse sous 24h ouvrées.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="Marketing Success">
+        <p>Agence 360° spécialisée dans la digitalisation, la communication, les nouvelles technologies et l'accompagnement des entreprises.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Développement web</a></li>
+          <li><a href="#services">Automatisation &amp; IA</a></li>
+          <li><a href="#services">Applications métier</a></li>
+          <li><a href="#services">Communication</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <ul>
+          <li><a href="#services">Informatique</a></li>
+          <li><a href="#services">Vidéosurveillance</a></li>
+          <li><a href="#services">Électricité</a></li>
+          <li><a href="#services">Consulting &amp; formation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Entreprise</h5>
+        <ul>
+          <li><a href="#pourquoi">Pourquoi nous</a></li>
+          <li><a href="#process">Notre méthode</a></li>
+          <li><a href="#avis">Témoignages</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Restons en contact</h5>
+        <ul>
+          <li><a href="mailto:contact@marketingsuccess.fr">contact@marketingsuccess.fr</a></li>
+          <li><a href="tel:+212600000000">+212 6 00 00 00 00</a></li>
+        </ul>
+        <div class="socials" style="margin-top:16px;">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="#" aria-label="Facebook">fb</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Marketing Success. Tous droits réservés.</span>
+      <span><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Politique de confidentialité</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="float-cta">
+  <a href="https://wa.me/212600000000?text=Bonjour%2C%20je%20souhaite%20un%20devis%20gratuit." target="_blank" rel="noopener" class="float-btn wa" data-magnetic aria-label="Nous contacter sur WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.2c-.25.7-1.44 1.33-1.98 1.38-.53.05-1.03.24-3.46-.72-2.91-1.15-4.77-4.1-4.91-4.29-.15-.19-1.19-1.58-1.19-3.02 0-1.44.75-2.14 1.02-2.43.27-.29.59-.36.79-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.58.84 2.02.91 2.17.07.15.12.32.02.51-.1.19-.15.31-.3.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.69-.18 1.39Z"/></svg>
+  </a>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

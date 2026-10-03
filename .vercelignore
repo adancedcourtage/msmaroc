@@ -1,0 +1,27 @@
+# Ancienne pile du site (remplacée par css/site.css + js/site.js) : conservée dans le dépôt, non déployée.
+index.old-mdx.html
+index.pre-mdx-rebuild.html.bak
+css/style.css
+css/immersive.css
+css/futuristic.css
+css/interactions.css
+css/mdx-layer.css
+css/mdx-studio.css
+js/main.js
+js/mdx-studio.js
+js/modules
+data
+assets/sectors
+assets/video
+assets/spline
+assets/sources
+assets/hero.webp
+assets/banniere.webp
+assets/creation-sites.webp
+assets/automatisation-ia.webp
+assets/equipe-agence.jpg
+assets/*.svg
+assets/logo-mark.png
+assets/clients/*.png
+README.md
+DESIGN_SYSTEM.md
