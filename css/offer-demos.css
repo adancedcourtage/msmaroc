@@ -1,1 +1,114 @@
-/* css/offer-demos.css : rempli par l'agent dédié */
+/* Mini-démos animées des 3 offres. Etat statique = état final (sans JS / reduced-motion). */
+.vis[data-demo] .stage{display:block}
+.vis[data-demo] .tx{color:var(--ink)}
+.vis[data-demo] .tx.typing::after{content:"";display:inline-block;width:1.5px;height:1em;margin-left:2px;vertical-align:-2px;background:var(--cyan);animation:od-caret .8s steps(1) infinite}
+@keyframes od-caret{50%{opacity:0}}
+
+/* ---------- Démo 1 : commande express ---------- */
+.speed{display:inline-flex;align-items:center;gap:7px;z-index:2}
+.speed .ring{width:16px;height:16px;transform:rotate(-90deg);flex:none}
+.speed .ring circle{fill:none;stroke-width:2.6}
+.speed .rt{stroke:rgba(255,154,31,.25)}
+.speed .rf{stroke:var(--orange);stroke-linecap:round;stroke-dasharray:50.3;stroke-dashoffset:0}
+.d1-prod{position:relative;height:104px;border-radius:12px;border:1px solid var(--line);margin-bottom:14px;overflow:hidden;background:radial-gradient(120% 120% at 70% 0%,rgba(34,211,238,.22),transparent 55%),radial-gradient(90% 90% at 10% 100%,rgba(255,154,31,.2),transparent 60%),linear-gradient(135deg,#1c2430,#0f141b)}
+.d1-bot{position:absolute;left:50%;top:16px;width:44px;height:74px;margin-left:-22px;border-radius:14px 14px 12px 12px;background:linear-gradient(110deg,#0e7490,var(--cyan) 45%,#0e7490);box-shadow:0 10px 24px -8px rgba(34,211,238,.55),inset 0 0 0 1px rgba(255,255,255,.18);animation:od-float 5s ease-in-out infinite}
+.d1-bot::before{content:"";position:absolute;left:12px;right:12px;top:-12px;height:14px;border-radius:5px 5px 0 0;background:var(--orange)}
+.d1-bot i{position:absolute;left:6px;right:6px;top:26px;height:24px;border-radius:6px;background:rgba(7,8,10,.55);border:1px solid rgba(255,255,255,.25)}
+.d1-sh{position:absolute;left:50%;bottom:7px;width:64px;height:8px;margin-left:-32px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(4px)}
+.d1-dot{position:absolute;border-radius:50%;background:var(--orange);opacity:.55}
+.d1-dot.a{width:8px;height:8px;left:24%;top:30%}.d1-dot.b{width:5px;height:5px;left:72%;top:62%;background:var(--cyan)}
+@keyframes od-float{50%{transform:translateY(-4px)}}
+.vis[data-demo=order] .fake-field{gap:10px}
+.vis[data-demo=order] .fake-field small{flex:0 0 34%;font-size:.75rem;color:var(--muted)}
+.vis[data-demo=order] .fake-field .tx{min-height:1.3em;font-size:.8125rem;white-space:nowrap}
+.d1-act{position:relative;margin-top:6px}
+.d1-act .fake-btn{position:relative;margin:0;overflow:hidden}
+.fake-btn .b-lbl{display:inline-flex;align-items:center;gap:8px}
+.fake-btn .b-load,.fake-btn .b-ok{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:8px;opacity:0;background:var(--wa)}
+.b-load i{width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(4,33,15,.25);border-top-color:var(--wa-ink)}
+.b-ok svg{width:20px;height:20px}
+.b-ok path{fill:none;stroke:var(--wa-ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24}
+.d1-cur{position:absolute;left:66%;top:52%;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 2px 10px rgba(0,0,0,.5);opacity:0;pointer-events:none}
+.d1-cur::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid #fff;opacity:0}
+.d1-notif{display:flex;align-items:center;gap:10px;height:46px;margin-top:12px;padding:0 12px;border-radius:12px;background:#0b141a;border:1px solid rgba(37,211,102,.35);font-size:.8125rem;color:var(--ink)}
+.d1-notif .wi{width:26px;height:26px;border-radius:50%;background:var(--wa);color:var(--wa-ink);display:grid;place-items:center;flex:none}
+.d1-notif .wi .ico{width:14px;height:14px}
+/* ---------- Démo 2 : fiche Google ---------- */
+.vis[data-demo=google] .gcard-top{position:relative}
+.g-pin{position:absolute;right:2px;top:50%;margin-top:-16px;width:26px;height:32px;color:var(--orange);display:grid;place-items:start center}
+.g-pin .ico{width:24px;height:24px}
+.g-pin::after{content:"";position:absolute;left:50%;bottom:0;width:14px;height:5px;margin-left:-7px;border-radius:50%;background:rgba(255,154,31,.35)}
+.vis[data-demo=google] .gcard-actions span{position:relative;overflow:hidden}
+.vis[data-demo=google] .gcard-actions span::after{content:"";position:absolute;left:50%;top:50%;width:90px;height:90px;margin:-45px;border-radius:50%;background:rgba(34,211,238,.28);opacity:0;transform:scale(0)}
+.vis[data-demo=google] .gcard-line{align-items:flex-start}
+.gl-body{display:block;flex:1;min-width:0}
+.gl-body em{display:block;font-style:normal;color:var(--ink);min-height:1.4em;margin-top:3px;font-weight:600}
+.g-rev{display:flex;align-items:center;gap:8px;margin-top:8px}
+.g-rev .av{width:20px;height:20px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line-2);flex:none}
+.g-rev .bars{display:block;flex:1}
+.g-rev .bars i{display:block;height:5px;border-radius:3px;background:var(--line-2);margin:4px 0}
+.g-rev .bars i+i{width:62%}
+.g-rep{display:block;margin:6px 0 0 14px;padding:7px 10px;min-height:48px;border-radius:10px 10px 10px 3px;background:rgba(34,211,238,.1);border-left:2px solid var(--cyan);font-size:.75rem;line-height:1.35;color:var(--ink-2)}
+/* ---------- Démo 3 : automatisation ---------- */
+.vis[data-demo=flow] .flow-step{min-height:68px;--s:0s}
+.vis[data-demo=flow] .flow-step:nth-child(2){--s:1.4s}
+.vis[data-demo=flow] .flow-step:nth-child(3){--s:2.8s}
+.vis[data-demo=flow] .flow-step:nth-child(4){--s:4.2s}
+.vis[data-demo=flow] .flow-dot{position:relative}
+.flow-dot .chk{position:absolute;right:-6px;top:-6px;width:17px;height:17px;border-radius:50%;background:var(--ok);color:#04210f;display:grid;place-items:center;border:2px solid var(--surface-2)}
+.flow-dot .chk .ico{width:9px;height:9px;stroke-width:3.5}
+.pkt{position:absolute;left:18px;top:54px;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px 2px rgba(34,211,238,.8);opacity:0;z-index:2}
+
+/* ---------- Animations (seulement si mouvement autorisé) ---------- */
+@media (prefers-reduced-motion:no-preference){
+.is-playing .stage{animation:od-life 9.4s linear both}
+@keyframes od-life{0%{opacity:0}3%{opacity:1}90%{opacity:1}96%{opacity:0}100%{opacity:0}}
+/* démo 1 */
+.is-playing .rf{animation:od-fill 8.4s linear both}
+@keyframes od-fill{from{stroke-dashoffset:50.3}to{stroke-dashoffset:0}}
+.is-playing .fake-field{animation:od-focus var(--w) var(--at) both}
+@keyframes od-focus{0%,100%{border-color:var(--line-2);box-shadow:none}15%,85%{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,.15)}}
+.is-playing .d1-cur{animation:od-cur 2s 3s both}
+@keyframes od-cur{0%{opacity:0;transform:translate(70px,60px)}40%{opacity:1;transform:none}50%{transform:scale(.8)}60%{transform:none}85%{opacity:1}100%{opacity:0}}
+.is-playing .d1-cur::after{animation:od-ripple .6s 4s both}
+@keyframes od-ripple{from{opacity:.8;transform:scale(.5)}to{opacity:0;transform:scale(1.8)}}
+.is-playing .d1-act .fake-btn{animation:od-press .3s 3.95s both}
+@keyframes od-press{50%{transform:scale(.97)}}
+.is-playing .b-lbl{animation:od-off .2s 4.1s both}
+@keyframes od-off{to{opacity:0}}
+.is-playing .b-load{animation:od-load 1s 4.1s both}
+@keyframes od-load{0%{opacity:0}10%,90%{opacity:1}100%{opacity:0}}
+.is-playing .b-load i{animation:od-spin .7s linear infinite}
+@keyframes od-spin{to{transform:rotate(360deg)}}
+.is-playing .b-ok{animation:od-on .3s 5.1s both}
+@keyframes od-on{to{opacity:1}}
+.is-playing .b-ok path{animation:od-draw .45s 5.25s both}
+@keyframes od-draw{from{stroke-dashoffset:24}to{stroke-dashoffset:0}}
+.is-playing .d1-notif{animation:od-slide .5s 5.9s var(--ease) both}
+@keyframes od-slide{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+/* démo 2 */
+.is-playing .g-pin .ico{animation:od-drop .9s .15s both}
+@keyframes od-drop{0%{opacity:0;transform:translateY(-34px)}55%{opacity:1;transform:translateY(0)}72%{transform:translateY(-8px)}88%{transform:translateY(0)}100%{opacity:1;transform:none}}
+.is-playing .stars .ico{animation:od-star .4s var(--ease) both;animation-delay:calc(.9s + var(--i)*.22s)}
+.stars .ico:nth-child(1){--i:0}.stars .ico:nth-child(2){--i:1}.stars .ico:nth-child(3){--i:2}.stars .ico:nth-child(4){--i:3}.stars .ico:nth-child(5){--i:4}
+@keyframes od-star{0%{opacity:.15;transform:scale(.4)}60%{opacity:1;transform:scale(1.35)}100%{opacity:1;transform:none}}
+.is-playing .gcard-actions span::after{animation:od-rip .8s var(--ease) both;animation-delay:calc(2.6s + var(--i)*.45s)}
+.gcard-actions span:nth-child(1){--i:0}.gcard-actions span:nth-child(2){--i:1}.gcard-actions span:nth-child(3){--i:2}
+@keyframes od-rip{0%{opacity:.9;transform:scale(0)}100%{opacity:0;transform:scale(1)}}
+.is-playing .g-rev{animation:od-fadein .4s 4.9s both}
+.is-playing .g-rep{animation:od-fadein .4s 5.5s both}
+@keyframes od-fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* démo 3 */
+.is-playing .flow-step{animation:od-step .5s var(--s) both}
+@keyframes od-step{from{opacity:.35}to{opacity:1}}
+.is-playing .flow-dot{animation:od-lit .6s var(--s) both}
+@keyframes od-lit{0%{transform:scale(1)}40%{transform:scale(1.14);box-shadow:0 0 0 6px rgba(34,211,238,.18)}100%{transform:none;border-color:rgba(34,211,238,.55);box-shadow:0 0 14px -2px rgba(34,211,238,.35)}}
+.is-playing .flow-step:not(:last-child)::after{transform-origin:top;animation:od-line .6s calc(var(--s) + .35s) var(--ease) both}
+@keyframes od-line{from{transform:scaleY(0)}to{transform:none}}
+.is-playing .pkt{animation:od-pkt .6s calc(var(--s) + .35s) linear both}
+@keyframes od-pkt{0%{opacity:0;transform:translateY(0)}15%,85%{opacity:1}100%{opacity:0;transform:translateY(22px)}}
+.is-playing .chk{animation:od-chk .4s calc(var(--s) + .9s) var(--ease) both}
+@keyframes od-chk{0%{opacity:0;transform:scale(0)}70%{transform:scale(1.25)}100%{opacity:1;transform:none}}
+.is-playing .flow-step:last-child .flow-dot{animation:od-lit .6s var(--s) both,od-star-pulse 1.5s calc(var(--s) + 1.2s) 2 both}
+@keyframes od-star-pulse{0%,100%{transform:none}35%{transform:scale(1.18);box-shadow:0 0 0 10px rgba(255,154,31,.22);border-color:var(--orange)}}
+}

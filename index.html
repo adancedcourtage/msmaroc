@@ -221,21 +221,24 @@
         </p>
       </div>
 
-      <div class="hero-visual rise" style="--i:3">
-        <div class="phone" role="img" aria-label="Illustration : un client confirme sa commande à la livraison sur WhatsApp">
+      <div class="hero-visual rise" style="--i:3" id="hero-visual">
+        <div class="phone" role="img" aria-label="Illustration : conversation WhatsApp. La boutique écrit : Bonjour, votre commande est bien reçue. Confirmez-vous la livraison ? Vous payez à la réception. Le client répond : Oui, je confirme. La boutique : Merci. Votre colis est transmis au livreur.">
+          <div class="phone-status" aria-hidden="true"><span>10:41</span><i class="sig"></i></div>
           <div class="phone-bar">
             <span class="phone-av"><img src="assets/logo-mark.webp" alt="" width="22" height="16"></span>
-            <div><b>Votre boutique</b><small>en ligne</small></div>
+            <div><b>Votre boutique</b><small data-status>en ligne</small></div>
           </div>
-          <div class="chat">
-            <div class="msg in" style="--k:0">Bonjour, votre commande est bien reçue. Confirmez-vous la livraison ? Vous payez à la réception.<small>10:42</small></div>
-            <div class="msg out" style="--k:1">Oui, je confirme <span class="ok">✓</span><small>10:42</small></div>
-            <div class="msg in" style="--k:2">Merci. Votre colis est transmis au livreur.<small>10:43</small></div>
+          <div class="chat" aria-hidden="true">
+            <div class="msg in" data-k="0"><i class="dots"><b></b><b></b><b></b></i><span class="t">Bonjour, votre commande est bien reçue. Confirmez-vous la livraison ? Vous payez à la réception.</span><small>10:42</small></div>
+            <div class="msg out" data-k="1"><span class="t">Oui, je confirme <span class="ok">✓</span></span><small>10:42<svg class="tk" viewBox="0 0 16 11" width="14" height="10"><path class="k1" d="M1 6l3.5 3.5L11 1.5"/><path class="k2" d="M6 9.5L14 1.5"/></svg></small></div>
+            <div class="msg in" data-k="2"><i class="dots"><b></b><b></b><b></b></i><span class="t">Merci. Votre colis est transmis au livreur.</span><small>10:43</small></div>
           </div>
+          <div class="composer" aria-hidden="true"><span class="field"><span class="typed" data-typed></span></span><i class="send"></i></div>
+          <i class="glare" aria-hidden="true"></i>
         </div>
-        <span class="chip-float a"><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg>Paiement à la livraison</span>
-        <span class="chip-float b"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Confirmation WhatsApp</span>
-        <span class="chip-float c"><svg class="ico" aria-hidden="true"><use href="#i-bolt"/></svg>Envoi au livreur</span>
+        <span class="chip-float a" data-chip="a"><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg>Paiement à la livraison</span>
+        <span class="chip-float b" data-chip="b"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Confirmation WhatsApp</span>
+        <span class="chip-float c" data-chip="c"><svg class="ico" aria-hidden="true"><use href="#i-bolt"/></svg>Envoi au livreur</span>
         <span class="caption">Illustration : exemple de confirmation automatique</span>
       </div>
     </div>
@@ -276,16 +279,22 @@
           <div class="offer-cta"><a class="btn primary" href="devis.html?offre=web" data-loc="offre-web">Demander mon devis <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </div>
         <div class="offer-media">
-          <div class="vis" role="img" aria-label="Illustration : page produit avec formulaire de commande express à la livraison">
+          <div class="vis" data-demo="order" role="img" aria-label="Illustration animée : un client remplit le formulaire de commande express, valide, puis reçoit une confirmation sur WhatsApp (paiement à la livraison)">
             <span class="vis-tag">Illustration</span>
-            <span class="speed">30 secondes</span>
-            <div class="shop-img"><svg class="ico" aria-hidden="true"><use href="#i-bag"/></svg></div>
-            <div class="shop-title">Votre produit</div>
-            <div class="shop-sub">Livraison partout au Maroc</div>
-            <div class="fake-field">Nom complet</div>
-            <div class="fake-field">Téléphone</div>
-            <div class="fake-field">Ville et adresse</div>
-            <div class="fake-btn"><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg>Commander · payer à la livraison</div>
+            <span class="speed" aria-hidden="true"><svg class="ring" viewBox="0 0 20 20"><circle class="rt" cx="10" cy="10" r="8"/><circle class="rf" cx="10" cy="10" r="8"/></svg>30 secondes</span>
+            <div class="stage" aria-hidden="true">
+              <div class="d1-prod"><span class="d1-dot a"></span><span class="d1-dot b"></span><span class="d1-bot"><i></i></span><span class="d1-sh"></span></div>
+              <div class="shop-title">Votre produit</div>
+              <div class="shop-sub">Livraison partout au Maroc</div>
+              <div class="fake-field" style="--at:.5s;--w:.7s"><small>Nom complet</small><span class="tx" data-at="500" data-ms="70">Salma B.</span></div>
+              <div class="fake-field" style="--at:1.4s;--w:.9s"><small>Téléphone</small><span class="tx" data-at="1400" data-ms="55">06 12 34 56 78</span></div>
+              <div class="fake-field" style="--at:2.5s;--w:1s"><small>Ville et adresse</small><span class="tx" data-at="2500" data-ms="50">Casablanca, Maârif</span></div>
+              <div class="d1-act">
+                <div class="fake-btn"><span class="b-lbl"><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg>Commander · payer à la livraison</span><span class="b-load"><i></i></span><span class="b-ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Commande confirmée</span></div>
+                <span class="d1-cur"></span>
+              </div>
+              <div class="d1-notif"><span class="wi"><svg class="ico ico-fill"><use href="#i-wa"/></svg></span>Confirmation envoyée sur WhatsApp</div>
+            </div>
           </div>
         </div>
       </article>
@@ -307,9 +316,11 @@
           <div class="offer-cta"><a class="btn primary" href="devis.html?offre=google" data-loc="offre-google">Demander mon devis <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </div>
         <div class="offer-media">
-          <div class="vis" role="img" aria-label="Illustration : fiche Google Business Profile optimisée">
+          <div class="vis" data-demo="google" role="img" aria-label="Illustration animée : une fiche Google Business Profile se complète, avec étoiles, actions, publication de la semaine et réponse à un avis">
             <span class="vis-tag">Illustration</span>
+            <div class="stage" aria-hidden="true">
             <div class="gcard-top">
+              <span class="g-pin"><svg class="ico"><use href="#i-pin"/></svg></span>
               <span class="gcard-logo"><img src="assets/logo-mark.webp" alt="" width="32" height="23"></span>
               <div>
                 <div class="gcard-name">Votre entreprise</div>
@@ -322,8 +333,11 @@
               <span><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Appeler</span>
               <span><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg>Site web</span>
             </div>
-            <div class="gcard-line"><svg class="ico" aria-hidden="true"><use href="#i-pen"/></svg>Publication de la semaine</div>
-            <div class="gcard-line"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Réponse à chaque avis</div>
+            <div class="gcard-line"><svg class="ico" aria-hidden="true"><use href="#i-pen"/></svg><span class="gl-body">Publication de la semaine<em class="tx" data-at="3500" data-ms="45">Nouveautés de la semaine</em></span></div>
+            <div class="gcard-line"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg><span class="gl-body">Réponse à chaque avis
+              <span class="g-rev"><span class="av"></span><span class="bars"><i></i><i></i></span></span>
+              <span class="g-rep tx" data-at="5500" data-ms="38">Merci pour votre retour, à très bientôt.</span></span></div>
+            </div>
           </div>
         </div>
       </article>
@@ -345,13 +359,13 @@
           <div class="offer-cta"><a class="btn primary" href="devis.html?offre=ia" data-loc="offre-ia">Demander mon devis <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </div>
         <div class="offer-media">
-          <div class="vis" role="img" aria-label="Illustration : enchaînement automatique commande, confirmation WhatsApp, envoi au livreur, demande d'avis">
+          <div class="vis" data-demo="flow" role="img" aria-label="Illustration animée : enchaînement automatique commande, confirmation WhatsApp, envoi au livreur, demande d'avis">
             <span class="vis-tag">Illustration</span>
-            <div class="flow">
-              <div class="flow-step"><span class="flow-dot"><svg class="ico" aria-hidden="true"><use href="#i-bag"/></svg></span><div><b>Commande reçue</b><span>Depuis votre site ou vos publicités</span></div></div>
-              <div class="flow-step"><span class="flow-dot"><svg class="ico ico-fill" aria-hidden="true"><use href="#i-wa"/></svg></span><div><b>Confirmation sur WhatsApp</b><span>Le client confirme en un clic</span></div></div>
-              <div class="flow-step"><span class="flow-dot"><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg></span><div><b>Envoi au livreur</b><span>Colis créé sans ressaisie</span></div></div>
-              <div class="flow-step"><span class="flow-dot"><svg class="ico ico-fill" aria-hidden="true"><use href="#i-star"/></svg></span><div><b>Demande d'avis</b><span>Après la livraison, vers Google</span></div></div>
+            <div class="flow stage" aria-hidden="true">
+              <div class="flow-step"><span class="flow-dot"><svg class="ico" aria-hidden="true"><use href="#i-bag"/></svg><i class="chk"><svg class="ico"><use href="#i-check"/></svg></i></span><div><b>Commande reçue</b><span>Depuis votre site ou vos publicités</span></div><i class="pkt"></i></div>
+              <div class="flow-step"><span class="flow-dot"><svg class="ico ico-fill" aria-hidden="true"><use href="#i-wa"/></svg><i class="chk"><svg class="ico"><use href="#i-check"/></svg></i></span><div><b>Confirmation sur WhatsApp</b><span>Le client confirme en un clic</span></div><i class="pkt"></i></div>
+              <div class="flow-step"><span class="flow-dot"><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg><i class="chk"><svg class="ico"><use href="#i-check"/></svg></i></span><div><b>Envoi au livreur</b><span>Colis créé sans ressaisie</span></div><i class="pkt"></i></div>
+              <div class="flow-step"><span class="flow-dot"><svg class="ico ico-fill" aria-hidden="true"><use href="#i-star"/></svg><i class="chk"><svg class="ico"><use href="#i-check"/></svg></i></span><div><b>Demande d'avis</b><span>Après la livraison, vers Google</span></div></div>
             </div>
           </div>
         </div>
@@ -400,6 +414,7 @@
         <li class="step reveal" style="--d:3"><h3>Réalisation et mise en ligne</h3><p>Nous créons, vous validez chaque étape, puis nous mettons en ligne et restons à votre écoute.</p><span class="tagline">Avec validation</span></li>
       </ol>
       <div class="hero-cta reveal"><a class="btn primary lg" href="devis.html" data-loc="methode">Demander mon devis gratuit <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+      <ul class="mentions reveal" aria-label="À savoir"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Gratuit et sans engagement</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Aucun prix affiché avant échange</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Cahier des charges dans l'espace client, réservé aux clients</li></ul>
     </div>
   </section>
 
@@ -415,22 +430,46 @@
       <!-- À COMPLÉTER : pour chaque client, ajouter une carte « projet » (capture du site, secteur, objectif, prestation réalisée,
            résultat mesurable RÉEL uniquement). Ne publier aucun chiffre non vérifié. -->
       <p class="logos-label reveal"><em>MA</em> Au Maroc</p>
-      <div class="logos">
-        <div class="logo-tile reveal"><div class="logo-img lt"><img src="assets/clients/lycos-conseil-ma.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><p>Lycos Conseil</p></div>
-        <div class="logo-tile reveal" style="--d:1"><div class="logo-img lt"><img src="assets/clients/la-velette-de-commerce-ma.webp" alt="" width="360" height="128" loading="lazy" decoding="async"></div><p>La Velette de Commerce</p></div>
-        <div class="logo-tile reveal" style="--d:2"><div class="logo-img lt"><img src="assets/clients/raouia-informatique-ma.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><p>Raouia Informatique</p></div>
-        <div class="logo-tile reveal" style="--d:3"><div class="logo-img lt"><img src="assets/clients/les-mains-du-maroc-ma.webp" alt="" width="360" height="128" loading="lazy" decoding="async"></div><p>Les Mains du Maroc</p></div>
-        <div class="logo-tile reveal" style="--d:4"><div class="logo-img"><img src="assets/clients/complexe-swisra-ma.webp" alt="" width="360" height="196" loading="lazy" decoding="async"></div><p>Complexe Swisra</p></div>
-        <div class="logo-tile reveal" style="--d:5"><div class="logo-img"><img src="assets/clients/nis-eclat-ma.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><p>Nis Éclat</p></div>
+      <div class="marquee reveal" data-dir="left">
+        <div class="marquee-track">
+          <ul class="mq-set">
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/lycos-conseil-ma.webp" alt="Lycos Conseil" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Lycos Conseil</span></li>
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/la-velette-de-commerce-ma.webp" alt="La Velette de Commerce" width="360" height="128" loading="lazy" decoding="async"></div><span class="lt-name">La Velette de Commerce</span></li>
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/raouia-informatique-ma.webp" alt="Raouia Informatique" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Raouia Informatique</span></li>
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/les-mains-du-maroc-ma.webp" alt="Les Mains du Maroc" width="360" height="128" loading="lazy" decoding="async"></div><span class="lt-name">Les Mains du Maroc</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/complexe-swisra-ma.webp" alt="Complexe Swisra" width="360" height="196" loading="lazy" decoding="async"></div><span class="lt-name">Complexe Swisra</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/nis-eclat-ma.webp" alt="Nis Éclat" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Nis Éclat</span></li>
+          </ul>
+          <ul class="mq-set mq-dup" aria-hidden="true">
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/lycos-conseil-ma.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Lycos Conseil</span></li>
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/la-velette-de-commerce-ma.webp" alt="" width="360" height="128" loading="lazy" decoding="async"></div><span class="lt-name">La Velette de Commerce</span></li>
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/raouia-informatique-ma.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Raouia Informatique</span></li>
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/les-mains-du-maroc-ma.webp" alt="" width="360" height="128" loading="lazy" decoding="async"></div><span class="lt-name">Les Mains du Maroc</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/complexe-swisra-ma.webp" alt="" width="360" height="196" loading="lazy" decoding="async"></div><span class="lt-name">Complexe Swisra</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/nis-eclat-ma.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Nis Éclat</span></li>
+          </ul>
+        </div>
       </div>
       <p class="logos-label fr reveal"><em>FR</em> En France</p>
-      <div class="logos">
-        <div class="logo-tile reveal"><div class="logo-img lt"><img src="assets/clients/voxcrm-fr.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><p>Vox CRM</p></div>
-        <div class="logo-tile reveal" style="--d:1"><div class="logo-img"><img src="assets/clients/bogdun-fr.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><p>Bogdun</p></div>
-        <div class="logo-tile reveal" style="--d:2"><div class="logo-img"><img src="assets/clients/les-jardins-dirines-fr.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><p>Les Jardins d'Irines</p></div>
-        <div class="logo-tile reveal" style="--d:3"><div class="logo-img"><img src="assets/clients/amadis-courtage-fr.webp" alt="" width="150" height="150" loading="lazy" decoding="async"></div><p>Amadis Courtage Conseils</p></div>
-        <div class="logo-tile reveal" style="--d:4"><div class="logo-img"><img src="assets/clients/tns-conseil-fr.webp" alt="" width="357" height="200" loading="lazy" decoding="async"></div><p>TNS Conseils</p></div>
-        <div class="logo-tile reveal" style="--d:5"><div class="logo-img"><img src="assets/clients/aquitaine-patrimoine-conseils-fr.webp" alt="" width="360" height="150" loading="lazy" decoding="async"></div><p>Aquitaine Patrimoine Conseils</p></div>
+      <div class="marquee reveal" data-dir="right">
+        <div class="marquee-track">
+          <ul class="mq-set">
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/voxcrm-fr.webp" alt="Vox CRM" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Vox CRM</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/bogdun-fr.webp" alt="Bogdun" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Bogdun</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/les-jardins-dirines-fr.webp" alt="Les Jardins d'Irines" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Les Jardins d'Irines</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/amadis-courtage-fr.webp" alt="Amadis Courtage Conseils" width="150" height="150" loading="lazy" decoding="async"></div><span class="lt-name">Amadis Courtage Conseils</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/tns-conseil-fr.webp" alt="TNS Conseils" width="357" height="200" loading="lazy" decoding="async"></div><span class="lt-name">TNS Conseils</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/aquitaine-patrimoine-conseils-fr.webp" alt="Aquitaine Patrimoine Conseils" width="360" height="150" loading="lazy" decoding="async"></div><span class="lt-name">Aquitaine Patrimoine Conseils</span></li>
+          </ul>
+          <ul class="mq-set mq-dup" aria-hidden="true">
+            <li class="logo-tile"><div class="logo-img lt"><img src="assets/clients/voxcrm-fr.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Vox CRM</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/bogdun-fr.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Bogdun</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/les-jardins-dirines-fr.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></div><span class="lt-name">Les Jardins d'Irines</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/amadis-courtage-fr.webp" alt="" width="150" height="150" loading="lazy" decoding="async"></div><span class="lt-name">Amadis Courtage Conseils</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/tns-conseil-fr.webp" alt="" width="357" height="200" loading="lazy" decoding="async"></div><span class="lt-name">TNS Conseils</span></li>
+            <li class="logo-tile"><div class="logo-img"><img src="assets/clients/aquitaine-patrimoine-conseils-fr.webp" alt="" width="360" height="150" loading="lazy" decoding="async"></div><span class="lt-name">Aquitaine Patrimoine Conseils</span></li>
+          </ul>
+        </div>
       </div>
 
       <!-- À COMPLÉTER : témoignages nominatifs (nom, entreprise, ville, accord écrit du client). Aucun témoignage anonyme n'est affiché. -->
@@ -495,6 +534,8 @@
         <a class="btn primary lg" href="devis.html" data-loc="final">Demander mon devis gratuit <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="btn ghost lg" href="https://wa.me/212607284660?text=Bonjour%20Marketing%20Succ%C3%A8s%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services." target="_blank" rel="noopener" data-loc="final"><svg class="ico ico-fill" aria-hidden="true"><use href="#i-wa"/></svg>Écrire sur WhatsApp</a>
       </div>
+      <ul class="mentions reveal" aria-label="À savoir"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Proposition détaillée sous 24 h</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Gratuite et sans engagement</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Clients au Maroc et en France</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Agence fondée en 2012</li></ul>
+      <p class="mentions-note reveal">Vos réponses au questionnaire sont enregistrées sur votre appareil jusqu'à l'envoi.</p>
     </div>
   </section>
 </main>

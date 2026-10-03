@@ -304,13 +304,13 @@ section[id]{scroll-margin-top:var(--header-h)}
 .nf p{color:var(--ink-2);max-width:44ch;margin-bottom:28px}
 
 /* ---------- Responsive ---------- */
-@media (max-width:1080px){
+@media (max-width:1180px){
   .logos{grid-template-columns:repeat(3,1fr)}
   .maroc-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:900px){
-  .hero-grid,.offer,.story{grid-template-columns:1fr}
+  .hero-grid,.offer,.story{grid-template-columns:minmax(0,1fr)}
   .hero h1{max-width:20ch}
   .offer:nth-child(even) .offer-media{order:0}
   .story figure{position:static;max-width:300px}
@@ -320,7 +320,7 @@ section[id]{scroll-margin-top:var(--header-h)}
   .fact:nth-child(2){border-right:0}
   .fact:nth-child(-n+2){border-bottom:1px solid var(--line)}
 }
-@media (max-width:1080px){
+@media (max-width:1180px){
   .nav-toggle{display:block}
   .nav-links{position:absolute;top:var(--header-h);left:0;right:0;flex-direction:column;gap:0;margin:0;padding:8px 24px 20px;background:rgba(7,8,10,.97);border-bottom:1px solid var(--line);display:none}
   .nav-links.open{display:flex}
@@ -329,14 +329,14 @@ section[id]{scroll-margin-top:var(--header-h)}
   .nav-right .btn{display:none}
   .nav-right{margin-left:auto}
 }
-@media (min-width:1081px){.nav-links .only-m{display:none}}
+@media (min-width:1181px){.nav-links .only-m{display:none}}
 @media (max-width:767px){
   .wa-float{display:none}
   .cta-bar{position:fixed;left:0;right:0;bottom:0;z-index:95;display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(7,8,10,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line-2)}
   .cta-bar .btn{padding:14px 16px}
   body.has-cta-bar{padding-bottom:78px}
-  .also,.zones{grid-template-columns:1fr}
-  .maroc-grid{grid-template-columns:1fr}
+  .also,.zones{grid-template-columns:minmax(0,1fr)}
+  .maroc-grid{grid-template-columns:minmax(0,1fr)}
   .offer-row{grid-template-columns:1fr;gap:2px}
   .chip-float.b{right:0}
   .foot-grid{grid-template-columns:1fr}
@@ -365,3 +365,6 @@ section[id]{scroll-margin-top:var(--header-h)}
 .consent p{flex:1 1 260px;color:var(--ink-2)}
 .consent div{display:flex;gap:8px}
 @media (max-width:767px){.consent{bottom:84px}}
+
+.hero-grid>*,.offer>*,.story>*,.zone>div{min-width:0}
+.nav-client{white-space:nowrap}
