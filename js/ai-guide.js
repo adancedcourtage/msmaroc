@@ -7,9 +7,9 @@
   var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   var WA = 'https://wa.me/212607284660?text=Bonjour%20Marketing%20Succ%C3%A8s%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services.';
   var S = {};
-  try { S = JSON.parse(sessionStorage.getItem('msg') || '{}'); } catch (e) {}
+  try { S = JSON.parse(sessionStorage.getItem('aig') || '{}'); } catch (e) {}
   S.s = S.s || {}; S.h = S.h || [];
-  function save() { try { sessionStorage.setItem('msg', JSON.stringify(S)); } catch (e) {} }
+  function save() { try { sessionStorage.setItem('aig', JSON.stringify(S)); } catch (e) {} }
 
   var SECTIONS = {
     offres: ['Vous vendez en ligne ? Regardez l’offre 01 : commande en 30 secondes et paiement à la livraison.', '🛍️'],
@@ -38,7 +38,7 @@
   var ALL = [];
 
   function av() {
-    return '<svg class="msg-av" viewBox="0 0 64 64" aria-hidden="true" focusable="false">' +
+    return '<svg class="aig-av" viewBox="0 0 64 64" aria-hidden="true" focusable="false">' +
       '<path d="M32 16V9" stroke="#ff9a1f" stroke-width="2.4" stroke-linecap="round"/><circle class="ant" cx="32" cy="7" r="3.6" fill="#ff9a1f"/>' +
       '<rect x="4" y="29" width="5" height="13" rx="2.5" fill="#ff9a1f"/><rect x="55" y="29" width="5" height="13" rx="2.5" fill="#ff9a1f"/>' +
       '<rect x="8" y="16" width="48" height="42" rx="17" fill="#1b212c" stroke="#22d3ee" stroke-opacity=".55" stroke-width="1.5"/>' +
@@ -51,27 +51,27 @@
 
   function init() {
     var root = d.createElement('div');
-    root.className = 'msg';
+    root.className = 'aig';
     root.id = 'ms-guide';
     root.innerHTML =
-      '<div class="msg-sr" aria-live="polite" role="status"></div>' +
-      '<div class="msg-burst" aria-hidden="true"></div>' +
-      '<div class="msg-bubble"><span class="msg-e" aria-hidden="true"></span><p class="msg-t" aria-hidden="true"></p><button type="button" class="msg-x" aria-label="Fermer la bulle">×</button></div>' +
-      '<section class="msg-panel" role="dialog" aria-modal="false" aria-labelledby="ms-g-t" tabindex="-1">' +
-      '<div class="msg-hd">' + av() + '<div><b id="ms-g-t">Assistant virtuel</b><small>Guide de Marketing Succès</small></div>' +
-      '<button type="button" class="msg-x msg-min" aria-label="Réduire l’assistant">×</button></div>' +
-      '<div class="msg-log"></div><div class="msg-chips"></div>' +
-      '<p class="msg-note">Assistant scripté : il vous guide sur le site. Pour une réponse personnalisée, écrivez-nous sur WhatsApp.</p></section>' +
-      '<button type="button" class="msg-btn" aria-label="Ouvrir l’assistant virtuel" aria-expanded="false">' + av() + '<i class="msg-ring"></i><i class="msg-dot"></i></button>';
+      '<div class="aig-sr" aria-live="polite" role="status"></div>' +
+      '<div class="aig-burst" aria-hidden="true"></div>' +
+      '<div class="aig-bubble"><span class="aig-e" aria-hidden="true"></span><p class="aig-t" aria-hidden="true"></p><button type="button" class="aig-x" aria-label="Fermer la bulle">×</button></div>' +
+      '<section class="aig-panel" role="dialog" aria-modal="false" aria-labelledby="ms-g-t" tabindex="-1">' +
+      '<div class="aig-hd">' + av() + '<div><b id="ms-g-t">Assistant virtuel</b><small>Guide de Marketing Succès</small></div>' +
+      '<button type="button" class="aig-x aig-min" aria-label="Réduire l’assistant">×</button></div>' +
+      '<div class="aig-log"></div><div class="aig-chips"></div>' +
+      '<p class="aig-note">Assistant scripté : il vous guide sur le site. Pour une réponse personnalisée, écrivez-nous sur WhatsApp.</p></section>' +
+      '<button type="button" class="aig-btn" aria-label="Ouvrir l’assistant virtuel" aria-expanded="false">' + av() + '<i class="aig-ring"></i><i class="aig-dot"></i></button>';
     d.body.appendChild(root);
 
     var $ = function (s) { return root.querySelector(s); };
-    var live = $('.msg-sr'), bub = $('.msg-bubble'), bt = $('.msg-t'), be = $('.msg-e'), btn = $('.msg-btn'),
-      panel = $('.msg-panel'), log = $('.msg-log'), burstEl = $('.msg-burst');
-    var chips = $('.msg-chips');
+    var live = $('.aig-sr'), bub = $('.aig-bubble'), bt = $('.aig-t'), be = $('.aig-e'), btn = $('.aig-btn'),
+      panel = $('.aig-panel'), log = $('.aig-log'), burstEl = $('.aig-burst');
+    var chips = $('.aig-chips');
     CHIPS.forEach(function (c) {
       var a = d.createElement('a');
-      a.className = 'msg-chip' + (c[2] ? ' wa' : '');
+      a.className = 'aig-chip' + (c[2] ? ' wa' : '');
       a.href = c[1]; a.textContent = c[0];
       if (c[2]) { a.target = '_blank'; a.rel = 'noopener'; }
       chips.appendChild(a);
@@ -88,7 +88,7 @@
 
     function line(m) {
       var r = d.createElement('div'), e = d.createElement('span'), p = d.createElement('p');
-      r.className = 'msg-m'; e.setAttribute('aria-hidden', 'true'); e.textContent = m[1]; p.textContent = m[0];
+      r.className = 'aig-m'; e.setAttribute('aria-hidden', 'true'); e.textContent = m[1]; p.textContent = m[0];
       r.appendChild(e); r.appendChild(p); return r;
     }
     function render() {
@@ -171,8 +171,8 @@
       if (back) btn.focus();
     }
     btn.addEventListener('click', function () { isOpen ? closeP(true) : openP(); });
-    $('.msg-min').addEventListener('click', function () { closeP(true); });
-    $('.msg-bubble .msg-x').addEventListener('click', function (ev) { ev.stopPropagation(); hideBubble(); S.d = 1; save(); });
+    $('.aig-min').addEventListener('click', function () { closeP(true); });
+    $('.aig-bubble .aig-x').addEventListener('click', function (ev) { ev.stopPropagation(); hideBubble(); S.d = 1; save(); });
     bub.addEventListener('click', function () { openP(); });
     d.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && isOpen) closeP(true); });
     d.addEventListener('visibilitychange', function () { if (d.hidden) root.classList.remove('speak'); });

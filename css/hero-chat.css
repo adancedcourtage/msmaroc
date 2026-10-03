@@ -8,7 +8,7 @@
 .phone-bar{padding:36px 14px 10px;position:relative;z-index:1}
 .phone-bar small{display:block;transition:color .3s}
 .phone-bar small.typing{color:var(--cyan)}
-.chat{position:relative;flex:1;min-height:0;overflow:hidden;align-content:start;justify-content:flex-start;padding:14px 12px;gap:8px;transition:opacity .5s var(--ease)}
+.chat{position:relative;flex:1;min-height:0;overflow:hidden;align-content:center;justify-content:center;padding:14px 12px;gap:8px;transition:opacity .5s var(--ease)}
 .chat.fade{opacity:0}
 .composer{display:flex;align-items:center;gap:8px;padding:7px 10px 12px;background:#0b141a}
 .composer .field{flex:1;min-width:0;height:30px;border-radius:15px;background:#202c33;padding:0 12px;display:flex;align-items:center;font-size:.75rem;color:#e7efe9;overflow:hidden;white-space:nowrap}
