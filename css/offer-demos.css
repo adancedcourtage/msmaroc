@@ -112,3 +112,31 @@
 .is-playing .flow-step:last-child .flow-dot{animation:od-lit .6s var(--s) both,od-star-pulse 1.5s calc(var(--s) + 1.2s) 2 both}
 @keyframes od-star-pulse{0%,100%{transform:none}35%{transform:scale(1.18);box-shadow:0 0 0 10px rgba(255,154,31,.22);border-color:var(--orange)}}
 }
+
+
+/* ---------- Hybride : illustrations sur fond clair ---------- */
+.on-light .vis{background:linear-gradient(160deg,#fff,var(--bg-2));box-shadow:0 1px 2px rgba(20,23,28,.05),0 28px 50px -30px rgba(20,23,28,.4)}
+.on-light .shop-img{background:linear-gradient(135deg,#e6edf2,#d3dde6);border-color:rgba(20,23,28,.1);color:#4b5563}
+.on-light .shop-img .ico{opacity:.7}
+.on-light .d1-prod{border-color:rgba(20,23,28,.1);background:radial-gradient(120% 120% at 70% 0%,rgba(14,116,144,.22),transparent 55%),radial-gradient(90% 90% at 10% 100%,rgba(180,83,9,.18),transparent 60%),linear-gradient(135deg,#e6edf2,#d3dde6)}
+.on-light .d1-bot{box-shadow:0 10px 22px -8px rgba(14,116,144,.55),inset 0 0 0 1px rgba(255,255,255,.35)}
+.on-light .d1-sh{background:rgba(20,23,28,.22)}
+.on-light .d1-bot::before{background:#d97706}
+.on-light .speed{background:rgba(180,83,9,.12);color:var(--orange)}
+.on-light .speed .rt{stroke:rgba(180,83,9,.25)}
+.on-light .d1-notif{background:#fff;border-color:rgba(21,128,61,.35);color:var(--ink);box-shadow:0 10px 24px -14px rgba(20,23,28,.4)}
+.on-light .d1-cur{background:rgba(20,23,28,.85);box-shadow:0 3px 10px rgba(20,23,28,.35)}
+.on-light .d1-cur::after{border-color:var(--ink)}
+.on-light .fake-field,.on-light .gcard-line,.on-light .gcard-logo,.on-light .flow-dot{background:#fff}
+.on-light .gcard-actions span{background:#fff}
+.on-light .stars{color:#e0a100}
+.on-light .g-pin::after{background:rgba(180,83,9,.3)}
+.on-light .flow-dot .chk{border-color:#fff;color:#fff;background:var(--ok)}
+.on-light .pkt{box-shadow:0 0 8px 2px rgba(14,116,144,.45);background:var(--cyan)}
+.on-light .g-rep{background:rgba(14,116,144,.08)}
+.on-light .vis[data-demo=google] .gcard-actions span::after{background:rgba(14,116,144,.2)}
+@media (prefers-reduced-motion:no-preference){
+@keyframes od-focus{0%,100%{border-color:var(--line-2);box-shadow:none}15%,85%{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(14,116,144,.16)}}
+@keyframes od-lit{0%{transform:scale(1)}40%{transform:scale(1.14);box-shadow:0 0 0 6px rgba(14,116,144,.16)}100%{transform:none;border-color:rgba(14,116,144,.6);box-shadow:0 0 12px -2px rgba(14,116,144,.3)}}
+@keyframes od-star-pulse{0%,100%{transform:none}35%{transform:scale(1.18);box-shadow:0 0 0 10px rgba(180,83,9,.16);border-color:var(--orange)}}
+}
