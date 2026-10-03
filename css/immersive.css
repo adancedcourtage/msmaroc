@@ -1,0 +1,222 @@
+/* ============================================================
+   immersive.css — couche « site vivant » (WebGL + verre + 3D)
+   Rend les sections translucides pour laisser voir le fond animé,
+   glassmorphism sur les cartes, révélations plus spectaculaires.
+   ============================================================ */
+
+/* ---------- Fond WebGL global ---------- */
+/* z-index:-3 : sous la nouvelle couche grille/halos (mdx-layer.css, -2) et
+   sous le voile de lisibilité (-1) ci-dessous. */
+#webgl-bg{
+  position:fixed;inset:0;width:100vw;height:100vh;z-index:-3;display:block;
+  pointer-events:none;
+}
+/* Voile global au-dessus du fond (mais sous le contenu) : garantit le contraste
+   du texte tout en laissant le mouvement transparaître. */
+body.has-webgl::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg, rgba(5,7,15,.34), rgba(5,7,15,.52));
+}
+/* Repli sans WebGL : dégradé animé (transform-free, on anime background-position) */
+body.webgl-fallback{
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(47,107,255,.28), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 90% 20%, rgba(255,138,30,.16), transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% 110%, rgba(34,211,238,.14), transparent 60%),
+    var(--navy-950);
+}
+
+/* Quand le WebGL est actif, les sections deviennent transparentes pour
+   révéler le fond. On garde un léger voile pour la lisibilité du texte. */
+body.has-webgl{background:var(--navy-950);}
+body.has-webgl .hero{background:transparent;}
+/* Continuité visuelle entre sections : au lieu de blocs opaques empilés,
+   TOUTES les sections laissent transparaître le fond vivant, avec un voile
+   dégradé qui garantit la lisibilité du texte. La spécificité de classe des
+   règles ci-dessous (.why, .testi-section, footer) prime sur cette règle
+   générale et peut donc affiner localement le traitement. */
+body.has-webgl section,
+body.has-webgl .strip{
+  background:linear-gradient(180deg, rgba(8,13,31,.4), rgba(5,7,15,.58));
+}
+body.has-webgl .why,
+body.has-webgl .testi-section{
+  background:linear-gradient(180deg, rgba(8,13,31,.55), rgba(5,7,15,.72));
+  backdrop-filter:blur(2px);
+}
+body.has-webgl footer{background:linear-gradient(180deg, rgba(5,7,15,.4), rgba(5,7,15,.85));}
+/* Voile local sous les gros blocs de texte pour garantir le contraste */
+body.has-webgl .positioning .wrap,
+body.has-webgl .section-head{position:relative;}
+
+/* ---------- Glassmorphism sur les cartes ---------- */
+body.has-webgl .service-card,
+body.has-webgl .mini-card,
+body.has-webgl .testi-card,
+body.has-webgl .contact-info-card,
+body.has-webgl form,
+body.has-webgl .cta-band,
+body.has-webgl .service-dialog,
+body.has-webgl .stat-panel .stat-poles button,
+body.has-webgl .form-panel{
+  background:linear-gradient(180deg, rgba(18,27,66,.55), rgba(8,13,31,.62));
+  backdrop-filter:blur(14px) saturate(1.2);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);
+  border-color:rgba(148,163,209,.22);
+}
+body.has-webgl .service-card{
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.06);
+}
+/* Reflet supérieur type verre */
+body.has-webgl .service-card .body{position:relative;}
+
+/* ---------- Cartes qui « flottent » ---------- */
+/* Lueur portée qui donne l'impression que la carte lévite au-dessus du fond */
+body.has-webgl .services-grid .service-card::after{
+  content:"";position:absolute;inset:auto 10% -18px 10%;height:40px;z-index:-1;
+  background:radial-gradient(ellipse at center, rgba(47,107,255,.35), transparent 70%);
+  filter:blur(14px);opacity:.5;transition:opacity var(--dur-base);
+}
+@media (hover:hover) and (pointer:fine){
+  body.has-webgl .service-card.is-tilting::after{opacity:.9;}
+}
+
+/* ---------- Révélation « liquide » plus spectaculaire ---------- */
+.reveal{opacity:0;transform:translateY(46px) scale(.965);transition:opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);}
+.reveal.visible{opacity:1;transform:none;}
+/* Stagger dans les grilles : chaque enfant entre décalé */
+.services-grid .reveal.visible{transition-delay:calc(var(--i, 0) * 70ms);}
+.mini-grid .reveal.visible,.why-list .reveal.visible{transition-delay:calc(var(--i, 0) * 60ms);}
+
+/* ============================================================
+   HERO — entrée en CSS PUR (aucune dépendance de timing JS).
+   Chaque bloc porte .hero-in + --i (rang) ; l'animation joue automatiquement
+   au chargement via `animation`, pas via un ajout de classe différé en JS.
+   C'est délibéré : la version précédente dépendait d'un double
+   requestAnimationFrame pour ajouter une classe déclenchant une transition
+   CSS — un seul tick manqué (throttle navigateur, onglet en arrière-plan,
+   etc.) laissait tout le hero invisible. Une `animation` autoplay ne peut
+   pas rester « en attente » de cette façon : elle se joue dès le rendu.
+   ============================================================ */
+.hero-in{
+  animation: hero-in .8s var(--ease-signature, cubic-bezier(.16,1,.3,1)) both;
+  animation-delay: calc(var(--i, 0) * 90ms + .08s);
+}
+@keyframes hero-in{
+  from{ opacity:0; transform:translateY(22px); }
+  to{ opacity:1; transform:none; }
+}
+/* Titre : reveal ligne par ligne (masque + translation), 100% CSS */
+.hero h1{ overflow:visible; }
+.hero h1 .line-mask{ display:block; overflow:hidden; }
+.hero h1 .line-inner{
+  display:block;
+  animation: line-in .85s var(--ease-signature, cubic-bezier(.16,1,.3,1)) both;
+  animation-delay: calc(var(--i, 0) * 90ms + .08s);
+}
+@keyframes line-in{
+  from{ opacity:0; transform:translateY(112%); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* ---------- Titres géants qui « respirent » (léger) ---------- */
+body.has-webgl .hero h1{text-shadow:0 2px 40px rgba(47,107,255,.25);}
+
+/* ============================================================
+   LISIBILITÉ — le texte doit toujours primer sur le fond
+   ============================================================ */
+body.has-webgl .hero p.lead{color:#dfe5f5;text-shadow:0 1px 20px rgba(5,7,15,.6);}
+body.has-webgl .section-head p,
+body.has-webgl .positioning .sub{color:#cfd6ea;}
+body.has-webgl .positioning h2,
+body.has-webgl .section-head h2{text-shadow:0 2px 30px rgba(5,7,15,.7);}
+/* Voile local doux sous les intitulés de section très exposés */
+body.has-webgl .positioning{background:radial-gradient(ellipse 80% 120% at 50% 50%, rgba(5,7,15,.55), transparent 75%);}
+
+/* ============================================================
+   DENSITÉ — on resserre pour tuer le « vide »
+   ============================================================ */
+section{padding:92px 0;}
+.hero{padding:150px 0 96px;}
+.section-head{margin-bottom:48px;}
+#process .section-head{margin-bottom:48px !important;}
+.services-grid,.testi-track{gap:20px;}
+.hero-stats{gap:30px;}
+@media (max-width:640px){
+  section{padding:64px 0;}
+  .hero{padding:120px 0 70px;}
+}
+
+/* ============================================================
+   SERVICES EN VOL 3D — profondeur
+   ============================================================ */
+.services-grid,.mini-grid{perspective:1400px;transform-style:preserve-3d;}
+.services-grid .service-card,.mini-grid .mini-card{backface-visibility:hidden;}
+
+/* ============================================================
+   IMAGES — parallaxe multi-couches + distorsion liquide
+   ============================================================ */
+/* L'image dérive (var --imgY) et reste sur-dimensionnée pour couvrir le cadre.
+   Spécificité renforcée pour battre le :hover scale d'origine. */
+body .service-card .img-wrap{overflow:hidden;}
+body .service-card .img-wrap img{
+  transform:translateY(var(--imgY,0px)) scale(1.16);
+  transition:none;will-change:transform;
+}
+/* Le texte reste projeté vers l'avant (déjà en translateZ via le tilt) : couche distincte */
+/* Canvas de distorsion liquide, positionné en fixed au survol */
+.liquid-canvas{
+  position:fixed;z-index:6;pointer-events:none;opacity:0;
+  transition:opacity .18s ease;border-radius:var(--radius) var(--radius) 0 0;
+  box-shadow:0 20px 50px -24px rgba(0,0,0,.7);
+}
+/* Pendant la distorsion, on masque l'éclat CSS d'origine pour éviter le doublon */
+.img-wrap.liquid-on::after{opacity:0 !important;}
+
+@media (prefers-reduced-motion: reduce){
+  body .service-card .img-wrap img{transform:none;}
+}
+
+/* ---------- Clip vidéo IA du hero ---------- */
+/* Mobile : rectangle 16:9 propre (hauteur intrinsèque garantie). */
+.hero-visual video.hero-video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block;}
+.hero-visual video.hero-video img{width:100%;height:100%;object-fit:cover;}
+
+/* Desktop : le visuel remplit toute la hauteur de la colonne droite. */
+@media (min-width:981px){
+  .hero-grid{align-items:stretch;grid-template-columns:1fr 1fr;}
+  .hero .hero-visual{height:100%;min-height:76vh;align-self:stretch;}
+  .hero .hero-visual > *{height:100%;}          /* wrapper data-tilt */
+  .hero .hero-visual video.hero-video{height:100%;aspect-ratio:auto;}
+}
+
+/* ---------- Badge de profondeur : flottement doux ---------- */
+.hero-badge{animation:badge-float 5s ease-in-out infinite;}
+@keyframes badge-float{0%,100%{transform:translateZ(40px) translateY(0);}50%{transform:translateZ(40px) translateY(-8px);}}
+
+/* ---------- Curseur : halo global doux (piloté en CSS via :root) ---------- */
+body.has-webgl.fine-cursor::before{
+  content:"";position:fixed;left:0;top:0;width:360px;height:360px;z-index:-1;pointer-events:none;
+  transform:translate(calc(var(--cursor-x, -999px) - 180px), calc(var(--cursor-y, -999px) - 180px));
+  background:radial-gradient(circle, rgba(255,154,31,.12), transparent 65%);
+  mix-blend-mode:screen;
+}
+
+/* ---------- Perf mobile : blur allégé ---------- */
+@media (max-width:768px){
+  body.has-webgl .service-card,
+  body.has-webgl .mini-card,
+  body.has-webgl .testi-card,
+  body.has-webgl .contact-info-card,
+  body.has-webgl form,
+  body.has-webgl .cta-band{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+}
+
+/* ---------- Reduced motion : fond figé, tout visible immédiatement ---------- */
+@media (prefers-reduced-motion: reduce){
+  #webgl-bg{display:none;}
+  .hero-badge{animation:none;}
+  body.has-webgl.fine-cursor::before{display:none;}
+  .reveal{transform:none;transition:opacity var(--dur-base);}
+  .hero-in,.hero h1 .line-inner{animation:none !important;opacity:1 !important;transform:none !important;}
+}

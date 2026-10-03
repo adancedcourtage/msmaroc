@@ -1,0 +1,582 @@
+/* ============================================================
+   mdx-studio.css — implémentation statique de "MDX Studio.dc.html"
+   (claude_design), recolorée aux couleurs de marque Marketing
+   Success (cyan/orange) et remplie de contenu réel.
+   Feuille de style AUTONOME : ne dépend d'aucune autre feuille
+   du site et n'est chargée que par index.html.
+   ============================================================ */
+
+:root{
+  --accent1:#22d3ee; /* cyan Marketing Success */
+  --accent2:#ff9a1f; /* orange Marketing Success */
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;background:#060608;}
+
+.mdx-root{
+  position:relative;min-height:100vh;background:#060608;color:#f4f4f5;
+  font-family:'Plus Jakarta Sans', sans-serif;overflow-x:hidden;
+}
+
+/* ---------- Loader ---------- */
+.mdx-loader{
+  position:fixed;inset:0;background:#000000;z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+}
+.mdx-loader-count{font-size:clamp(60px,12vw,160px);font-weight:800;letter-spacing:-0.04em;line-height:1;}
+.mdx-loader-label{text-transform:uppercase;letter-spacing:4px;font-size:12px;color:#71717a;}
+
+/* ---------- Fond décoratif (halos + grille) ---------- */
+.mdx-blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0;}
+.mdx-blob--a{top:-220px;left:-160px;width:560px;height:560px;background:var(--accent1);opacity:.35;}
+.mdx-blob--b{bottom:-220px;right:-160px;width:620px;height:620px;background:var(--accent2);opacity:.3;}
+.mdx-grid-bg{
+  position:fixed;inset:0;opacity:.05;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px);
+  background-size:64px 64px;
+}
+
+/* ---------- Navbar flottante ---------- */
+.mdx-nav{
+  position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:100;
+  display:flex;align-items:center;gap:36px;padding:10px 12px 10px 22px;border-radius:100px;
+  background:rgba(18,18,22,0.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.08);max-width:calc(100vw - 32px);
+}
+.mdx-nav-brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-0.02em;white-space:nowrap;color:#ffffff;text-decoration:none;}
+.mdx-nav-brand img{height:24px;width:auto;display:block;}
+.mdx-nav-links{display:flex;gap:26px;font-size:14px;color:#d4d4d8;white-space:nowrap;}
+.mdx-nav-links a{color:inherit;text-decoration:none;transition:color .2s;}
+.mdx-nav-links a:hover{color:#fff;}
+.mdx-btn{
+  background:#ffffff;color:#0a0a0c;border:none;padding:10px 22px;border-radius:100px;
+  font-weight:600;font-size:14px;font-family:inherit;cursor:pointer;white-space:nowrap;
+  text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+}
+.mdx-btn svg{display:block;flex:none;}
+.mdx-btn--ghost{background:transparent;color:#a1a1aa;border:1px solid rgba(255,255,255,0.16);}
+.mdx-nav-toggle{display:none;background:none;border:none;padding:8px;cursor:pointer;flex:none;}
+.mdx-nav-toggle span,.mdx-nav-toggle::before,.mdx-nav-toggle::after{
+  content:"";display:block;width:20px;height:2px;background:#fff;border-radius:2px;
+  transition:transform .3s ease, opacity .3s ease;
+}
+.mdx-nav-toggle::before{margin-bottom:5px;}
+.mdx-nav-toggle::after{margin-top:5px;}
+.mdx-nav-toggle[aria-expanded="true"] span{opacity:0;}
+.mdx-nav-toggle[aria-expanded="true"]::before{transform:translateY(7px) rotate(45deg);}
+.mdx-nav-toggle[aria-expanded="true"]::after{transform:translateY(-7px) rotate(-45deg);}
+
+.mdx-nav-cta-short{display:none;}
+
+@media (max-width:760px){
+  .mdx-nav{gap:12px;padding:8px 8px 8px 14px;}
+  .mdx-nav-wordmark{display:none;}
+  .mdx-nav-toggle{display:block;}
+  .mdx-nav-links{
+    display:flex;flex-direction:column;align-items:flex-start;gap:16px;
+    position:absolute;top:calc(100% + 12px);left:0;right:0;padding:22px 26px;border-radius:24px;
+    background:rgba(14,14,18,0.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.08);box-shadow:0 20px 50px -20px rgba(0,0,0,0.7);
+    font-size:16px;
+    opacity:0;transform:translateY(-10px);pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .mdx-nav-links.is-open{opacity:1;transform:translateY(0);pointer-events:auto;}
+  .mdx-nav-cta-full{display:none;}
+  .mdx-nav-cta-short{display:inline;}
+}
+
+/* ---------- Hero ---------- */
+.mdx-hero{
+  position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;padding:160px 24px 100px;
+  overflow:hidden;
+}
+#mdx-hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+/* ---------- Grille hero : vidéo | contenu | vidéo ---------- */
+/* display:contents par défaut = aucune boîte propre, les enfants (dont
+   .mdx-hero-content) se comportent comme s'ils étaient directement dans le
+   flex du .mdx-hero. Au-delà du breakpoint, on active une vraie grille à 3
+   colonnes : impossible pour les vidéos de chevaucher le texte, ce sont des
+   pistes de grille distinctes, pas un positionnement absolu approximatif. */
+.mdx-hero-grid{display:contents;}
+.mdx-hero-content{display:flex;flex-direction:column;align-items:center;gap:26px;}
+.mdx-hero-side{display:none;}
+
+@media (min-width:1200px){
+  .mdx-hero-grid{
+    display:grid;grid-template-columns:22% 1fr 22%;align-items:stretch;gap:28px;
+    width:100%;max-width:1440px;margin:0 auto;
+  }
+  .mdx-hero-side{
+    display:block;position:relative;overflow:visible;pointer-events:none;z-index:-1;
+    min-height:420px;
+  }
+  /* Masque radial unique, mêmes 4 côtés : courbe en cosinus (ease-in-out),
+     pas un dégradé linéaire. Quasi opaque jusqu'à ~20%, décroche visiblement
+     à partir de 35-40%, nul pile aux bords -> aucune arête, sur les 4 côtés
+     à la fois (l'ellipse "closest-side" épouse la boîte, coins encore plus
+     doux car géométriquement plus loin du centre que closest-side).
+     Stops = 0.5*(1+cos(x*pi)) pour x=0..1 par pas de 0.1. */
+  .mdx-hero-side-media{
+    position:absolute;inset:0;overflow:hidden;
+    -webkit-mask-image:radial-gradient(ellipse closest-side at center,
+      rgba(0,0,0,1) 0%, rgba(0,0,0,.98) 10%, rgba(0,0,0,.9) 20%, rgba(0,0,0,.79) 30%,
+      rgba(0,0,0,.65) 40%, rgba(0,0,0,.5) 50%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.21) 70%,
+      rgba(0,0,0,.1) 80%, rgba(0,0,0,.02) 90%, rgba(0,0,0,0) 100%);
+    mask-image:radial-gradient(ellipse closest-side at center,
+      rgba(0,0,0,1) 0%, rgba(0,0,0,.98) 10%, rgba(0,0,0,.9) 20%, rgba(0,0,0,.79) 30%,
+      rgba(0,0,0,.65) 40%, rgba(0,0,0,.5) 50%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.21) 70%,
+      rgba(0,0,0,.1) 80%, rgba(0,0,0,.02) 90%, rgba(0,0,0,0) 100%);
+  }
+  /* Anneau de flou (feathering) : backdrop-filter sur ::after, lui-même
+     masqué pour ne toucher QUE la zone externe -> zéro flou au centre,
+     flou plein sur le dernier quart -> plus aucune arête nette possible,
+     même en zoomant. ::after peint après la vidéo donc floute bien la
+     vidéo (backdrop-filter agit sur ce qui est visuellement derrière lui). */
+  .mdx-hero-side-media::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+    -webkit-mask-image:radial-gradient(ellipse closest-side at center, transparent 55%, rgba(0,0,0,.5) 72%, #000 92%);
+    mask-image:radial-gradient(ellipse closest-side at center, transparent 55%, rgba(0,0,0,.5) 72%, #000 92%);
+  }
+  /* Opacité globale basse : la vidéo doit se lire comme une texture qui
+     émerge du fond sur toute sa surface, pas comme un média collé dessus. */
+  .mdx-hero-side video{width:100%;height:100%;object-fit:cover;display:block;background:transparent;opacity:.45;}
+  /* Colorimétrie recalée sur le fond du site à cet endroit précis :
+     blob cyan fixe en haut-gauche du viewport -> teinte gauche vers teal ;
+     blob orange fixe en bas-droite -> teinte droite vers ambre/brun. */
+  .mdx-hero-side--left video{filter:brightness(.8) contrast(1.08) saturate(1.3) sepia(.35) hue-rotate(155deg);}
+  .mdx-hero-side--right video{filter:brightness(.78) contrast(1.08) saturate(1.35) sepia(.4) hue-rotate(-8deg);}
+  /* Calque grille : même motif que le fond global (.mdx-grid-bg), même
+     background-attachment:fixed -> alignement pixel-perfect avec le
+     quadrillage du reste du site. Non masqué, jamais coupé net. */
+  .mdx-hero-side-grid{
+    position:absolute;inset:0;z-index:1;opacity:.05;
+    background-image:linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px);
+    background-size:64px 64px;background-attachment:fixed;
+  }
+}
+.mdx-hero-overlay{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 65% 60% at 50% 52%, rgba(6,8,15,0.55), transparent 72%);
+}
+.mdx-hero .mdx-reveal{position:relative;z-index:2;opacity:0;}
+.mdx-reveal{position:relative;opacity:0;}
+.mdx-badge{
+  display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);font-size:13px;color:#d4d4d8;
+}
+.mdx-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:mdxDotPulse 2s infinite;}
+@keyframes mdxDotPulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0.55);}50%{box-shadow:0 0 0 7px rgba(74,222,128,0);}}
+
+.mdx-hero h1{font-size:clamp(32px,5vw,50px);font-weight:800;line-height:1.14;letter-spacing:-0.02em;max-width:720px;margin:0;}
+.mdx-grad-text{
+  background:linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.mdx-hero .lead{color:#a1a1aa;font-size:18px;max-width:580px;line-height:1.65;margin:0;}
+.mdx-hero-cta{position:relative;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;}
+.mdx-hero-proof{color:#c4c4cc;font-size:clamp(16px,2.1vw,20px);font-weight:500;letter-spacing:0.01em;margin:-4px 0 0;}
+.mdx-proof-num{
+  font-weight:800;font-size:1.35em;
+  background:linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.mdx-chips{position:relative;display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;justify-content:center;}
+.mdx-chip{padding:8px 16px;border:1px solid rgba(255,255,255,0.08);border-radius:100px;font-size:12px;letter-spacing:0.08em;color:#a1a1aa;text-transform:uppercase;}
+
+.mdx-scroll-hint{
+  position:absolute;left:50%;bottom:28px;z-index:2;
+  transform:translateX(-50%);color:rgba(255,255,255,0.45);
+  display:flex;animation:mdxScrollBounce 1.8s ease-in-out infinite;
+}
+.mdx-scroll-hint:hover{color:rgba(255,255,255,0.75);}
+@keyframes mdxScrollBounce{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+/* ---------- Sections ---------- */
+.mdx-section{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:120px 24px;}
+.mdx-section-head{display:flex;flex-direction:column;gap:8px;margin-bottom:56px;}
+.mdx-eyebrow{font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent2);font-weight:600;}
+.mdx-section h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-0.02em;margin:0;}
+.mdx-section-head p{color:#a1a1aa;font-size:15px;max-width:640px;margin:14px 0 0;line-height:1.6;}
+
+/* ---------- Notre histoire (timeline fondation) ---------- */
+.mdx-story-grid{display:grid;grid-template-columns:minmax(240px,320px) 1fr;gap:56px;align-items:start;}
+.mdx-story-figure{margin:0;position:relative;}
+.mdx-story-figure img{
+  width:100%;height:auto;display:block;border-radius:20px;
+  border:1px solid rgba(255,255,255,0.08);box-shadow:0 30px 60px -30px rgba(0,0,0,0.7);
+}
+.mdx-story-figure figcaption{margin-top:14px;font-size:13px;color:#71717a;text-align:center;}
+
+.mdx-timeline{list-style:none;margin:0;padding:0;position:relative;}
+.mdx-timeline-step{
+  position:relative;padding:0 0 40px 32px;border-left:1px solid rgba(255,255,255,0.1);
+}
+.mdx-timeline-step:last-child{padding-bottom:0;}
+.mdx-timeline-step::before{
+  content:"";position:absolute;left:-6px;top:4px;width:11px;height:11px;border-radius:50%;
+  background:linear-gradient(135deg, var(--accent1), var(--accent2));
+  box-shadow:0 0 0 4px rgba(6,6,8,1), 0 0 16px -2px rgba(34,211,238,0.6);
+}
+.mdx-timeline-step time{
+  display:inline-block;font-size:13px;font-weight:800;letter-spacing:0.04em;margin-bottom:6px;
+  background:linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.mdx-timeline-step h3{font-size:19px;font-weight:700;margin:0 0 8px;color:#f4f4f5;}
+.mdx-timeline-step p{font-size:14.5px;line-height:1.65;color:#a1a1aa;margin:0;max-width:56ch;}
+
+@media (max-width:860px){
+  .mdx-story-grid{grid-template-columns:1fr;gap:36px;}
+  .mdx-story-figure{max-width:280px;margin:0 auto;}
+}
+
+/* ---------- Cartes services (tilt + glow) ---------- */
+.mdx-services-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px,1fr));gap:20px;perspective:1000px;}
+.mdx-card{
+  position:relative;opacity:0;transform:translateY(30px);padding:0;border-radius:20px;
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);overflow:hidden;
+  transform-style:preserve-3d;will-change:transform;
+}
+.mdx-card-img{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;}
+.mdx-card-img img{
+  width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.08);
+  transition:transform .7s cubic-bezier(.16,1,.3,1);
+}
+.mdx-card-img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(6,6,8,0) 40%, rgba(6,6,8,.55) 85%, #060608 100%);
+}
+.mdx-card-glow{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.3s;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.14), transparent 60%);}
+.mdx-card-body{position:relative;padding:24px 28px 30px;}
+.mdx-card-num{position:relative;color:var(--accent1);font-weight:700;font-size:13px;margin-bottom:14px;}
+.mdx-card h3{position:relative;font-size:19px;font-weight:700;margin:0 0 10px;}
+.mdx-card p{position:relative;color:#a1a1aa;font-size:14px;line-height:1.6;margin:0;}
+.mdx-card-cta{
+  position:relative;display:inline-flex;align-items:center;gap:6px;margin-top:16px;
+  font-size:13px;font-weight:700;color:var(--accent1);text-decoration:none;
+}
+.mdx-card-cta span{transition:transform .25s ease;}
+.mdx-card-cta:hover{color:var(--accent2);}
+.mdx-card-cta:hover span{transform:translateX(3px);}
+
+/* ---------- Méthode (4 étapes) ---------- */
+.mdx-method-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(220px,1fr));gap:20px;}
+.mdx-method-step{
+  position:relative;padding:26px 24px;border-radius:20px;
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
+}
+.mdx-method-num{
+  font-size:13px;font-weight:800;letter-spacing:0.04em;margin-bottom:14px;
+  background:linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.mdx-method-step h3{font-size:17px;font-weight:700;margin:0 0 8px;}
+.mdx-method-step p{font-size:14px;line-height:1.6;color:#a1a1aa;margin:0;}
+
+/* ---------- Formulaire de contact ---------- */
+.mdx-contact{max-width:720px;}
+.mdx-form{display:flex;flex-direction:column;gap:18px;}
+.mdx-form-honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.mdx-form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.mdx-form-field{display:flex;flex-direction:column;gap:8px;}
+.mdx-form-field label{font-size:13px;font-weight:600;color:#d4d4d8;}
+.mdx-form-field input,.mdx-form-field select,.mdx-form-field textarea{
+  font:inherit;font-size:15px;color:#f4f4f5;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:12px 14px;
+  resize:vertical;
+}
+.mdx-form-field input::placeholder,.mdx-form-field textarea::placeholder{color:#71717a;}
+.mdx-form-field input:focus,.mdx-form-field select:focus,.mdx-form-field textarea:focus{
+  outline:2px solid var(--accent1);outline-offset:1px;border-color:transparent;
+}
+.mdx-form > .mdx-btn{align-self:flex-start;}
+.mdx-form-status{font-size:14px;margin:0;min-height:1em;}
+.mdx-form-status.is-ok{color:#4ade80;}
+.mdx-form-status.is-error{color:var(--accent2);}
+.mdx-form-alt{font-size:13px;color:#71717a;margin:0;}
+.mdx-form-alt a{color:var(--accent1);}
+@media (max-width:640px){
+  .mdx-form-row{grid-template-columns:1fr;}
+}
+
+/* ---------- Skip link (accessibilité clavier) ---------- */
+.mdx-skip-link{
+  position:fixed;top:-60px;left:12px;z-index:1000;padding:12px 20px;border-radius:10px;
+  background:#fff;color:#0a0a0c;font-weight:700;font-size:14px;text-decoration:none;
+  transition:top .2s ease;
+}
+.mdx-skip-link:focus{top:12px;}
+
+/* ---------- Focus visible (clavier) ---------- */
+.mdx-btn:focus-visible,.mdx-nav-links a:focus-visible,.mdx-nav-toggle:focus-visible,
+.mdx-card-cta:focus-visible,.mdx-faq-q:focus-visible,.mdx-socials a:focus-visible,
+.mdx-footer-bottom a:focus-visible,.mdx-scroll-hint:focus-visible{
+  outline:2px solid var(--accent1);outline-offset:3px;border-radius:4px;
+}
+
+/* ---------- Bandeau de confiance (logos clients réels, MA + FR) ---------- */
+.mdx-trust{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px 90px;text-align:center;}
+.mdx-trust-badge{
+  position:relative;isolation:isolate;overflow:hidden;
+  margin:0 auto 48px;font-size:clamp(16px,2.8vw,19px);font-weight:800;
+  padding:15px 34px;color:#fff;letter-spacing:-0.01em;
+  background:#0d0d12;border-color:transparent;
+  animation:mdxTrustBadgeGlow 3.4s ease-in-out infinite;
+}
+.mdx-trust-badge .mdx-dot{width:9px;height:9px;position:relative;z-index:1;}
+/* Anneau dégradé qui tourne en continu autour du badge (2px d'épaisseur) */
+.mdx-badge-ring{
+  position:absolute;inset:-3px;z-index:-1;border-radius:inherit;
+  background:conic-gradient(from 0deg, var(--accent1), #fff, var(--accent2), var(--accent1));
+  animation:mdxBadgeRingSpin 3.5s linear infinite;
+}
+.mdx-badge-ring::after{
+  content:"";position:absolute;inset:2px;border-radius:inherit;background:#0d0d12;
+}
+@keyframes mdxBadgeRingSpin{to{transform:rotate(360deg);}}
+/* Texte en dégradé mouvant (même technique que le CTA géant du footer) */
+.mdx-trust-badge-text{
+  position:relative;z-index:1;
+  background:linear-gradient(90deg, #fff, var(--accent1), var(--accent2), #fff);
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:mdxGradientMove 5s ease-in-out infinite;
+}
+@keyframes mdxTrustBadgeGlow{
+  0%,100%{box-shadow:0 0 22px -4px rgba(255,154,31,0.5);}
+  50%{box-shadow:0 0 36px -2px rgba(34,211,238,0.55);}
+}
+.mdx-trust-row{margin-bottom:28px;}
+.mdx-trust-row:last-child{margin-bottom:0;}
+.mdx-trust-row-tag{
+  display:inline-block;margin-bottom:16px;padding:5px 14px;border-radius:100px;
+  font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.12);color:#a1a1aa;
+}
+.mdx-trust-row-tag--ma{color:var(--accent2);border-color:rgba(255,154,31,0.3);}
+.mdx-trust-row-tag--fr{color:var(--accent1);border-color:rgba(34,211,238,0.3);}
+
+.mdx-marquee{
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.mdx-marquee-track{display:flex;gap:24px;width:max-content;animation:mdxMarquee 36s linear infinite;}
+.mdx-marquee--reverse .mdx-marquee-track{animation-name:mdxMarqueeReverse;animation-duration:40s;}
+.mdx-marquee:hover .mdx-marquee-track{animation-play-state:paused;}
+@keyframes mdxMarquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes mdxMarqueeReverse{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+
+.mdx-trust-logo{
+  position:relative;flex:0 0 auto;width:210px;height:104px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;padding:14px 22px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.10);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  box-shadow:0 12px 26px -16px rgba(0,0,0,0.6);
+  transition:border-color .3s ease, background .3s ease, transform .3s ease;
+}
+.mdx-trust-logo::before{
+  content:"";position:absolute;inset:-16px;z-index:-1;border-radius:50%;
+  background:radial-gradient(ellipse at center, rgba(255,255,255,0.14), transparent 72%);
+  opacity:0;transition:opacity .3s ease;pointer-events:none;
+}
+.mdx-trust-logo:hover{border-color:rgba(255,255,255,0.22);transform:translateY(-2px);}
+.mdx-trust-logo:hover::before{opacity:1;}
+.mdx-trust-logo img{
+  max-width:100%;max-height:100%;object-fit:contain;display:block;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5)) drop-shadow(0 0 10px rgba(255,255,255,0.16));
+  transition:transform .3s ease;
+}
+.mdx-trust-logo:hover img{transform:scale(1.07);}
+
+@media (max-width:640px){
+  .mdx-trust-logo{width:156px;height:78px;padding:10px 16px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .mdx-marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none;}
+  .mdx-marquee-track{animation:none;}
+  .mdx-marquee-track .mdx-trust-logo[aria-hidden="true"]{display:none;}
+  .mdx-trust-badge{animation:none;box-shadow:0 0 22px -6px rgba(34,211,238,0.3);}
+  .mdx-badge-ring{animation:none;}
+  .mdx-trust-badge-text{animation:none;background-position:35% 50%;}
+  .mdx-testi-quote-ic,.mdx-testi-avatar{animation:none;}
+}
+
+/* ---------- Bloc impact (bénéfices, sans métriques inventées) ---------- */
+.mdx-impact-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(220px,1fr));gap:18px;padding-bottom:110px;}
+.mdx-impact-tile{
+  display:flex;align-items:center;gap:14px;padding:22px 24px;border-radius:16px;
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
+}
+.mdx-impact-ic{flex:none;color:var(--accent1);}
+.mdx-impact-tile p{margin:0;font-size:15px;font-weight:600;color:#e4e4e7;line-height:1.4;}
+
+/* ---------- Cartes témoignages (variante de .mdx-card, sans image) ---------- */
+.mdx-testi-card .mdx-card-body{padding:30px 28px;}
+.mdx-testi-quote-ic{
+  display:inline-block;font-size:40px;line-height:1;color:var(--accent2);
+  font-family:Georgia,serif;margin-bottom:6px;
+  animation:mdxQuotePulse 3.6s ease-in-out infinite;
+}
+.mdx-testi-card:nth-child(2) .mdx-testi-quote-ic{animation-delay:.4s;}
+.mdx-testi-card:nth-child(3) .mdx-testi-quote-ic{animation-delay:.8s;}
+@keyframes mdxQuotePulse{
+  0%,100%{transform:scale(1);opacity:.85;text-shadow:0 0 0 rgba(255,154,31,0);}
+  50%{transform:scale(1.16);opacity:1;text-shadow:0 0 16px rgba(255,154,31,0.55);}
+}
+.mdx-testi-placeholder{color:#a1a1aa;font-size:14.5px;line-height:1.7;font-style:italic;min-height:80px;}
+.mdx-testi-author{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);}
+.mdx-testi-avatar{
+  position:relative;width:38px;height:38px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg, var(--accent1), var(--accent2));color:#0a0a0c;font-weight:800;font-size:14px;
+  animation:mdxAvatarGlow 3.6s ease-in-out infinite;
+}
+.mdx-testi-card:nth-child(2) .mdx-testi-avatar{animation-delay:.4s;}
+.mdx-testi-card:nth-child(3) .mdx-testi-avatar{animation-delay:.8s;}
+@keyframes mdxAvatarGlow{
+  0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0.35);}
+  50%{box-shadow:0 0 0 6px rgba(34,211,238,0);}
+}
+.mdx-testi-name{font-size:14px;font-weight:700;color:#f4f4f5;}
+.mdx-testi-role{font-size:12px;color:#71717a;}
+
+/* ---------- FAQ (accordéon) ---------- */
+.mdx-faq-list{max-width:820px;}
+.mdx-faq-item{border-bottom:1px solid rgba(255,255,255,0.08);}
+.mdx-faq-item:first-child{border-top:1px solid rgba(255,255,255,0.08);}
+.mdx-faq-q{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  background:none;border:none;color:#f4f4f5;font:inherit;font-weight:700;font-size:16px;
+  text-align:left;padding:24px 2px;cursor:pointer;
+}
+.mdx-faq-icon{position:relative;flex:none;width:20px;height:20px;}
+.mdx-faq-icon::before,.mdx-faq-icon::after{
+  content:"";position:absolute;background:var(--accent1);border-radius:2px;
+  transition:transform .3s ease, opacity .3s ease;
+}
+.mdx-faq-icon::before{left:0;top:50%;width:100%;height:2px;transform:translateY(-50%);}
+.mdx-faq-icon::after{top:0;left:50%;width:2px;height:100%;transform:translateX(-50%);}
+.mdx-faq-item.is-open .mdx-faq-icon::after{opacity:0;transform:translateX(-50%) rotate(90deg);}
+.mdx-faq-a-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;}
+.mdx-faq-item.is-open .mdx-faq-a-wrap{grid-template-rows:1fr;}
+.mdx-faq-a{overflow:hidden;}
+.mdx-faq-a p{margin:0 0 24px;color:#a1a1aa;font-size:14.5px;line-height:1.7;padding-right:38px;}
+
+/* ---------- Galerie / réalisations (scroll horizontal + cursor-follow) ---------- */
+.mdx-portfolio-scroll{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;margin:0 -24px;padding-left:24px;padding-right:24px;}
+.mdx-portfolio-card{position:relative;flex:0 0 min(78vw,560px);scroll-snap-align:start;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);}
+.mdx-portfolio-media{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;}
+.mdx-portfolio-img{width:100%;height:100%;transform:scale(1.05);transition:transform 0.1s;}
+.mdx-portfolio-img img,.mdx-portfolio-img video{width:100%;height:100%;object-fit:cover;display:block;}
+.mdx-portfolio-body{padding:20px 22px;}
+.mdx-portfolio-body span{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent1);}
+.mdx-portfolio-body h3{margin:6px 0 0;font-size:19px;font-weight:700;}
+
+/* ---------- Stats ---------- */
+.mdx-stats{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 140px;}
+.mdx-stats-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px,1fr));gap:24px;text-align:center;}
+.mdx-stat-num{font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-0.02em;}
+.mdx-stat-label{color:#a1a1aa;font-size:13px;letter-spacing:0.04em;margin-top:6px;}
+
+/* ---------- Footer / CTA géant ---------- */
+.mdx-footer{position:relative;z-index:1;padding-top:100px;border-top:1px solid rgba(255,255,255,0.08);}
+.mdx-cta-giant{perspective:1000px;padding:0 24px 90px;text-align:center;transform-style:preserve-3d;}
+.mdx-cta-btn{display:inline-flex;margin:0 auto 40px;}
+.mdx-cta-text{
+  font-size:clamp(32px,9vw,110px);font-weight:800;letter-spacing:-0.03em;line-height:1;margin:0;
+  background:linear-gradient(90deg, #ffffff, var(--accent1), var(--accent2), #ffffff);
+  background-size:300% 300%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:mdxGradientMove 8s ease-in-out infinite;will-change:transform;
+}
+@keyframes mdxGradientMove{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+
+.mdx-footer-bottom{padding:24px 24px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:13px;color:#71717a;max-width:1200px;margin:0 auto;}
+.mdx-footer-legal{display:flex;gap:8px;flex-wrap:wrap;}
+.mdx-footer-bottom a{color:inherit;text-decoration:none;}
+.mdx-footer-bottom a:hover{color:#d4d4d8;}
+.mdx-socials{display:flex;gap:18px;align-items:center;}
+.mdx-socials a{color:#a1a1aa;display:flex;transition:color .2s;}
+.mdx-socials a:hover{color:#fff;}
+.mdx-socials svg{width:17px;height:17px;}
+
+/* ---------- Cursor-follow tag (galerie) ---------- */
+.mdx-cursor-follow{
+  position:fixed;top:0;left:0;z-index:200;pointer-events:none;padding:11px 20px;border-radius:100px;
+  background:#ffffff;color:#0a0a0c;font-size:11px;font-weight:700;letter-spacing:0.06em;white-space:nowrap;
+  opacity:0;transform:translate(-50%,-50%) scale(0.7);
+}
+
+/* ---------- WhatsApp flottant (canal de contact réel, superposé au design) ---------- */
+.mdx-float-wa{
+  position:fixed;right:24px;bottom:24px;z-index:150;width:56px;height:56px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 30px -8px rgba(0,0,0,0.6);
+}
+
+@media (max-width:640px){
+  .mdx-section{padding:64px 20px;}
+  .mdx-hero{padding:130px 20px 64px;min-height:0;gap:20px;}
+  .mdx-section-head{margin-bottom:36px;}
+  .mdx-stats{padding:0 20px 90px;}
+  .mdx-stats-grid{gap:32px 20px;}
+  .mdx-footer{padding-top:64px;}
+  .mdx-cta-giant{padding:0 20px 56px;}
+  .mdx-card-body{padding:20px 22px 24px;}
+  .mdx-portfolio-card{flex-basis:86vw;}
+  .mdx-trust{padding:0 20px 56px;}
+  .mdx-impact-grid{padding-bottom:64px;}
+  .mdx-trust-slot{width:120px;height:54px;}
+}
+
+/* Sur tactile (pas de hover fin), les cartes/liens n'ont pas d'état :hover
+   utile — feedback au clic sobre à la place, sans transition transform
+   coûteuse à chaque frame. */
+@media (hover: none){
+  .mdx-card,.mdx-portfolio-img,.mdx-btn,a{-webkit-tap-highlight-color:transparent;}
+  .mdx-card:active{background:rgba(255,255,255,0.05);}
+  .mdx-btn:active{opacity:.85;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .mdx-reveal,.mdx-card{opacity:1 !important;transform:none !important;}
+  .mdx-dot,.mdx-cta-text{animation:none;}
+  .mdx-faq-a-wrap{transition:none;}
+  .mdx-scroll-hint{animation:none;}
+}
+
+/* ============================================================
+   Pages légales / 404 — même langage visuel que l'accueil,
+   sans loader ni JS (nav + contenu statiques, lisibilité prioritaire).
+   ============================================================ */
+.mdx-legal-nav{
+  position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:24px;max-width:1200px;margin:0 auto;
+}
+.mdx-legal-page{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:40px 24px 120px;}
+.mdx-legal-back{display:inline-block;margin-bottom:28px;color:#a1a1aa;font-size:14px;text-decoration:none;}
+.mdx-legal-back:hover{color:#fff;}
+.mdx-legal-page h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.02em;margin:0 0 8px;}
+.mdx-legal-page .mdx-legal-updated{color:#71717a;font-size:13px;margin:0 0 40px;}
+.mdx-legal-page h2{font-size:18px;font-weight:700;margin:36px 0 12px;}
+.mdx-legal-page p,.mdx-legal-page li{color:#a1a1aa;font-size:15px;line-height:1.7;}
+.mdx-legal-page ul{padding-left:20px;margin:0 0 16px;}
+.mdx-legal-page a{color:var(--accent1);}
+.mdx-legal-page em{color:#71717a;font-style:italic;}
+.mdx-nf{
+  position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:40px 24px;
+}
+.mdx-nf-code{
+  font-size:clamp(90px,20vw,190px);font-weight:800;letter-spacing:-0.04em;line-height:1;
+  background:linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.mdx-nf h1{font-size:clamp(22px,3vw,30px);margin:8px 0 14px;}
+.mdx-nf p{color:#a1a1aa;max-width:440px;margin:0 0 32px;font-size:16px;}
+.mdx-nf-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}

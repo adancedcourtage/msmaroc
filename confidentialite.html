@@ -5,32 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Politique de confidentialité — Marketing Success</title>
 <meta name="description" content="Politique de confidentialité de Marketing Success — collecte, usage et protection de vos données personnelles (loi 09-08).">
-<meta name="theme-color" content="#05070f">
+<meta name="theme-color" content="#060608">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/mdx-studio.css">
 </head>
 <body>
+<div class="mdx-root">
+  <div class="mdx-blob mdx-blob--a" aria-hidden="true"></div>
+  <div class="mdx-blob mdx-blob--b" aria-hidden="true"></div>
+  <div class="mdx-grid-bg" aria-hidden="true"></div>
 
-<div class="scroll-progress" aria-hidden="true"></div>
-
-<header>
-  <nav>
-    <a href="index.html" class="logo" aria-label="Marketing Success — accueil"><img src="assets/logo.svg" alt="Marketing Success"></a>
-    <div class="nav-cta">
-      <a href="index.html#contact" class="btn btn-primary btn-sm">Demander un devis</a>
-    </div>
+  <nav class="mdx-legal-nav">
+    <a href="index.html" class="mdx-nav-brand" aria-label="Marketing Success — accueil"><img src="assets/logo-mark.png" alt="Marketing Success" style="height:24px;"> Marketing Success</a>
+    <a class="mdx-btn" href="index.html#contact">Demander un devis</a>
   </nav>
-</header>
 
-<section class="legal-page">
-  <div class="wrap">
-    <a href="index.html" class="back">← Retour à l'accueil</a>
+  <section class="mdx-legal-page">
+    <a href="index.html" class="mdx-legal-back">&larr; Retour à l'accueil</a>
     <h1>Politique de confidentialité</h1>
-    <p class="updated">Dernière mise à jour : <span id="today"></span></p>
+    <p class="mdx-legal-updated">Dernière mise à jour : <span id="today"></span></p>
 
     <p>Marketing Success accorde une grande importance à la protection de votre vie privée. Cette politique décrit quelles données nous collectons, pourquoi, et les droits dont vous disposez, conformément à la loi n° 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel.</p>
 
@@ -41,9 +38,7 @@
     <p>Nous collectons uniquement les données que vous nous transmettez volontairement via le formulaire de contact ou par WhatsApp :</p>
     <ul>
       <li>Nom complet</li>
-      <li>Nom de l'entreprise (facultatif)</li>
-      <li>Adresse e-mail</li>
-      <li>Numéro de téléphone (facultatif)</li>
+      <li>Adresse e-mail ou numéro de téléphone</li>
       <li>Service souhaité et description de votre projet</li>
     </ul>
 
@@ -54,7 +49,7 @@
     <p>Vos données sont conservées pendant la durée nécessaire au traitement de votre demande, puis archivées ou supprimées dans un délai maximum de <em>[ex. 3 ans]</em> à compter du dernier contact, sauf obligation légale contraire.</p>
 
     <h2>5. Destinataires</h2>
-    <p>Vos données sont destinées aux seuls services internes de Marketing Success. Elles ne sont ni vendues, ni cédées à des tiers à des fins commerciales. Certains outils techniques (messagerie, hébergement, WhatsApp) peuvent traiter ces données en qualité de sous-traitants.</p>
+    <p>Vos données sont destinées aux seuls services internes de Marketing Success. Elles ne sont ni vendues, ni cédées à des tiers à des fins commerciales. Certains outils techniques (formulaire de contact, messagerie, hébergement, WhatsApp) peuvent traiter ces données en qualité de sous-traitants.</p>
 
     <h2>6. Cookies</h2>
     <p>Ce site n'utilise pas de cookies de suivi publicitaire. Seuls des éléments strictement nécessaires au fonctionnement peuvent être employés. En cas d'ajout d'outils de mesure d'audience, un bandeau de consentement sera mis en place.</p>
@@ -64,23 +59,19 @@
 
     <h2>8. Sécurité</h2>
     <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées afin de protéger vos données contre tout accès, altération ou divulgation non autorisés.</p>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-bottom" style="border-top:none;padding-top:0;">
-      <span>© <span id="year">2026</span> Marketing Success. Tous droits réservés.</span>
-      <span><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Politique de confidentialité</a></span>
+  <footer class="mdx-footer">
+    <div class="mdx-footer-bottom">
+      <span>&copy; <span id="year">2026</span> Marketing Success. Tous droits réservés.</span>
+      <span class="mdx-footer-legal"><a href="mentions-legales.html">Mentions légales</a>&nbsp;·&nbsp;<a href="confidentialite.html">Confidentialité</a></span>
     </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('today').textContent = new Date().toLocaleDateString('fr-FR', {year:'numeric',month:'long',day:'numeric'});
-  const p = document.querySelector('.scroll-progress');
-  if (p) { const u=()=>{const d=document.documentElement.scrollHeight-window.innerHeight;p.style.width=(d>0?window.scrollY/d*100:0)+'%';};window.addEventListener('scroll',u,{passive:true});u();}
 </script>
 </body>
 </html>

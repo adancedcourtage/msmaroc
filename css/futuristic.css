@@ -1,0 +1,383 @@
+/* ============================================================
+   futuristic.css — ÉTAPE 1 : Fondations « Cinematic Dark » premium
+   ------------------------------------------------------------
+   Couche NON DESTRUCTIVE, chargée en dernier.
+   Elle ne définit que des TOKENS et des CLASSES UTILITAIRES opt-in
+   (préfixe .u-). Tant qu'aucune classe .u-* n'est ajoutée au HTML,
+   le rendu du site reste STRICTEMENT identique.
+   Réversible : retirer le <link> de cette feuille suffit.
+   Les étapes 2 (hero) et 3 (services bento) consommeront ces tokens.
+   ============================================================ */
+
+:root{
+  /* ---- Accent system (resserré : 1 primaire + 1 secondaire) ---- */
+  --accent:            #22d3ee;              /* cyan électrique (primaire) */
+  --accent-rgb:        34, 211, 238;
+  --accent-2:          #ff9a1f;              /* orange chaud (secondaire) */
+  --accent-2-rgb:      255, 154, 31;
+  --accent-ink:        #04121a;              /* texte sur fond accent */
+
+  /* ---- Glow (halo tokenisé) ---- */
+  --glow-soft:   0 0 20px rgba(var(--accent-rgb), .22);
+  --glow:        0 0 28px rgba(var(--accent-rgb), .35);
+  --glow-strong: 0 0 48px rgba(var(--accent-rgb), .5);
+  --glow-warm:   0 0 30px rgba(var(--accent-2-rgb), .38);
+  --text-glow:   0 0 18px rgba(var(--accent-rgb), .28);
+
+  /* ---- Glass (hairline + reflet supérieur) ---- */
+  --glass-bg:        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+  --glass-tint:      rgba(10, 16, 34, .55);   /* teinte sombre sous le verre */
+  --hairline:        rgba(255,255,255,.09);   /* bordure hairline cohérente */
+  --hairline-strong: rgba(255,255,255,.14);
+  --glass-highlight: inset 0 1px 0 rgba(255,255,255,.10); /* reflet haut */
+  --glass-blur:      14px;
+
+  /* ---- Échelle d'élévation (cohérente) ---- */
+  --elev-1: 0 1px 2px rgba(0,0,0,.4);
+  --elev-2: 0 8px 24px -12px rgba(0,0,0,.6);
+  --elev-3: 0 20px 48px -20px rgba(0,0,0,.7);
+  --elev-4: 0 40px 90px -30px rgba(0,0,0,.78);
+
+  /* ---- Rayons (échelle) ---- */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+
+  /* ---- Easing signature (ressenti « natif premium ») ---- */
+  --ease-signature: cubic-bezier(.16, 1, .3, 1);
+
+  /* ---- Échelle typographique stricte ---- */
+  --fs-eyebrow: 12.5px;
+  --fs-body:    16px;
+  --fs-lead:    18px;
+  --fs-h4:      clamp(16px, 1.4vw, 19px);
+  --fs-h3:      clamp(19px, 1.8vw, 24px);
+  --fs-h2:      clamp(28px, 3.4vw, 42px);
+  --fs-display: clamp(38px, 4.8vw, 64px);
+}
+
+/* ============================================================
+   UTILITAIRES OPT-IN (.u-*) — inertes tant que non appliqués
+   ============================================================ */
+
+/* Verre premium : teinte sombre + flou + hairline + reflet supérieur */
+.u-glass{
+  background: var(--glass-tint);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.15);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.15);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--glass-highlight), var(--elev-2);
+}
+.u-glass--layered{
+  background:
+    var(--glass-bg),
+    var(--glass-tint);
+}
+
+/* Hairline seule (bordure fine cohérente) */
+.u-hairline{ border: 1px solid var(--hairline); }
+
+/* Élévations */
+.u-elev-1{ box-shadow: var(--elev-1); }
+.u-elev-2{ box-shadow: var(--elev-2); }
+.u-elev-3{ box-shadow: var(--elev-3); }
+.u-elev-4{ box-shadow: var(--elev-4); }
+
+/* Glow : halo accent (ex. derrière un CTA) */
+.u-glow{ box-shadow: var(--glow); }
+.u-glow-soft{ box-shadow: var(--glow-soft); }
+.u-glow-warm{ box-shadow: var(--glow-warm); }
+
+/* Glow au survol / focus, uniquement au pointeur fin */
+@media (hover:hover) and (pointer:fine){
+  .u-glow-hover{ transition: box-shadow var(--dur-base, 320ms) var(--ease-signature); }
+  .u-glow-hover:hover{ box-shadow: var(--glow-strong); }
+}
+
+/* Texte avec halo subtil (titres) */
+.u-text-glow{ text-shadow: var(--text-glow); }
+
+/* Chiffres tabulaires (stats, prix, timers) — évite le layout shift */
+.u-tnum{ font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+/* Press premium : léger enfoncement (opt-in sur cartes/boutons) */
+.u-press{ transition: transform var(--dur-fast, 180ms) var(--ease-signature); }
+.u-press:active{ transform: scale(.97); }
+
+/* Rayons utilitaires */
+.u-r-sm{ border-radius: var(--r-sm); }
+.u-r-md{ border-radius: var(--r-md); }
+.u-r-lg{ border-radius: var(--r-lg); }
+.u-r-xl{ border-radius: var(--r-xl); }
+
+/* Liseré accent en haut d'un bloc (détail « tech ») */
+.u-topline{ position: relative; }
+.u-topline::before{
+  content:""; position:absolute; left:0; right:0; top:0; height:1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .7), transparent);
+  opacity:.7; pointer-events:none;
+}
+
+/* Respect de prefers-reduced-motion pour les utilitaires animés */
+@media (prefers-reduced-motion: reduce){
+  .u-press, .u-glow-hover{ transition: none; }
+  .u-press:active{ transform: none; }
+}
+
+/* ============================================================
+   HERO — refonte « FUI / Cinematic Dark » (choc futuriste)
+   Scopé sous .hero--fui : n'affecte QUE le hero. JS intact.
+   ============================================================ */
+
+/* --- Couche d'effet : grille néon en perspective + halos + scan --- */
+.hero--fui .hero-fx{
+  position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden;
+  background:
+    radial-gradient(700px 380px at 8% 4%,  rgba(var(--accent-rgb),  .18), transparent 62%),
+    radial-gradient(560px 340px at 96% -4%, rgba(var(--accent-2-rgb), .14), transparent 60%),
+    radial-gradient(900px 500px at 50% 120%, rgba(var(--accent-rgb), .10), transparent 60%),
+    /* grille fine visible sur tout le hero (texture tech) */
+    linear-gradient(rgba(var(--accent-rgb), .05) 1px, transparent 1px) 0 0 / 42px 42px,
+    linear-gradient(90deg, rgba(var(--accent-rgb), .05) 1px, transparent 1px) 0 0 / 42px 42px;
+}
+.hero--fui .hero-fx::before{               /* sol quadrillé façon HUD */
+  content:""; position:absolute; left:-30%; right:-30%; bottom:-14%; height:86%;
+  background-image:
+    linear-gradient(rgba(var(--accent-rgb), .28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--accent-rgb), .18) 1px, transparent 1px);
+  background-size:52px 52px;
+  transform:perspective(500px) rotateX(66deg); transform-origin:bottom center;
+  -webkit-mask-image:linear-gradient(to top, #000 0%, transparent 78%);
+  mask-image:linear-gradient(to top, #000 0%, transparent 78%);
+  opacity:.85; animation:hero-grid 5.5s linear infinite;
+}
+@keyframes hero-grid{ from{ background-position:0 0; } to{ background-position:0 48px; } }
+.hero--fui .hero-fx__scan{                 /* faisceau de balayage vertical */
+  position:absolute; left:0; right:0; top:0; height:200px;
+  background:linear-gradient(180deg, transparent, rgba(var(--accent-rgb), .07), transparent);
+  animation:hero-scan 7.5s ease-in-out infinite;
+}
+@keyframes hero-scan{
+  0%{ transform:translateY(-220px); opacity:0; }
+  15%,80%{ opacity:1; }
+  100%{ transform:translateY(96vh); opacity:0; }
+}
+
+/* --- Aurora ambiante : halo qui dérive lentement (inspiré des heroes
+   "AuroraHero" de la galerie 21st.dev — mais recomposé avec NOS deux seuls
+   accents, cyan/orange, pour rester dans le design system existant plutôt
+   que la palette arc-en-ciel générique de la référence).
+   Un seul calque, rotation très lente (40s) : "1-2 éléments animés max,
+   pas d'excès" (règle motion design). Coût GPU nul : transform seul,
+   le flou (filter:blur) est STATIQUE, jamais recalculé par frame. */
+.hero--fui .hero-fx::after{
+  content:""; position:absolute; z-index:0; pointer-events:none;
+  left:50%; top:46%; width:150%; height:150%;
+  transform:translate(-50%,-50%) rotate(0deg);
+  background:conic-gradient(from 0deg,
+    rgba(var(--accent-rgb), .16),
+    transparent 22%,
+    transparent 45%,
+    rgba(var(--accent-2-rgb), .13),
+    transparent 68%,
+    transparent 88%,
+    rgba(var(--accent-rgb), .16));
+  filter:blur(60px);
+  animation:aurora-drift 42s linear infinite;
+  will-change:transform;
+}
+@keyframes aurora-drift{ to{ transform:translate(-50%,-50%) rotate(360deg); } }
+
+/* Le CTA respire au même rythme que l'aurora (halo qui pulse doucement,
+   jamais brusque) — reprend le glow déjà posé sur .hero-cta .btn-primary. */
+.hero--fui .hero-cta .btn-primary{ animation:cta-breathe 6s ease-in-out infinite; }
+@keyframes cta-breathe{
+  0%,100%{ box-shadow:0 12px 36px -8px rgba(var(--accent-2-rgb), .6), 0 0 34px rgba(var(--accent-rgb), .18); }
+  50%{ box-shadow:0 12px 40px -8px rgba(var(--accent-2-rgb), .72), 0 0 46px rgba(var(--accent-rgb), .3); }
+}
+
+/* --- Eyebrow → puce HUD avec point clignotant --- */
+.hero--fui .eyebrow{
+  font-family:'Sora',sans-serif; font-size:11.5px; letter-spacing:.22em;
+  padding:7px 15px 7px 12px; border:1px solid rgba(var(--accent-rgb), .38);
+  border-radius:100px; background:rgba(var(--accent-rgb), .06); color:var(--accent);
+  box-shadow:0 0 22px rgba(var(--accent-rgb), .14), inset 0 0 14px rgba(var(--accent-rgb), .07);
+}
+.hero--fui .eyebrow::before{               /* remplace la barre par un point HUD */
+  content:""; width:7px; height:7px; border-radius:50%; background:var(--accent);
+  box-shadow:0 0 10px var(--accent); animation:hud-blink 1.6s steps(1,end) infinite;
+}
+@keyframes hud-blink{ 0%,62%{ opacity:1; } 63%,100%{ opacity:.25; } }
+
+/* --- Titre géant lumineux (calibré pour tenir dans le hero) --- */
+.hero--fui h1{
+  font-size:clamp(38px, 4.7vw, 62px); line-height:1.04; letter-spacing:-.03em;
+  margin-bottom:20px;
+  filter:drop-shadow(0 0 26px rgba(var(--accent-rgb), .20));
+}
+.hero--fui h1 .word{ line-height:1.05; padding-bottom:.14em; margin-bottom:-.14em; }
+.hero--fui .grad-text{
+  background:linear-gradient(100deg, var(--accent), #7dd3fc 45%, var(--accent-2));
+  -webkit-background-clip:text; background-clip:text;
+}
+
+/* --- CTA : halo double (orange chaud + liseré cyan) --- */
+.hero--fui .hero-cta .btn-primary{
+  box-shadow:0 12px 36px -8px rgba(var(--accent-2-rgb), .6), 0 0 34px rgba(var(--accent-rgb), .18);
+}
+.hero--fui .hero-cta .btn-ghost{
+  border-color:rgba(var(--accent-rgb), .40); color:#eaf6ff;
+  background:rgba(var(--accent-rgb), .05);
+}
+@media (hover:hover) and (pointer:fine){
+  .hero--fui .hero-cta .btn-ghost:hover{ border-color:rgba(var(--accent-rgb), .8); box-shadow:0 0 26px rgba(var(--accent-rgb), .25); }
+}
+
+/* --- Stats → panneau « verre » HUD, chiffres tech --- */
+.hero--fui .hero-stats{
+  position:relative; gap:0; padding:16px 6px; margin-top:30px;
+  background:rgba(10,16,34,.5); backdrop-filter:blur(12px) saturate(1.1);
+  -webkit-backdrop-filter:blur(12px) saturate(1.1);
+  border:1px solid var(--hairline); border-radius:var(--r-md);
+  box-shadow:var(--glass-highlight), var(--elev-2);
+}
+.hero--fui .hero-stats::before{           /* liseré accent en haut */
+  content:""; position:absolute; left:0; right:0; top:0; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .85), transparent);
+}
+.hero--fui .hero-stats > div{
+  flex:1 1 0; padding:2px 20px; border-left:1px solid var(--hairline);
+}
+.hero--fui .hero-stats > div:first-child{ border-left:none; }
+.hero--fui .hero-stats .stat-trigger b,
+.hero--fui .hero-stats b[data-count]{
+  font-variant-numeric:tabular-nums; font-feature-settings:"tnum" 1;
+  background:linear-gradient(180deg, #ffffff, var(--accent));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 0 12px rgba(var(--accent-rgb), .28));
+}
+.hero--fui .hero-stats span{ color:var(--grey-400); letter-spacing:.04em; }
+
+/* --- Crochets d'angle HUD autour du visuel (signal FUI fort) --- */
+.hero--fui .hero-visual::before,
+.hero--fui .hero-visual::after{
+  content:""; position:absolute; width:38px; height:38px; z-index:6; pointer-events:none;
+  border:2px solid var(--accent); box-shadow:0 0 14px rgba(var(--accent-rgb), .55);
+}
+.hero--fui .hero-visual::before{ top:12px; left:12px; border-right:none; border-bottom:none; border-radius:8px 0 0 0; }
+.hero--fui .hero-visual::after{ bottom:12px; right:12px; border-left:none; border-top:none; border-radius:0 0 8px 0; }
+
+/* --- Bandeau de confiance : étoiles en accent --- */
+.hero--fui .hero-trust .rating .stars{ color:var(--accent-2); text-shadow:0 0 12px rgba(var(--accent-2-rgb), .4); }
+
+/* --- Accessibilité : coupe les animations décoratives --- */
+@media (prefers-reduced-motion: reduce){
+  .hero--fui .hero-fx::before{ animation:none; }
+  .hero--fui .hero-fx__scan{ display:none; }
+  .hero--fui .eyebrow::before{ animation:none; }
+  .hero--fui .hero-fx::after{ animation:none; }
+  .hero--fui .hero-cta .btn-primary{ animation:none; }
+}
+
+/* ============================================================
+   BACKGROUND PATHS — lignes fluides en fond de section
+   (inspiré de "Background Paths" / 21st.dev, recomposé en SVG/CSS pur
+   avec nos accents ; sert de fil visuel entre le hero et "Pourquoi nous",
+   pour la continuité entre sections demandée). Trois traits seulement
+   (règle motion : peu d'éléments animés, jamais de saturation visuelle).
+   ============================================================ */
+.why{ position:relative; }
+.why .wrap{ position:relative; z-index:1; }
+.bg-paths{
+  position:absolute; inset:0; z-index:0; width:100%; height:100%;
+  pointer-events:none; opacity:.5;
+}
+.bg-paths__line{
+  fill:none; stroke:rgba(var(--accent-rgb), .22);
+  stroke-width:1.4; stroke-linecap:round;
+  stroke-dasharray:22 14;
+  animation:bg-paths-flow 26s linear infinite;
+}
+.bg-paths__line:nth-child(2){ stroke:rgba(var(--accent-2-rgb), .16); animation-duration:32s; animation-direction:reverse; }
+.bg-paths__line:nth-child(3){ stroke:rgba(var(--accent-rgb), .14); animation-duration:38s; }
+@keyframes bg-paths-flow{ to{ stroke-dashoffset:-720; } }
+
+@media (prefers-reduced-motion: reduce){
+  .bg-paths__line{ animation:none; }
+}
+
+/* ---------- Reflet 3D sur la photo équipe (data-tilt) ---------- */
+.why-visual [data-tilt]{ position:relative; }
+.why-visual [data-tilt]::before{
+  content:""; position:absolute; inset:0; z-index:2; opacity:0; pointer-events:none;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.16), transparent 45%);
+  transition:opacity var(--dur-base, .3s);
+}
+.why-visual [data-tilt].is-tilting::before{ opacity:1; }
+
+/* ============================================================
+   SPLINE SHOWCASE — carte sombre + spotlight souris + scène 3D
+   Port vanilla d'un composant React (SplineScene + Spotlight + Card).
+   ============================================================ */
+.spline-card{
+  width:100%; min-height:420px; position:relative; overflow:hidden;
+  background:#040404; border:1px solid var(--hairline, rgba(255,255,255,.09));
+  border-radius:var(--radius, 18px);
+  display:flex; box-shadow:0 40px 90px -30px rgba(0,0,0,.75);
+}
+.spline-card .spotlight-glow{
+  position:absolute; inset:auto; z-index:0; pointer-events:none;
+  left:0; top:0; width:260px; height:260px;
+  transform:translate(calc(var(--spot-x, -999px) - 50%), calc(var(--spot-y, -999px) - 50%));
+  background:radial-gradient(circle at center, rgba(255,255,255,.16), transparent 72%);
+  filter:blur(14px); opacity:0; transition:opacity .25s ease;
+}
+.spline-card .spotlight-glow.is-active{ opacity:1; }
+
+.spline-card__content{
+  flex:1 1 380px; position:relative; z-index:1;
+  padding:44px; display:flex; flex-direction:column; justify-content:center;
+}
+.spline-card__content h2{
+  font-size:clamp(28px,4vw,40px); line-height:1.12; margin:0 0 14px;
+  background:linear-gradient(180deg,#fafafa,#a3a3a3);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.spline-card__content p{ color:#d4d4d4; max-width:46ch; }
+
+.spline-visual{
+  flex:1 1 380px; position:relative; min-height:320px;
+  display:flex; align-items:center; justify-content:center;
+}
+.spline-visual canvas{ width:100%; height:100%; display:block; }
+/* Repli : visible tant que la scène 3D n'a pas fini de charger, et
+   définitivement sur mobile / reduced-motion (voir spline-scene.js). */
+.spline-visual::before{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 60% 40%, rgba(var(--accent-rgb),.22), transparent 65%),
+    radial-gradient(ellipse 60% 50% at 40% 70%, rgba(var(--accent-2-rgb),.16), transparent 65%);
+  opacity:1; transition:opacity .4s ease;
+}
+.spline-visual.is-loaded::before{ opacity:0; }
+.spline-visual.is-fallback::before{ opacity:1; }
+.spline-visual.is-fallback canvas{ display:none; }
+
+/* ---------- Utilisation en fond d'ambiance (ex: bande CTA) ---------- */
+/* Ici la scène n'est pas la vedette d'une carte mais un fond décoratif :
+   elle couvre tout le conteneur, derrière le texte (déjà en z-index:1). */
+.cta-band{ isolation:isolate; }
+.cta-band .spline-visual{
+  position:absolute; inset:0; z-index:0; flex:none; min-height:0;
+  opacity:.85; pointer-events:none;
+}
+
+@media (max-width:900px){
+  .spline-card{ flex-direction:column; min-height:auto; }
+  .spline-card__content{ padding:32px; }
+  .spline-visual{ min-height:240px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .spline-card .spotlight-glow{ transition:none; }
+}

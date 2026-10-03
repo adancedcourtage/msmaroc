@@ -1,0 +1,109 @@
+/* ============================================================
+   mdx-layer.css — halos + grille façon mdx.so, scène 3D hero,
+   titres GSAP mot-par-mot.
+   Couche 100% ADDITIVE : nouveaux éléments uniquement, ne réécrit
+   aucune règle existante. Chargée en dernier.
+   ============================================================ */
+
+/* ---------- Grille + halos fixes (sous le fond WebGL animé) ---------- */
+.mdx-grid{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%, #000 40%, transparent 85%);
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%, #000 40%, transparent 85%);
+}
+.mdx-glow{position:fixed;z-index:-2;pointer-events:none;border-radius:50%;filter:blur(120px);opacity:.5;}
+.mdx-glow--a{width:640px;height:640px;left:-160px;top:-120px;background:radial-gradient(circle, rgba(47,107,255,.55), transparent 70%);}
+.mdx-glow--b{width:560px;height:560px;right:-160px;top:20%;background:radial-gradient(circle, rgba(255,138,30,.4), transparent 70%);}
+.mdx-glow--c{width:520px;height:520px;left:20%;bottom:-220px;background:radial-gradient(circle, rgba(34,211,238,.32), transparent 70%);}
+
+@media (max-width:768px){
+  .mdx-grid{background-size:44px 44px;}
+  .mdx-glow{filter:blur(80px);opacity:.4;}
+  .mdx-glow--a,.mdx-glow--b,.mdx-glow--c{width:360px;height:360px;}
+}
+
+/* ---------- Mots du hero (h1) — reveal CSS déterministe ---------- */
+/* Réutilise le moteur .hero-in / line-in déjà en place (voir immersive.css),
+   mais au grain du MOT plutôt que de la ligne : masque par mot au lieu
+   d'un masque par ligne. Volontairement 100% CSS (pas de dépendance GSAP)
+   pour ne pas réintroduire le bug de hero figé déjà corrigé sur ce site. */
+.hero h1 .word-mask{display:inline-block;overflow:hidden;vertical-align:top;}
+.hero h1 .word-mask .line-inner{
+  display:inline-block;
+  animation:line-in .85s var(--ease-signature, cubic-bezier(.16,1,.3,1)) both;
+}
+@media (prefers-reduced-motion: reduce){
+  .hero h1 .word-mask .line-inner{animation:none !important;opacity:1 !important;transform:none !important;}
+}
+
+/* ---------- Titres de section — reveal mot-par-mot au scroll (GSAP) ---------- */
+/* Ces masques sont posés par gsap-titles.js seulement si GSAP/ScrollTrigger
+   ont bien chargé ; sinon les titres restent du texte simple, déjà révélés
+   par le fade-up .reveal existant sur leur conteneur parent. */
+.gsap-word-mask{display:inline-block;overflow:hidden;vertical-align:top;}
+.gsap-word{display:inline-block;will-change:transform;}
+
+/* ---------- Scène 3D principale du hero (remplace la vidéo) ---------- */
+/* hero-three.js monte le canvas ici si THREE charge ; sinon la vidéo
+   d'origine (data-hero-fallback) reste affichée, jamais retirée du DOM. */
+.hero-three-main{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:none;}
+.hero-three-main.is-active{display:block;}
+.hero-three-main.is-active ~ video.hero-video{display:none;}
+@media (min-width:981px){
+  .hero .hero-visual .hero-three-main{height:100%;aspect-ratio:auto;}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-three-main{display:none !important;}
+  .hero-three-main ~ video.hero-video{display:block !important;}
+}
+
+/* ---------- Hover Glow — halo suivant le curseur, sur TOUTES les cartes services ---------- */
+/* .service-card avait déjà ce halo (interactions.css) ; on l'étend aux
+   mini-cartes (Électricité/Consulting/Formation) et on l'intensifie un cran
+   ("poussé à fond") sans toucher à la règle d'origine. */
+.mini-card{position:relative;overflow:hidden;}
+.mini-card::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;border-radius:14px;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(34,211,238,.22), transparent 55%);
+  transition:opacity var(--dur-base);
+}
+@media (hover:hover) and (pointer:fine){
+  .mini-card.is-tilting::before{opacity:1;}
+}
+.mini-card .ic,.mini-card h4,.mini-card p{position:relative;z-index:1;}
+/* Intensité relevée sur les grandes cartes (halo plus large, teinte de marque). */
+.service-card::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;border-radius:var(--radius);
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,154,31,.16), transparent 62%);
+  transition:opacity var(--dur-base);mix-blend-mode:screen;
+}
+@media (hover:hover) and (pointer:fine){
+  .service-card.is-tilting::after{opacity:1;}
+}
+
+/* ---------- Footer premium : titre géant + CTA lumineux + halo violet ---------- */
+footer{position:relative;overflow:hidden;}
+.footer-glow{
+  position:absolute;top:-120px;left:50%;transform:translateX(-50%);z-index:0;pointer-events:none;
+  width:900px;height:520px;max-width:140vw;
+  background:radial-gradient(ellipse at center, rgba(139,92,246,.32), rgba(139,92,246,.08) 55%, transparent 75%);
+  filter:blur(60px);
+}
+footer .wrap{position:relative;z-index:1;}
+.footer-cta{text-align:center;padding-bottom:56px;margin-bottom:56px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:32px;}
+.footer-cta-title{
+  font-family:'Sora',sans-serif;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin:0;
+  font-size:clamp(30px,5.5vw,64px);max-width:900px;
+  background:linear-gradient(100deg,#ffffff,#ffffff 40%,rgba(139,92,246,.9));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.btn-lg{padding:18px 42px;font-size:16px;border-radius:100px;}
+.footer-cta-btn{box-shadow:0 0 0 1px rgba(255,255,255,.06), var(--glow-warm);}
+@media (max-width:640px){
+  .footer-cta{padding-bottom:40px;margin-bottom:40px;gap:24px;}
+  .footer-glow{height:380px;}
+}

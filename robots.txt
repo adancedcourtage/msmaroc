@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /mentions-legales.html
-Disallow: /confidentialite.html
 
-Sitemap: https://www.marketingsuccess.fr/sitemap.xml
+Sitemap: https://msmaroc.com/sitemap.xml
