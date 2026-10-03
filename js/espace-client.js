@@ -60,6 +60,7 @@
   });
 
   if (logout) logout.addEventListener('click', function () {
+    try { localStorage.removeItem('ms-cahier-des-charges-v1'); localStorage.removeItem('ms-cahier-des-charges-v1:pos'); } catch (e) {}
     fetch('/api/logout', { method: 'POST', credentials: 'same-origin' }).then(function () { location.reload(); });
   });
 })();

@@ -3,7 +3,8 @@
    Variables d'environnement (Vercel > Settings > Environment Variables) :
      SESSION_SECRET : longue chaîne aléatoire (signe le cookie de session)
      CLIENT_CODES   : un client par entrée "CODE:Nom du client", entrées séparées par une virgule,
-                      un point-virgule ou un saut de ligne. Ex. : "K7P2-ARGAN:Boutique Argan,M4X9-RIAD:Riad Atlas" */
+                      un point-virgule ou un saut de ligne. Codes ALÉATOIRES d'au moins 10 caractères
+                      (les plus courts sont ignorés). Ex. : "q8Fm3ZkT7xWc:Boutique Argan,Rb4NsE9yLp2H:Riad Atlas" */
 const crypto = require('crypto');
 
 const COOKIE = 'ms_client';
@@ -24,7 +25,8 @@ function clients() {
     .filter(Boolean)
     .map((e) => {
       const i = e.indexOf(':');
-      return i > 0 ? { code: e.slice(0, i).trim(), name: e.slice(i + 1).trim() || 'cher client' } : null;
+      const code = i > 0 ? e.slice(0, i).trim() : '';
+      return code.length >= 10 ? { code, name: e.slice(i + 1).trim() || 'cher client' } : null;
     })
     .filter(Boolean);
 }
@@ -37,6 +39,8 @@ function findClient(input) {
   }
   return found;
 }
+
+const fingerprint = (code) => crypto.createHash('sha256').update('ms:' + code).digest('hex').slice(0, 16);
 
 function sign(payload) {
   const body = Buffer.from(JSON.stringify(payload)).toString('base64url');
@@ -66,15 +70,17 @@ function cookies(req) {
   const out = {};
   String(req.headers.cookie || '').split(';').forEach((p) => {
     const i = p.indexOf('=');
-    if (i > 0) out[p.slice(0, i).trim()] = decodeURIComponent(p.slice(i + 1).trim());
+    if (i > 0) {
+      try { out[p.slice(0, i).trim()] = decodeURIComponent(p.slice(i + 1).trim()); } catch (e) { /* cookie mal formé : ignoré */ }
+    }
   });
   return out;
 }
 
 const secure = () => (process.env.MS_DEV ? '' : '; Secure');
 
-function setSession(res, name) {
-  const token = sign({ name, exp: Date.now() + MAX_AGE * 1000 });
+function setSession(res, client) {
+  const token = sign({ name: client.name, f: fingerprint(client.code), exp: Date.now() + MAX_AGE * 1000 });
   res.setHeader('Set-Cookie', `${COOKIE}=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${MAX_AGE}${secure()}`);
 }
 
@@ -82,8 +88,11 @@ function clearSession(res) {
   res.setHeader('Set-Cookie', `${COOKIE}=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0${secure()}`);
 }
 
+/* Une session n'est valable que tant que le code qui l'a créée figure encore dans CLIENT_CODES (révocation). */
 function session(req) {
-  return verify(cookies(req)[COOKIE]);
+  const p = verify(cookies(req)[COOKIE]);
+  if (!p || !p.f) return null;
+  return clients().some((c) => fingerprint(c.code) === p.f) ? p : null;
 }
 
 function json(res, status, data) {

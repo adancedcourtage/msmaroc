@@ -32,7 +32,7 @@
 .msf .btn.wa{font-size:16px;padding:16px 22px}
 .msf .btn.small{padding:8px 14px;font-size:14px}
 .msf-wrap{padding-bottom:var(--section)}
-.msf main.sheet{background:var(--surface)}
+.msf .sheet{background:var(--surface)}
 .msf h1,.msf h2,.msf h3,.msf h4{font-family:var(--f-display); text-wrap:balance; margin:0; letter-spacing:-.01em}
 .msf p{margin:0}
 .msf .shell{max-width:1120px; margin:0 auto; display:grid; grid-template-columns:250px minmax(0,1fr); gap:28px; align-items:start}
@@ -53,7 +53,7 @@
 .msf .track{height:4px; background:var(--line); border-radius:4px; overflow:hidden}
 .msf #bar{display:block; height:100%; background:var(--accent); width:0; transition:width .3s}
 .msf #bar-lbl{font-family:var(--f-mono); font-size:12px; color:var(--muted)}
-.msf main.sheet{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:clamp(20px, 3.6vw, 40px); min-width:0}
+.msf .sheet{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:clamp(20px, 3.6vw, 40px); min-width:0}
 .msf .step-head{display:grid; gap:8px; margin-bottom:26px; padding-bottom:22px; border-bottom:1px solid var(--line)}
 .msf .eyebrow{font-family:var(--f-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); display:flex; gap:12px; flex-wrap:wrap}
 .msf .eyebrow span{color:var(--muted)}

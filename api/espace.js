@@ -10,6 +10,6 @@ module.exports = (req, res) => {
   if (req.method !== 'GET') return L.json(res, 405, { error: 'Méthode non autorisée' });
   const s = L.session(req);
   if (!s) return L.json(res, 401, { error: 'Non connecté' });
-  const html = read('espace.html.txt').replace(/\{\{NAME\}\}/g, L.escapeHtml(s.name));
+  const html = read('espace.html.txt').replace(/\{\{NAME\}\}/g, () => L.escapeHtml(s.name));
   return L.json(res, 200, { name: s.name, html, script: read('cahier-config.txt') });
 };

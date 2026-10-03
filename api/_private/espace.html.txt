@@ -20,7 +20,7 @@
     <aside aria-label="Étapes"><ol class="rail" id="steps-nav"></ol></aside>
     <div style="min-width:0">
       <div class="progress"><div class="bar-row"><span id="bar-lbl"></span><span id="saved"></span></div><div class="track"><span id="bar"></span></div></div>
-      <main class="sheet">
+      <div class="sheet">
         <form id="form" novalidate onsubmit="return false">
           <div id="step"></div>
           <div class="navbtns">
@@ -29,7 +29,7 @@
             <button type="button" class="btn primary" id="next">Continuer →</button>
           </div>
         </form>
-      </main>
+      </div>
     </div>
   </div>
 

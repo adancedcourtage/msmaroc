@@ -3,7 +3,7 @@ const L = require('./_lib');
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return L.json(res, 405, { error: 'Méthode non autorisée' });
-  if (!L.secret() || !L.clients().length) return L.json(res, 503, { error: "L'espace client n'est pas encore configuré." });
+  if (!L.secret() || !L.clients().length) return L.json(res, 503, { error: 'Service momentanément indisponible. Contactez-nous sur WhatsApp.' });
   if (L.tooMany(req)) return L.json(res, 429, { error: 'Trop d’essais. Réessayez dans quelques minutes.' });
 
   let body = req.body;
@@ -15,6 +15,6 @@ module.exports = async (req, res) => {
     await new Promise((r) => setTimeout(r, 500)); // freine le test de codes en rafale
     return L.json(res, 401, { error: 'Code incorrect. Vérifiez le code reçu avec votre devis.' });
   }
-  L.setSession(res, client.name);
+  L.setSession(res, client);
   return L.json(res, 200, { ok: true, name: client.name });
 };

@@ -25,3 +25,6 @@ assets/logo-mark.png
 assets/clients/*.png
 README.md
 DESIGN_SYSTEM.md
+.claude
+.DS_Store
+.gitignore

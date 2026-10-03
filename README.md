@@ -34,14 +34,19 @@ Pousser sur la branche de production du projet Vercel `marketing-success` (ou `v
 | `SESSION_SECRET` | longue chaîne aléatoire (≥ 32 caractères), p. ex. `openssl rand -base64 48` |
 | `CLIENT_CODES` | un client par entrée `CODE:Nom du client`, séparées par `,` `;` ou un saut de ligne |
 
-Exemple : `K7P2-ARGAN:Boutique Argan,M4X9-RIAD:Riad Atlas`
+Exemple : `q8Fm3ZkT7xWc:Boutique Argan,Rb4NsE9yLp2H:Riad Atlas`
 
 ### Créer un code d'accès pour un nouveau client
-1. Inventer un code (lettres/chiffres, ≥ 8 caractères, difficile à deviner).
+1. Générer un code **aléatoire d'au moins 10 caractères** (les codes plus courts sont ignorés), par exemple `openssl rand -base64 9 | tr -d '/+='`.
 2. Ajouter `CODE:Nom du client` à `CLIENT_CODES` dans Vercel, puis **redéployer** (les variables sont lues au démarrage).
-3. Envoyer le code au client avec le devis accepté. Pour révoquer : retirer l'entrée et redéployer.
+3. Envoyer le code au client avec le devis accepté. Pour révoquer : retirer l'entrée et redéployer. Les sessions ouvertes avec ce code cessent alors de fonctionner.
 
 Sécurité : le code est vérifié côté serveur, la session est un cookie `HttpOnly; Secure; SameSite=Strict` signé (7 jours), le contenu du questionnaire n'est servi qu'avec ce cookie, 8 essais / 10 min / IP (best-effort).
 
 ## À COMPLÉTER
 Rechercher `À COMPLÉTER` dans le code : preuves (captures de réalisations, témoignages nominatifs, délais types, conditions de propriété et de maintenance), adresse postale, réseaux sociaux, informations légales (ICE, RC, IF, forme juridique).
+
+## Après le premier déploiement : à tester
+- `curl -I https://msmaroc.com/api/_private/cahier-config.txt` doit répondre une redirection (307) vers `/404.html`, jamais le contenu.
+- Se connecter à `/espace-client.html` avec un vrai code ; vérifier le cookie `ms_client` (HttpOnly, Secure).
+- Limite connue : le limiteur d'essais de connexion est en mémoire (par instance serverless). Pour une protection durable, activer le rate limiting de Vercel (WAF) sur `/api/login`.
