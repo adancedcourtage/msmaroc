@@ -85,9 +85,3 @@ h1 .grad{background-image:linear-gradient(95deg,var(--cyan),var(--orange),var(--
   .mo .timeline::after{display:none}
   .faq details::details-content{transition:none}
 }
-
-
-/* Hybride : zones claires (pas d'hypothèse blanc-sur-sombre) */
-.on-light .maroc-grid .card:hover{box-shadow:0 18px 40px -22px rgba(14,116,144,.4)}
-.on-light h2 .w{color:inherit}
-.on-light .mentions .ico{color:var(--cyan)}
