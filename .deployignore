@@ -28,3 +28,16 @@ DESIGN_SYSTEM.md
 .claude
 .DS_Store
 .gitignore
+# Outillage (jamais publié)
+.git
+.vercel
+.wrangler
+.env*
+node_modules
+dist
+functions
+scripts
+wrangler.toml
+vercel.json
+AGENTS.md
+CLAUDE.md

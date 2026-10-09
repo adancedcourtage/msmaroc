@@ -4,3 +4,6 @@
 assets/sources/
 .vercel
 .env*
+dist
+.wrangler
+.dev.vars
