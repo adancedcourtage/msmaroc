@@ -1,9 +1,4 @@
 #!/bin/sh
-# Copie les fichiers publiables dans dist/ (aucune compilation).
-# Liste d'exclusion : .deployignore. Les en-têtes et redirections sont dans _headers / _redirects.
+# La copie est faite par scripts/build.mjs (Node, sans rsync : absent de l environnement de build Cloudflare).
 set -e
-cd "$(dirname "$0")/.."
-rm -rf dist
-mkdir dist
-rsync -a --exclude-from=.deployignore ./ dist/
-echo "dist/ prêt : $(find dist -type f | wc -l | tr -d ' ') fichiers"
+node "$(dirname "$0")/build.mjs"
